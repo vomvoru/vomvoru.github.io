@@ -13,3 +13,47 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'D2Coding';
+  src: url('#{$fa-font-path}/D2Coding.eot?v=#{$fa-version}');
+  src: url('#{$fa-font-path}/D2Coding.eot?#iefix&v=#{$fa-version}') format('embedded-opentype'),
+    url('#{$fa-font-path}/D2Coding.woff?v=#{$fa-version}') format('woff'),
+    url('#{$fa-font-path}/D2Coding.ttf?v=#{$fa-version}') format('truetype');
+//  src: url('#{$fa-font-path}/D2Coding.otf') format('opentype'); // used when developing fonts
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BMJUA';
+  src: url('#{$fa-font-path}/BMJUA.eot?v=#{$fa-version}');
+  src: url('#{$fa-font-path}/BMJUA.eot?#iefix&v=#{$fa-version}') format('embedded-opentype'),
+    url('#{$fa-font-path}/BMJUA.woff?v=#{$fa-version}') format('woff'),
+    url('#{$fa-font-path}/BMJUA.ttf?v=#{$fa-version}') format('truetype');
+//  src: url('#{$fa-font-path}/BMJUA.otf') format('opentype'); // used when developing fonts
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BMDOHYEON';
+  src: url('#{$fa-font-path}/BMDOHYEON.eot?v=#{$fa-version}');
+  src: url('#{$fa-font-path}/BMDOHYEON.eot?#iefix&v=#{$fa-version}') format('embedded-opentype'),
+    url('#{$fa-font-path}/BMDOHYEON.woff?v=#{$fa-version}') format('woff'),
+    url('#{$fa-font-path}/BMDOHYEON.ttf?v=#{$fa-version}') format('truetype');
+//  src: url('#{$fa-font-path}/BMDOHYEON.otf') format('opentype'); // used when developing fonts
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BMHANNA_11yrs';
+  src: url('#{$fa-font-path}/BMHANNA_11yrs.eot?v=#{$fa-version}');
+  src: url('#{$fa-font-path}/BMHANNA_11yrs.eot?#iefix&v=#{$fa-version}') format('embedded-opentype'),
+    url('#{$fa-font-path}/BMHANNA_11yrs.woff?v=#{$fa-version}') format('woff'),
+    url('#{$fa-font-path}/BMHANNA_11yrs.ttf?v=#{$fa-version}') format('truetype');
+//  src: url('#{$fa-font-path}/BMHANNA_11yrs.otf') format('opentype'); // used when developing fonts
+  font-weight: normal;
+  font-style: normal;
+}

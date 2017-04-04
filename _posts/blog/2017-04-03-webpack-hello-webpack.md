@@ -1,10 +1,13 @@
 ---
 layout: post
-title: "[webpack 강의 1편]Hello webpack"
+title: "webpack 강의 1편"
+subtitle: "Hello webpack"
 slug: "webpack-guide-1-Hello-wepback"
 date: "2017-04-02 10:05:01 +0900"
-categories: jekyll update
+categories: blog
+author: vomvoru
 ---
+
 # webpack?
 * 하나의 파일로 js 파일을 번들화 가능
 * ES2015, ES2016등으로 코드를 작성가능
