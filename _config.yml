@@ -1,11 +1,11 @@
 # Site wide configuration
 
-title: Site Title
-locale: en_US
+title: vomvoru
+locale: ko_KR
 description: Describe your website here.
 logo: site-logo.png
 search: true
-url: http://localhost:4000
+url: https://vomvoru.github.io
 
 # Jekyll configuration
 
@@ -36,22 +36,22 @@ exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.
 
 # Site owner
 owner:
-  name: Your Name
+  name: vomvoru
   avatar: bio-photo.jpg
-  email: you@email.com
+  email: qkrcjfgus3@gmail.com
   disqus-shortname:
-  twitter: #username
-  facebook: #username
-  github: #username
+  twitter: vomvoru #username
+  facebook: park.fe.hyeon #username
+  github: vomvoru #username
   stackexchange: #http://stackoverflow.com/users/123456/username
-  linkedin: #username
-  instagram: #username
+  linkedin: vomvoru #username
+  instagram: vomvoru #username
   flickr: #username
   tumblr: #username
   pinterest: #username
   weibo: #userid
   google:
-    plus: #username
+    plus: +박철현vomvoru #username
     analytics:
     verify:
     ad-client:
