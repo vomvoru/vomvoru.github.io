@@ -2,12 +2,12 @@
 
 
 
-$base-font                : 'NanumBarunGothic', 'source-sans-pro', sans-serif;
-$heading-font             : 'BMDOHYEON', $base-font;
+$base-font                : "Apple SD Gothic Neo", AppleSDGothicNeo, "Malgun Gothic", dotum, arial, sans-serif;
+$heading-font             : $base-font;
 $caption-font             : $base-font;
 $code-font                : 'D2Coding', 'source-code-pro', monospace;
 $alt-font                 : 'BMJUA', 'volkhov', serif;
-$title-font               : 'BMDOHYEON', 'volkhov', serif;
+$title-font               : $base-font;
 
 $doc-font-size            : 16;
 $doc-line-height          : 24;
