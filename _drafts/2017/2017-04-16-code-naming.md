@@ -1,20 +1,17 @@
 ---
 published: false
----
----
 layout: post
 title: 코드 네이밍
 subtitle: 의미있는 이름
 slug: code-naming
-date: 2017-04-16 07:16:01 +0900
+date: '2017-04-16 07:16:01 +0900'
 categories: blog
 author: vomvoru
 comments: true
 share: true
 tags:
-- Clean Code
+  - Clean Code
 ---
-
 본 글은 Clean Code 도서[^1]의 내용을 참고하여 작성하였습니다.
 
 우리는 수많은 곳에 이름을 붙인다. 변수, 함수, 인수, 클래스, 패키지, 파일, 디덱토리 ...
