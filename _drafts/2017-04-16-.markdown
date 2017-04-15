@@ -1,0 +1,10 @@
+---
+layout: post
+title: "장인들이 말하는 클린코드 – 코드의 미학"
+date: 2017-04-16 05:34
+link: https://vomvoru.github.io/blog/say-about-clean-code/
+---
+
+[장인들이 말하는 클린코드 – 코드의 미학](https://vomvoru.github.io/blog/say-about-clean-code/)
+
+> 
