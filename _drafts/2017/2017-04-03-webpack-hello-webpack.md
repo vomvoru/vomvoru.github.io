@@ -1,11 +1,15 @@
 ---
 layout: post
-title: "webpack 강의 1편"
-subtitle: "Hello webpack"
-slug: "webpack-guide-1-Hello-wepback"
-date: "2017-04-02 10:05:01 +0900"
+title: webpack 강의 1편
+subtitle: install webpack
+slug: webpack-guide-1-Hello-wepback
+date: 2017-04-02 10:05:01 +0900
 categories: blog
 author: vomvoru
+comments: true
+share: true
+tags:
+- webpack
 ---
 
 # webpack?
@@ -15,18 +19,14 @@ author: vomvoru
 * HMR의 공식 지원
 * javascript로 image, css 등의 모든 유형의 파일을 관리 가능
 * 코드 분리 기능
-* 그 외 이 글에서 다루지 못한 고급기능들이 있습니다.
+* 그 외 이 글에서 다루지 못한 고급기능들
 
-![webpack concept](/images/2017/04/webpack-concept.png)
+![webpack-concepts](/images/2017/04/webpack-concepts.png)
 
 # Webpack install
 ## Local install
 ``` bash
 npm i --save-dev webpack
-```
-
-``` js
-var a = 1;
 ```
 
 ## Global install
