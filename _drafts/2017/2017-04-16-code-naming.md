@@ -1,5 +1,4 @@
 ---
-published: false
 layout: post
 title: 코드 네이밍
 subtitle: 의미있는 이름
