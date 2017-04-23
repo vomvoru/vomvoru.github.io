@@ -78,7 +78,7 @@ var FileAccess;
 
 ```
 
-위와 같이 computed member인 FileAccess.TEST2, FileAccess.G는 계산식 그대로 변환되어 출력되며
+위와 같이 computed member인 `FileAccess.TEST2`, `FileAccess.G`는 계산식 그대로 변환되어 출력되며
 나머지 constant member들은 모두 계산되어 출력된다.
 
 # reverse mapping
