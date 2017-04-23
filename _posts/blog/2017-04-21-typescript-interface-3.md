@@ -72,7 +72,7 @@ class Clock implements ClockConstructor {
     constructor(h: number, m: number) { }
 }
 ```
-이는 인터페이스가 클래스를 검사시 instance만 검사하기 때문입니다. 생성자는 static 측면에 있으므로 검사에 포함되지 않습ㄴ디ㅏ.
+이는 인터페이스가 클래스를 검사시 instance만 검사하기 때문입니다. 생성자는 static 측면에 있으므로 검사에 포함되지 않습니다.
 
 대신 클래스의 static 측면에서 직접 작업해야합니다.  
 아래 예제에서는 instance 측면과 static 측면의 interface를 각각 따로 만들어서 (ClockConstructor, ClockInterface) 서로 분간하며 사용하고 있습니다.
@@ -229,4 +229,41 @@ AnalogClock.num = 0;
 
 var digital = createClock(DigitalClock, 'dig', 12, 17);
 var analog = createClock(AnalogClock, 'ana', 7, 32);
+```
+
+# prototype 속성
+prototype 속성을 이용하여 클래스를 받는 함수의 매개변수에서 `static` 타입뿐만이 아니라 `instance` 타입 체크도 가능합니다.
+```ts
+interface Keeper {
+    new ();
+    prototype: {
+        keeper: any
+    }
+}
+
+class BeeKeeper {
+    hasMask: boolean;
+}
+
+class ZooKeeper {
+    nametag: string;
+}
+
+class Animal {
+    numLegs: number;
+}
+
+class Bee extends Animal {
+    keeper: BeeKeeper;
+}
+
+class Lion extends Animal {
+    keeper: ZooKeeper;
+}
+
+function findKeeper (a: Keeper) {
+    return a.prototype.keeper;
+}
+
+findKeeper(Lion).nametag;  // typechecks!
 ```
