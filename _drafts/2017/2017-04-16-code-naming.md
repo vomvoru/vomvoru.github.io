@@ -11,7 +11,7 @@ share: true
 tags:
   - Clean Code
 ---
-본 글은 Clean Code 도서[^1]의 내용을 참고하여 작성하였습니다.
+본 글은 [Clean Code 도서][1]의 내용을 참고하여 작성하였습니다.
 
 우리는 수많은 곳에 이름을 붙인다. 변수, 함수, 인수, 클래스, 패키지, 파일, 디덱토리 ...
 좋은 이름을 지으려면 시간이 걸리지만, 좋은 이름으로 절약하는 시간이 훨신 더 많다.
@@ -21,4 +21,4 @@ tags:
 
 
 
-[^1]: [클린 코드](http://www.insightbook.co.kr/%EB%8F%84%EC%84%9C-%EB%AA%A9%EB%A1%9D/ppp-%EC%8B%9C%EB%A6%AC%EC%A6%88/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C)
+[1]: http://www.insightbook.co.kr/%EB%8F%84%EC%84%9C-%EB%AA%A9%EB%A1%9D/ppp-%EC%8B%9C%EB%A6%AC%EC%A6%88/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C "Clean Code"

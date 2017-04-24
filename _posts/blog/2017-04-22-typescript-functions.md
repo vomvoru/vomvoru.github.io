@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript functions
-subtitle: 
+subtitle:
 slug: typescript-functions
 date: '2017-04-22 11:12:00 +0900'
 categories: blog
@@ -38,21 +38,7 @@ let myAdd: (baseValue:number, increment:number) => number =
 ```
 
 # Optional and Default Parameters
-lastName을 선택적 매개변수로 사용하기 위해 다음과 같이 코드를 작성하면, TypeScript의 검사에서 통과되지 않습니다.
-```ts
-function buildName(firstName: string, lastName: string) {
-    if(lastName === undefined){
-        lastName = 'Smith'
-    }
-    return firstName + ' ' + lastName;
-}
-
-let result1 = buildName('Bob');                  // error, too few parameters
-let result2 = buildName('Bob', 'Adams', 'Sr.');  // error, too many parameters
-let result3 = buildName('Bob', 'Adams');         // ah, just right
-```
-
-TypeScript에서 선택적 매개변수를 사용하려면 매개변수명 끝에 ?를 붙이면 됩니다.
+TypeScript에서 `lastName`을 선택 매개변수를 사용하려면 매개변수명 끝에 ?를 붙이면 됩니다.
 ```ts
 function buildName(firstName: string, lastName?: string) {
     if(lastName === undefined){
@@ -66,7 +52,7 @@ let result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
 let result3 = buildName("Bob", "Adams");         // ah, just right
 ```
 
-또한 TypeScript는 기본값을 설정할수 있으며 자동적으로 선택적 매개변수화 됩니다.
+또한 TypeScript는 기본값을 설정할수 있으며 기본값 매개변수는 자동적으로 선택 매개변수가 됩니다.
 ```ts
 function buildName(firstName: string, lastName = "Smith") {
     return firstName + " " + lastName;
@@ -102,7 +88,7 @@ let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 ```
 
 # this parameter
-TypeScript에서는 this에 대한 타입을 지정할 수 있습니다. 아래 코드에서 `createCardPicker` 함수안의 this는 타입이 지정되지 않은 any 타입입니다.
+TypeScript에서는 this에 대한 타입을 명시적으로 지정할 수 있습니다. 아래 코드에서 `createCardPicker` 함수안의 this는 타입이 지정되지 않은 any 타입입니다.
 ```ts
 let deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
@@ -123,8 +109,8 @@ let pickedCard = cardPicker();
 
 alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 ```
-이 문제를 해결하기 위해 fake parameter인 (명시적인) this 매개변수를 제공할수 있습니다.
-인터페이스를 몇개 추가하고 명시적인 this 매개변수를 사용한 예시 코드는 다음과 같습니다.
+이 문제를 해결하기 위해 fake parameter인 (명시적인) `this` 매개변수를 제공할수 있습니다.
+인터페이스를 몇개 추가하고 명시적인 `this` 매개변수를 사용한 예시 코드는 다음과 같습니다.
 ```ts
 interface Card {
     suit: string;
@@ -156,7 +142,7 @@ alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 ```
 
 # Overloads
-매개변수 구성에 따라 다른 타입의 리턴값을 반환하는 함수의 경우에 Typescript는 다음과 같이 작성할 수 있습니다.
+매개변수 구성이 다양하고 그에 따라 다양한 타입의 리턴값을 반환하는 함수의 경우에 다음과 같이 작성할 수 있습니다.
 ```ts
 let suits = ["hearts", "spades", "clubs", "diamonds"];
 

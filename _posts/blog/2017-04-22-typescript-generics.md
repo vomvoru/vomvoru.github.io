@@ -41,7 +41,7 @@ function loggingIdentity<T>(arg: T[]): T[] {
 }
 ```
 
-또는 다른 배열 표현법인 Array인터페이스를 사용할수 있다.
+또한 다른 배열 표현법인 Array인터페이스를 사용할수 있다.
 ```ts
 function loggingIdentity<T>(arg: Array<T>): Array<T> {
     console.log(arg.length);
@@ -59,7 +59,7 @@ function identity<T>(arg: T): T {
 let myIdentity: <T>(arg: T) => T = identity;
 ```
 
-Generics type의 수와 사용법이 일치하는 한 이름은 신경쓰지 않는다.
+Generics type의 구조가 일치하는 한 이름은 신경쓰지 않는다.
 ```ts
 function identity<T>(arg: T): T {
     return arg;
@@ -68,7 +68,7 @@ function identity<T>(arg: T): T {
 let myIdentity: <U>(arg: U) => U = identity;
 ```
 
-Generics type을 인터페이스와 함께 사용할수 있으며, 함수객체로도 설정 가능하다.
+Generics type을 인터페이스와 함께 사용할수 있다.
 ```ts
 interface GenericIdentityFn {
     <T>(arg: T): T;
@@ -90,7 +90,9 @@ function identity<T>(arg: T): T {
 let myIdentity: {<T>(arg: T): T} = identity;
 ```
 
-또한 미리 Genric을 지정하는 방법으로 인터페이스를 사용할 수 있습니다.
+## 미리 Genric을 지정하기
+
+미리 Genric을 지정하는 방법으로 인터페이스를 활용하면 Genric을 미리 지정할수 있습니다.
 ```ts
 interface GenericIdentityFn<T> {
     (arg: T): T;
@@ -110,7 +112,7 @@ numberIdentity('test'); // error! 'test' is not number.
 numberIdentity<string>('test'); // error! can not use genric -> '<string>'.
 ```
 
-미리 Genric을 지정하는 방법으로 다음과 같이 사용하고 싶을수 있지만 함수에 사용된 Genric은 호출과 함께 사용되어야 되기 때문에 오류가 걸립니다. (이후 Typescript가 이러한 방법도 지원되면 좋겠습니다.)
+다음과 같이 사용하고 싶을수 있지만 함수에 사용된 Genric은 호출과 함께 사용되어야 되기 때문에 오류가 걸립니다. (이후 Typescript가 이러한 방법도 지원되면 좋겠습니다.)
 ```ts
 function identity<T>(arg: T): T {
     return arg;
@@ -120,6 +122,7 @@ let numberIdentity = identity<number>; // error!
 identity<number>(123); // pass
 identity(123); // pass
 ```
+
 
 # Generic Classes
 

@@ -334,14 +334,14 @@ department.printMeeting();
 department.generateReports(); // error: method doesn't exist on declared abstract type
 ```
 
-## Abstract Classes & Interface & protected constructor
+## Abstract Classes & interface & protected constructor
 
 ### Abstract Classes
 * 특정 메소드 구현 강제 가능
 * 특정 메소드의 접근제어자 강제 가능
 * 세부표현 포함 가능
 
-### Interface
+### interface
 * 특정 메소드 구현 강제 가능
 * 특정 메소드의 접근제어자 강제 불가능
 * 세부표현 포함 불가능

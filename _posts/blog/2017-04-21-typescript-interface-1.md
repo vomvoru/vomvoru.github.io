@@ -1,6 +1,6 @@
 ---
 layout: post
-title: TypeScript Interface 1
+title: TypeScript interface 1
 subtitle: Duck Typing
 slug: typescript-interface-1
 date: '2017-04-21 02:27:00 +0900'
@@ -10,7 +10,7 @@ comments: true
 share: true
 tags:
   - TypeScript
-  - Interface
+  - interface
 ---
 
 # 인터페이스
@@ -113,7 +113,7 @@ p1.x = 5; // error!!
 ```
 
 ## ReadonlyArray
-읽기 전용 배열을 설정하기 위한 ReadonlyArray 인터페이스가 미리 정의되어 있습니다.
+읽기 전용 배열을 설정하기 위한 `ReadonlyArray` 인터페이스가 미리 정의되어 있습니다.
 
 ```ts
 let a: number[] = [1, 2, 3, 4];
@@ -124,14 +124,14 @@ ro.length = 100; // error!!
 a = ro; // error!!
 ```
 
-마지막 줄이 error가 난 이유는 사실 readonly 속성때문이 아닙니다. number[] 와 ReadonlyArray<number> 의 타입은 서로 다르기 때문에 나오는 오류입니다.
+마지막 줄이 error가 난 이유는 사실 `readonly` 속성때문이 아닙니다. `number[]` 와 `ReadonlyArray<number>` 의 타입은 서로 다르기 때문에 나오는 오류입니다.
 이는 type assertion 로 에러를 없앨수 있습니다.
 
 ```ts
 a = ro as number[];
 ```
 
-사실 ReadonlyArray를 직접 만들수도 있지만, 편의를 위해 TypeScript에서 지원하는것 같습니다. 직접 만든 예시는 아래와 같습니다.
+사실 genric과 interface를 이용하여 `ReadonlyArra`y를 직접 만들수도 있지만, 편의를 위해 TypeScript에서 지원하는것 같습니다. 직접 만든 예시는 아래와 같습니다.
 
 ```ts
 interface CustomReadonlyArray<T>{
@@ -168,7 +168,7 @@ interface SquareConfig {
 ```
 
 다만, 위 방식은 지양하는것이 좋으며 되도록 코드의 질적 향상을 위해 다른 방법을 찾는것이 좋습니다.  
-아래 방법은 다른 방법들중 한가지 입니다.
+아래 방법은 type guard, Type Aliases, interface 를 이용한 다른 방법입니다.
 
 ```ts
 interface SquareBaseConfig {
@@ -176,20 +176,35 @@ interface SquareBaseConfig {
 }
 
 interface SquareColorConfig extends SquareBaseConfig{
-    color?: string;
+    color: string;
 }
 
 interface SquareColourConfig extends SquareBaseConfig{
-    colour?: string;
+    colour: string;
 }
 
 type SquareConfig = SquareColorConfig | SquareColourConfig
 
 function createSquare(config: SquareConfig) {
-    // ...
+  console.log(config.width);
+  if(isColorConfig(config)){
+    console.log(config.color);
+  }else if(isColourConfig(config)){
+    console.log(config.colour);
+  }
 }
 
-let mySquare = createSquare({ colour: "red", width: 100 });
+function isColorConfig(config): config is SquareColorConfig {
+  return config.color !== undefined;
+}
+
+function isColourConfig(config): config is SquareColourConfig {
+  return config.colour !== undefined;
+}
+
+createSquare({ colour: "red", width: 100 });
+createSquare({ color: "red", width: 100 });
+
 ```
 
 # 인터페이스 확장

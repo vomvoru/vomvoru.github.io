@@ -1,7 +1,7 @@
 ---
 layout: post
-title: TypeScript Interface 2
-subtitle: 함수 타입
+title: TypeScript interface 2
+subtitle: interface & Function
 slug: typescript-interface-2
 date: '2017-04-21 02:27:00 +0900'
 categories: blog
@@ -10,11 +10,17 @@ comments: true
 share: true
 tags:
   - TypeScript
-  - Interface
+  - interface
 ---
 
 # 함수 타입
-Typescript의 Interface는 Object의 모양을 정의한다고 하였습니다. Javascript에서 함수또한 Object이므로 함수도 Interface로 모양을 정의할 수 있습니다.
+Typescript의 interface는 Object의 모양을 정의한다고 하였습니다. Javascript에서 함수또한 `Object`이므로 함수도 `interface`로 모양을 정의할 수 있습니다.
+
+아래 두 조건이 일치할 시, Typescript의 검사를 통과합니다.
+* 인수의 이름과 관계없이 순서별로 타입이 일치한가
+* 인수의 개수가 적거나 같은가
+
+## 예시코드
 
 함수의 인수구조, return 구조를 설정하는 예시입니다.
 ```ts
@@ -39,7 +45,7 @@ mySearch = function(src: string, sub: string): boolean {
 }
 ```
 
-인수의 타입은 당연히 일치해야 합니다.
+인수의 순서별 타입은 당연히 일치해야 합니다.
 
 ```ts
 let otherFunction: SearchFunc;
@@ -66,8 +72,9 @@ otherFunction = function(src: string) { //error!
 }
 ```
 
+
 ## 하이브리드 타입
-Javascript에서 함수는 객체이며 속성또한 가질수 있습니다. TypeScript는 이러한 유형을 interface로 지원합니다.
+위에서 언급했듯이 Javascript에서 함수는 객체이며 속성또한 가질수 있습니다. TypeScript는 이러한 유형을 `interface`로 지원합니다.
 
 아래는 하이브리드 타입을 이용하는 예시입니다.
 ```ts

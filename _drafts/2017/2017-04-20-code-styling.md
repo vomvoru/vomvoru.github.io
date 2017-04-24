@@ -11,7 +11,7 @@ share: true
 tags:
   - Clean Code
 ---
-본 글은 Clean Code 도서[^1]의 내용을 참고하여 작성하였습니다.
+본 글은 [Clean Code 도서][1]의 내용을 참고하여 작성하였습니다.
 
 //TODO 내용 정리와 함께, 내 생각을 적어야겠다.
 
@@ -103,6 +103,6 @@ public class FItNessExpediter implements ResponseSender
 ```
 
 
-[^1]: [클린 코드](http://www.insightbook.co.kr/%EB%8F%84%EC%84%9C-%EB%AA%A9%EB%A1%9D/ppp-%EC%8B%9C%EB%A6%AC%EC%A6%88/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C)
+[1]: http://www.insightbook.co.kr/%EB%8F%84%EC%84%9C-%EB%AA%A9%EB%A1%9D/ppp-%EC%8B%9C%EB%A6%AC%EC%A6%88/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C "Clean Code"
 
 [^2]: 클린코드 그림5.1에서 가져온 그래프이다. 프로젝트별(가로축) 파일 길이(세로 축)를 나타낸다. 상자는 평균 위/아래로 (표준편차/2)를 나타낸다.
