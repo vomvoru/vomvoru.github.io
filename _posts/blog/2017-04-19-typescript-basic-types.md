@@ -12,9 +12,19 @@ tags:
   - TypeScript
 ---
 
-boolean, number, string,  
-array, tuple, enum,  
-any, void, undefined, null, never  
+# 종류
+
+* `boolean`
+* `number`
+* `string`
+* `array`
+* `tuple`
+* `enum`
+* `any`
+* `void`
+* `undefined`
+* `null`
+* `never`
 
 # boolean
 ```ts
@@ -42,7 +52,7 @@ let genericList: Array<number> = [1, 2, 3];
 
 # tuple
 ```ts
-let x: [string, number]; // [string, number, string|number ... ]
+let x: [string, number]; // [string, number, string|number, string|number ... ]
 x = ['hello', 10]; // OK
 x = ['hello', 'world']; // Error
 x = ['hello', 10, 'world']; // OK
@@ -101,4 +111,10 @@ function infiniteLoop(): never {
 ```
 
 # type scope
+
+확실한 이해를 위해 각 범위에 따른 집합관계를 표현하였다.
+
 ![typescript type scope](/images/2017/04/typescriptTypeScope.png)
+## point  
+* naver와 void. any 3개의 비교
+* void와 null, undefined의 관계

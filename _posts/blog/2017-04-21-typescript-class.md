@@ -30,14 +30,15 @@ class Greeter {
 let greeter = new Greeter("world");
 ```
 여기서 알수 있는 사실은 다음과 같습니다.
-* 접근제어자(Access Modifier)를 적지 않으면 기본적으로 public 이다.
-* 생성자는 `constructor` 메소드로 작성한다.
-그외 `this`를 사용하는등 기본적인 class 작성법을 알 수 있습니다.
+* **접근제어자(Access Modifier)를 적지 않으면 기본적으로 `public` 이다.**
+* **생성자는 `constructor` 메소드로 작성한다.**
+* 인스턴스 메서드는 `this`로 접근한다.
+위 코드로 기초적인 Typescript의 class 작성법을 알 수 있습니다.
 
 
 # Duck Typing
 
-TypeScript의 Class는 Duck Typing(Structural subtyping)을 기반으로 검사합니다.
+**TypeScript의 Class는 Duck Typing(Structural subtyping)을 기반으로 검사합니다.**
 이는 다음과 같은 코드도 작성이 가능하며 에러가 걸리지 않는것을 알 수 있습니다.
 ```ts
 class Duck {
@@ -67,7 +68,8 @@ let duck: Duck = new Chicken("cc"); // no error!!
 
 # 상속
 
-`extnds` 키워드와 `super` 키워드를 이용하여 상속을 구현할수 있습니다.
+`extnds` 와 `super` 키워드를 사용하여 상속을 구현할 수 있습니다.
+
 ```ts
 class Animal {
     name: string;
@@ -108,11 +110,11 @@ Galloping...
 Tommy the Palomino moved 34m.
 */
 ```
-여기서는 다음과 같은 사항을 알 수 있습니다.
+이 코드로 다음과 같은 사항을 알 수 있습니다.
 * `extends` 키워드를 통해 상속이 가능하다.
 * 동일 메소드명을 사용하여 override가 가능하다.
     * override된 메소드의 인수의 타입과 return 타입등을 override한 메소드를 기준삼아 체크한다.
-* super 키워드를 사용한다.
+* `super` 키워드를 사용한다.
     * `constructor` 생성자 함수에서 `super()` 생성자 함수를 호출해야 한다.
     * `super` 키워드를 통해 상위 클래스의 (`public`, `protected`) instance 속성을 사용가능하다.
 
@@ -121,7 +123,7 @@ TypeScript의 접근제어자는 `public`, `private`, `protected` 가 있다. �
 Access 범위 및 접근제어자에 따라 다른 Duck Typing(Structural subtyping)식 타입 체크의 이해가 필요합니다.
 
 ## public
-기본적으로 Access Modifier를 생략시 public으로 설정됩니다.
+**기본적으로 Access Modifier를 생략시 public으로 설정됩니다.**
 * 생성자, 메소드에서 접근 가능
 * 객체에서 접근가능
 * 자식클래스에서 접근가능
@@ -174,7 +176,7 @@ let john = new Person("John"); // Error: The 'Person' constructor is protected
 
 ## readonly와 함께 사용
 * `readonly`, `public readonly`, `private readonly`, `protected readonly`
-* 생성자나 선언시에만 (set)초기화 가능
+* 생성자함수 안이나 선언시에만 (set)초기화 가능
 ```ts
 class Octopus {
     readonly name: string;
@@ -190,8 +192,9 @@ dad.numberOfLegs = 10; // error! numberOfLegs is readonly.
 
 ## 접근제어자별 Structural subtyping
 TypeScript는 Structural subtyping 으로 호환가능성만을 따지는 느슨한 검사를 진행합니다.
-그러나 private과 protected 속성을 비교할 때는 동일한 선언에서 유래한 속성을 가져야 검사를 통과할수 있습니다.
-다음 예시 코드를 봐보자.
+그러나 **다른 클래스끼리 private과 protected 속성을 비교할 때는 상속된 속성을 가져야 검사를 통과할수 있습니다.**
+설명을 위한 예시 코드입니다.
+
 ```ts
 class Animal {
     private name: string;
@@ -214,12 +217,13 @@ let employee = new Employee("Bob");
 animal = employee; // Error: 'Animal' and 'Employee' are not compatible
 animal = rhino; // PASS!
 ```
-`Employee` 클래스는 `Animal` 클래스와 구조가 같지만, `name` 속성이 `private` 이므로 `Employee` 클래스의 `name` 속성과 `Animal` 클래스의 `name` 속성은 호환 불가능으로 판별되어 Error가 발생합니다.
+`Employee` 클래스는 `Animal` 클래스와 구조가 같지만, `name` 속성이 `private` 이므로 `Employee` 클래스의 `name` 속성과 `Animal` 클래스의 `name` 속성은 구조만 같고 상속되지 않았으므로 TypeScript는 호환 불가능 구조로 판별되어 Error가 발생합니다.
 
-`Rhino` 클래스의 경우 `Animal` 클래스를 상속받으므로 `Animal` 클래스의 `private`인 `name` 속성을 `Rhino` 클래스가 호환하므로 TypeScript는 호환가능으로 판별하여 통과하게 됩니다.
+`Rhino` 클래스의 경우 `Animal` 클래스를 상속받으므로 `Animal` 클래스의 `private`인 `name` 속성을 `Rhino` 클래스가 상속하여 가져왔으므로 TypeScript는 호환가능으로 판별하여 통과하게 됩니다.
 
-`public`의 경우 구조가 동일할시 TypeScript는 호환가능으로 판별하여 통과하게 됩니다.
 
+`public`의 경우 상속된 값인지 관계없이 구조가 동일할시 TypeScript는 호환가능으로 판별하여 통과하게 됩니다.  
+아래 변형된 코드를 참고하세요.
 ```ts
 class Animal {
     public name: string;
@@ -266,8 +270,8 @@ person.lastName = 'ji'
 console.log(person.fullName); //pji
 person.fullName = 'pyk'; // error! fullName is readonly.
 ```
-getter만 설정할경우 그 속성은 readonly가 됩니다.  
-즉 코드상에서 `fullName` 속성은 readonly가 되어 마지막부분에서 에러가 발생합니다.
+getter만 설정할경우 그 속성은 `readonly`가 됩니다.  
+즉 코드상에서 `fullName` 속성은 `readonly`가 되어 마지막부분에서 에러가 발생합니다.
 
 # static
 static을 설정하는 방법과 사용하는 방법은 아래와 같습니다.
@@ -292,7 +296,8 @@ static 키워드로 선언하며 `클래스명.속성명` 으로 접근이 가�
 
 # Abstract Classes & Abstract Method
 추상 클래스는 스스로는 객체를 만들수 없고 다른 클래스에 상속 가능한 클래스입니다. 인터페이스와 다르게 속성에 대한 세부 구현을 포함할수 있습니다. 또한 `abstract` 키워드는 추상 클래스 뿐만 아니라 추상 메소드를 정의하는데 이용됩니다.  
-추상 메소드는 인터페이스와 비슷하게 메소드의 구현을 강제하지만 인터페이스와 달리 접근제어자(Access Modifier)를 포함할수 있습니다.
+추상 메소드는 인터페이스와 비슷하게 메소드의 구현을 강제하지만 **인터페이스와 달리 접근제어자(Access Modifier)를 포함** 할 수 있습니다.
+
 ```ts
 abstract class Department {
 
@@ -328,3 +333,20 @@ department.printName();
 department.printMeeting();
 department.generateReports(); // error: method doesn't exist on declared abstract type
 ```
+
+## Abstract Classes & Interface & protected constructor
+
+### Abstract Classes
+* 특정 메소드 구현 강제 가능
+* 특정 메소드의 접근제어자 강제 가능
+* 세부표현 포함 가능
+
+### Interface
+* 특정 메소드 구현 강제 가능
+* 특정 메소드의 접근제어자 강제 불가능
+* 세부표현 포함 불가능
+
+### protected constructor
+* 특정 메소드 구현 강제 불가능
+* 특정 메소드의 접근제어자 강제 불가능
+* 세부표현 포함 필수
