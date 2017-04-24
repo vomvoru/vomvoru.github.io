@@ -128,38 +128,70 @@ identity(123); // pass
 
 일반적인 사용법은 다음과 같습니다.
 ```ts
-class GenericNumber<T> {
+class GenericOp<T> {
   constructor(public zeroValue: T){ }
   add: (x: T, y: T) => T;
 }
 
-let myGenericNumber = new GenericNumber<number>(0);
-myGenericNumber.add = function(x, y) { return x + y; };
+let myGenericOp = new GenericOp<number>(0);
+myGenericOp.add = function(x, y) { return x + y; };
 
 ```
-위 `GenericNumber`클래스는 `number` 타입뿐만 아니라 다양한 타입을 사용할수 있습니다.
-`number`타입이 아닌 `string`타입을 지원하는 예제는 다음과 같습니다.
-```ts
-let stringNumeric = new GenericNumber<string>('');
-stringNumeric.add = function(x, y) { return x + y; };
 
-alert(stringNumeric.add(stringNumeric.zeroValue, "test"));
+위 `GenericOp`클래스는 `number` 타입뿐만 아니라 다양한 타입을 사용할수 있습니다.
+`number`타입이 아닌 `string`타입을 지원하는 예제는 다음과 같습니다.
+
+```ts
+let stringOp = new GenericOp<string>('');
+stringOp.add = function(x, y) { return x + y; };
+
+alert(stringOp.add(stringOp.zeroValue, "test"));
 ```
 
 ## static 속성
 
-genric과 클래스를 같이 사용시 객체를 생성할때 genric을 설정하게 됩니다.
+genric과 클래스를 같이 사용시 객체를 생성할때 genric 값을 설정하게 됩니다. `new GenericOp<number>()`
 클래스에느 객체를 생성하지 않아도 사용할수 있는 `static` 속성이 있기때문에 `static` 속성은 genric값을 사용할수 없습니다.
+
 ```ts
-class GenericNumber<T> {
+class GenericOp<T> {
   constructor(public zeroValue: T){ }
   static staticValue: T; // error!!
   add: (x: T, y: T) => T;
 }
 ```
 
+다만 함수에서 클래스를 매개변수로 받는 방식을 이용하면, 그 함수 내에서는 `static` 속성에 제한을 둘 수 있습니다.
+
+```ts
+class GenericOp<U> {
+    constructor(public zeroValue: U){ }
+    static staticValue;
+    add: (x: U, y: U) => U;
+}
+
+interface GenericClass<T> {
+  new<U>(zeroValue: U);
+  staticValue: T;
+}
+
+function create<T>(c: GenericClass<number>): T {
+    c.staticValue = ' '; // error
+    c.staticValue = 0; // pass
+    return new c(13);
+}
+
+create<GenericOp<number>>(GenericOp)
+
+GenericOp.staticValue = ' '; // pass
+GenericOp.staticValue = 0; // pass
+
+```
+
+
 # Generic Constraints
-generic은 여러가지 방법의 제약방
+generic은 여러가지의 제약방식이 있습니다.
+
 ## extends
 특정 인터페이스 혹은 타입을 제약조건으로 설정할수 있습니다.
 ```ts
@@ -198,7 +230,9 @@ function create<T>(c: {new(): T; }): T {
     return new c();
 }
 ```
+
 다음은 생성자 함수의 타입과 `prototype` 속성을 이용하여 `instance` 속성의 타입을 체크하고 제한하는 예제입니다.
+
 ```ts
 interface Keeper<A, K> {
   new(): A;

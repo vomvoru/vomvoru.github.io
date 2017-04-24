@@ -217,18 +217,18 @@ var __extends = (this && this.__extends) || (function () {
         * `this.constructor = Child`를 통해 `constructor`속성을 올바르게(`Child`) 설정
 * 자식 생성자 함수 내에서 `_super.call(this, ...)` 부모 생성자 함수 호출로 instance 속성을 extend
 
-## static 속성, 메소드의 extends를 한개의 식으로 표현
+## static 속성, 메소드의 extends를 한줄로 표현
 
 * `Child.__proto__ === Parent`
 
-## instance 메소드의 extends를 두개의 식으로 표현
+## instance 메소드의 extends를 두줄로 표현
 
 * `Child.prototype.__proto__ === Parent.prototype`  
 * `(new Child()).__proto__.__proto__ === Parent.prototype`
 
-## instance 속성의 extends를 한개의 식으로 표현
+## instance 속성의 extends를 한줄로 표현
 
-* `_super.call(this, ...)` // 부모생성자 호출!
+* `_super.call(this, ...) // 부모생성자 호출!`
 
 ## 관계도
 ![typescript-prototype-extend-relationship-diagram](/images/2017/04/IMG_0132.jpg)
