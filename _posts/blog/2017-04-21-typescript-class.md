@@ -190,63 +190,6 @@ dad.name = "Man with the 3-piece suit"; // error! name is readonly.
 dad.numberOfLegs = 10; // error! numberOfLegs is readonly.
 ```
 
-## 접근제어자별 Structural subtyping
-TypeScript는 Structural subtyping 으로 호환가능성만을 따지는 느슨한 검사를 진행합니다.
-그러나 **다른 클래스끼리 private과 protected 속성을 비교할 때는 상속된 속성을 가져야 검사를 통과할수 있습니다.**
-설명을 위한 예시 코드입니다.
-
-```ts
-class Animal {
-    private name: string;
-    constructor(theName: string) { this.name = theName; }
-}
-
-class Rhino extends Animal {
-    constructor() { super("Rhino"); }
-}
-
-class Employee {
-    private name: string;
-    constructor(theName: string) { this.name = theName; }
-}
-
-let animal = new Animal("Goat");
-let rhino = new Rhino();
-let employee = new Employee("Bob");
-
-animal = employee; // Error: 'Animal' and 'Employee' are not compatible
-animal = rhino; // PASS!
-```
-`Employee` 클래스는 `Animal` 클래스와 구조가 같지만, `name` 속성이 `private` 이므로 `Employee` 클래스의 `name` 속성과 `Animal` 클래스의 `name` 속성은 구조만 같고 상속되지 않았으므로 TypeScript는 호환 불가능 구조로 판별되어 Error가 발생합니다.
-
-`Rhino` 클래스의 경우 `Animal` 클래스를 상속받으므로 `Animal` 클래스의 `private`인 `name` 속성을 `Rhino` 클래스가 상속하여 가져왔으므로 TypeScript는 호환가능으로 판별하여 통과하게 됩니다.
-
-
-`public`의 경우 상속된 값인지 관계없이 구조가 동일할시 TypeScript는 호환가능으로 판별하여 통과하게 됩니다.  
-아래 변형된 코드를 참고하세요.
-```ts
-class Animal {
-    public name: string;
-    constructor(theName: string) { this.name = theName; }
-}
-
-class Rhino extends Animal {
-    constructor() { super("Rhino"); }
-}
-
-class Employee {
-    public name: string;
-    constructor(theName: string) { this.name = theName; }
-}
-
-let animal = new Animal("Goat");
-let rhino = new Rhino();
-let employee = new Employee("Bob");
-
-animal = employee; // PASS!
-animal = rhino; // PASS!
-```
-
 # Accessors
 TypeScript는 getters / setters를 지원합니다. 예시 코드는 다음과 같습니다.
 ```ts
