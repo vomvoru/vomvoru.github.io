@@ -12,8 +12,8 @@ tags:
   - TypeScript
 ---
 
-# &
-Intersection Type은 여러 타입을 하나로 결합합니다. (and) 여러 타입의 모든 맴버를 갖게 됩니다.
+# Intersection Type `&`
+Intersection Type은 여러 타입을 하나로 결합할때 사용합니다.
 
 ```ts
 function extend<T, U>(first: T, second: U): T & U {
@@ -45,8 +45,8 @@ var n = jim.name;
 jim.log();
 ```
 
-# |
-Union Type은 여러 타입 중 하나 일 수있는 값을 설명합니다. (or)
+# Union Type `|`
+Union Type은 여러 타입을 지원할때 사용됩니다.
 
 ```ts
 /**
@@ -119,11 +119,10 @@ else {
 ```
 
 # User-Defined Type Guards
+위의 경우에 type assertion을 여러번 사용해야되는 불편함이 있습니다. 더 좋은 방법으로 Typescript에는 type guard라는 것이 있습니다.
+type guard는 특정 범위에서 type을 보장하는 몇가지 표현식입니다. 아래와 같이 type guard를 설정하는 방법은 여러개가 있습니다.
 
 ## is
-
-위의 경우에 type assertion을 여러번 사용해야되는 불편함이 있습니다. 위의 방법보다 더 좋은 방법으로 Typescript에는 type guard라는 것이 있습니다. type guard는 특정 범위에서 type을 보장하는 몇가지 표현식입니다.  
-그중에서 `is`라는 표현식이 있습니다.
 
 ```ts
 function isFish(pet: Fish | Bird): pet is Fish {
@@ -142,7 +141,26 @@ else {
 
 ## typeof
 
-처음 코드의 `padLeft`함수를 확인해보면 `typeof` 키워드를 사용한것을 알 수 있는데. Typescript는 `typeof`또한 type guard 표현식중 하나로 사용이 가능합니다.
+`typeof` 키워드 또한 Typescript는 type guard 표현식중 하나로 사용이 가능합니다.
+
+```ts
+/**
+ * Takes a string and adds "padding" to the left.
+ * If 'padding' is a string, then 'padding' is appended to the left side.
+ * If 'padding' is a number, then that number of spaces is added to the left side.
+ */
+function padLeft(value: string, padding: string | number) {
+    if (typeof padding === "number") {
+        return Array(padding + 1).join(" ") + value;
+    }
+    if (typeof padding === "string") {
+        return padding + value;
+    }
+    throw new Error(`Expected string or number, got '${padding}'.`);
+}
+
+padLeft("Hello world", 4); // returns "    Hello world"
+```
 
 ## instanceof
 
@@ -183,6 +201,10 @@ if (padder instanceof StringPadder) {
     padder; // type narrowed to 'StringPadder'
 }
 ```
+
+### typeof vs instanceof
+
+typeof는 primitive type을 구분할때 사용하고 instanceof는 클래스를 구분할때 사용하면 됩니다.
 
 ## ||
 

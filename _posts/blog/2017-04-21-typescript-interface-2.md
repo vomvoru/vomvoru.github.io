@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript interface 2
-subtitle: interface & Function
+subtitle: interface & class
 slug: typescript-interface-2
 date: '2017-04-21 02:27:00 +0900'
 categories: blog
@@ -13,86 +13,73 @@ tags:
   - interface
 ---
 
-# 함수 타입
-Typescript의 interface는 Object의 모양을 정의한다고 하였습니다. Javascript에서 함수또한 `Object`이므로 함수도 `interface`로 모양을 정의할 수 있습니다.
+C# 및 Java와 같은 언어로 인터페이스를 사용하는 가장 일반적인 방법으로는, 클래스가 특정 인터페이스를 따르도록 하는 것 입니다. Typescript에서도 `implements` 키워드로 지원합니다.
 
-아래 두 조건이 일치할 시, Typescript의 검사를 통과합니다.
-* 인수의 이름과 관계없이 순서별로 타입이 일치한가
-* 인수의 개수가 적거나 같은가
-
-## 예시코드
-
-함수의 인수구조, return 구조를 설정하는 예시입니다.
 ```ts
-interface SearchFunc {
-    (source: string, subString: string): boolean;
+interface Clockinterface {
+    currentTime: Date;
+    setTime(d: Date);
 }
 
-let mySearch: SearchFunc;
-mySearch = function(source: string, subString: string): boolean {
-    let result = source.search(subString);
-    return result > -1;
+class Clock implements Clockinterface {
+    currentTime: Date;
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
+    constructor(h: number, m: number) { }
 }
 ```
 
-그리고 인수의 순서에 따른 타입만을 체크하기 때문에 함수 인수의 이름은 일치할 필요는 없습니다.
+# 클래스의 인터페이스 확장 (interface Extending Classes)
+클래스를 인터페이스에 확장(`extends`)할 수 있습니다. 그러면 클래스의 유형을 상속하지만, 구현은 상속되지 않습니다.
 
 ```ts
-let mySearch: SearchFunc;
-mySearch = function(src: string, sub: string): boolean {
-    let result = src.search(sub);
-    return result > -1;
+class Control {
+    public state: number = 1;
 }
+
+interface SelectableControl extends Control {
+    select(): void;
+}
+
+class Class1 implements SelectableControl { // error!! Property 'state' is missing
+    select() { }
+}
+
+class Class2 implements SelectableControl { // pass
+    public state: number = 2;
+    select() { }
+}
+
+class Class3 extends Control implements SelectableControl { // pass
+    select() { }
+}
+
 ```
 
-인수의 순서별 타입은 당연히 일치해야 합니다.
+## private 유형을 가지고 있는 클래스의 인터페이스 확장
+또한 `private` 또는 `protected` 맴버가 있는 클래스를 인터페이스에 확장(`extends`)시 그 인터페이스를 구현(`implements`)하는 클래스는 그 인터페이스에 확장(`extends`)되었던 클래스를 반드시 확장(`extends`)받아야 합니다.
 
 ```ts
-let otherFunction: SearchFunc;
-otherFunction = function(src: string, sub: number) { //error!
-    return true;
-}
-```
-
-인수의 개수가 더 많아도 안됩니다.
-
-```ts
-let otherFunction: SearchFunc;
-otherFunction = function(src: string, sub: string, i:number) { //error!
-    return true;
-}
-```
-
-하지만 인수의 개수가 더 적은것은 괜찬습니다.
-
-```ts
-let otherFunction: SearchFunc;
-otherFunction = function(src: string) { //error!
-    return true;
-}
-```
-
-
-## 하이브리드 타입
-위에서 언급했듯이 Javascript에서 함수는 객체이며 속성또한 가질수 있습니다. TypeScript는 이러한 유형을 `interface`로 지원합니다.
-
-아래는 하이브리드 타입을 이용하는 예시입니다.
-```ts
-interface Counter {
-    (start: number): string;
-    interval: number;
-    reset(): void;
+class Control {
+    private state: number = 1;
 }
 
-function getCounter(): Counter {
-    let counter = <Counter>function (start: number) { };
-    counter.interval = 123;
-    counter.reset = function () { };
-    return counter;
+interface SelectableControl extends Control {
+    select(): void;
 }
 
-let c = getCounter();
-c(10);
-c.reset();
-c.interval = 5.0;
+class Class1 implements SelectableControl { // error!! Property 'state' is missing
+    select() { }
+}
+
+class Class2 implements SelectableControl { // error!! Private property 'state' is missing
+    private state: number = 2;
+    select() { }
+}
+
+class Class3 extends Control implements SelectableControl { // pass
+    select() { }
+}
+
 ```

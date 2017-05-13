@@ -16,29 +16,85 @@ tags:
 # 소개
 
 Typescript에서 함수 타입을 설정하는 방법은 다음과 같습니다.
+
 ```ts
-let myAdd: (x: number, y: number)=>number =
-    function(x: number, y: number): number { return x+y; };
+let myAdd: (x: number, y: number)=>number;
+myAdd = function(x: number, y: number): number { return x+y; };
 ```
 
-또한 매개변수명에 대해서는 검사하지 않고 순서에 따른 타입을 검사합니다.
+## 검사 규칙
+
+아래 3개 조건이 일치할 시, Typescript의 검사를 통과합니다.
+* 인수의 **이름과 관계없이** 순서별로 타입이 일치
+* 리턴 타입이 일치
+* 인수의 개수가 **적거나** 같음
+
+### 매개변수명에 대해서는 검사하지 않고 순서에 따른 타입을 검사
 ```ts
-let myAdd: (baseValue:number, increment:number) => number =
-    function(x: number, y: number): number { return x + y; };
+myAdd = function(a: number, b: number): number { return a + b; };
 ```
 
-유형 추론(Inferring the types)을 지원하므로, 다음과 같이 생략하여 사용하여도 됩니다.
+### 유형 추론(Inferring the types)을 지원
 ```ts
-// myAdd has the full function type
-let myAdd = function(x: number, y: number): number { return  x + y; };
+myAdd = function(a, b) { return a + b; };
+```
 
-// The parameters 'x' and 'y' have the type number
-let myAdd: (baseValue:number, increment:number) => number =
-    function(x, y) { return x + y; };
+### 매개변수의 개수가 적어도 됨
+```ts
+let myAdd = function(x: number): number { return x + x; };
+```
+
+### 매개변수의 개수가 많으면 안됨
+```ts
+let myAdd = function(x: number, y: number, z:number): number { return x + x; }; //error
+```
+
+# function type & interface
+Typescript의 interface는 Object의 모양을 정의한다고 하였습니다. Javascript에서는 함수또한 `Object`이므로 함수도 `interface`로 모양을 정의할 수 있습니다.
+
+## 예시코드
+
+함수의 인수구조, return 구조를 설정하는 예시입니다.
+```ts
+interface SearchFunc {
+    (source: string, subString: string): boolean;
+}
+
+> 위 인터페이스에 설정된 맴버는 값과 `valueOf()`메소드의 관계도 생각해볼 사항입니다.
+
+let mySearch: SearchFunc;
+mySearch = function(source: string, subString: string): boolean {
+    let result = source.search(subString);
+    return result > -1;
+}
+```
+
+## 하이브리드 타입
+위에서 언급했듯이 Javascript에서 함수는 객체이며 속성또한 가질수 있습니다. TypeScript는 이러한 유형을 `interface`로 지원합니다.
+
+아래는 하이브리드 타입을 이용하는 예시입니다.
+```ts
+interface Counter {
+    (start: number): string;
+    interval: number;
+    reset(): void;
+}
+
+function getCounter(): Counter {
+    let counter = <Counter>function (start: number) { };
+    counter.interval = 123;
+    counter.reset = function () { };
+    return counter;
+}
+
+let c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;
 ```
 
 # Optional and Default Parameters
-TypeScript에서 `lastName`을 선택 매개변수를 사용하려면 매개변수명 끝에 ?를 붙이면 됩니다.
+TypeScript에서 `lastName`을 선택 매개변수를 사용하려면 매개변수명 끝에 **?를 붙이면 됩니다.**
 ```ts
 function buildName(firstName: string, lastName?: string) {
     if(lastName === undefined){
@@ -64,6 +120,7 @@ let result3 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
 let result4 = buildName("Bob", "Adams");         // ah, just right
 ```
 
+## Default Parameters & undefined
 만약 첫번째 매개변수인 `firstName`을 기본값이 설정된 매개변수로 사용하려면 명시적으로 `undefined`를 전달하여 기본값을 사용할 수 있습니다.
 
 ```ts
@@ -78,7 +135,8 @@ let result4 = buildName(undefined, "Adams");     // okay and returns "Will Adams
 ```
 
 # Rest Parameters
-TypeScript에서는 Rest Parameters를 다음과 같이 지원합니다.
+TypeScript에서는 Rest Parameters를 다음과 같이 `...`키워드로 지원합니다. (ES2017)
+
 ```ts
 function buildName(firstName: string, ...restOfName: string[]) {
     return firstName + " " + restOfName.join(" ");
@@ -86,6 +144,7 @@ function buildName(firstName: string, ...restOfName: string[]) {
 
 let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 ```
+
 
 # this parameter
 TypeScript에서는 this에 대한 타입을 명시적으로 지정할 수 있습니다. 아래 코드에서 `createCardPicker` 함수안의 this는 타입이 지정되지 않은 any 타입입니다.
@@ -119,13 +178,13 @@ interface Card {
 interface Deck {
     suits: string[];
     cards: number[];
-    createCardPicker(this: Deck): () => Card;
+    createCardPicker(this: Deck): () => Card; // Point!
 }
 let deck: Deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
     // NOTE: The function now explicitly specifies that its callee must be of type Deck
-    createCardPicker: function(this: Deck) {
+    createCardPicker: function(this) { // Point!
         return () => {
             let pickedCard = Math.floor(Math.random() * 52);
             let pickedSuit = Math.floor(pickedCard / 13);

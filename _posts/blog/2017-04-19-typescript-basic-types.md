@@ -129,8 +129,7 @@ function infiniteLoop(): never {
 ```
 
 # Type assertions
-Type assertions은 Typescript에게 개발자가 이 변수의 타입은 무엇이다라고 강제하는 것 입니다. 다른 언어의 형변환과 비슷하지만, 특별한 검사나 데이터 재구성을 수행하지 않습니다. TypeScript는 프로그래머가 타입 검사를 수행했다고 가정합니다.
-Type assertions은 'angle-bracket'(꺽쇠 괄호)와 `as` 문법 두가지 방법으로 지정이 가능합니다.
+Type assertions은 Typescript에게 개발자가 이 변수의 타입은 무엇이다라고 강제하는 것 입니다. 다음 두가지 방법이 있습니다.
 
 ## angle-bracket
 ```ts
@@ -140,13 +139,16 @@ let strLength: number = (<string>someValue).length;
 ```
 
 ## as syntax
+
+> jsx 문법과 함께 사용시 as 문법만 허용됨
+
 ```ts
 let someValue: any = "this is a string";
 
 let strLength: number = (someValue as string).length;
 ```
 
-Typescript를 JSX와 함께 사용하는 경우에는 `as` 문법만 허용됩니다.
+다른 언어의 형변환과 비슷하지만, 특별한 검사나 데이터 재구성을 수행하지 않습니다. TypeScript는 프로그래머가 타입 검사를 수행했다고 가정합니다.
 
 # type scope
 

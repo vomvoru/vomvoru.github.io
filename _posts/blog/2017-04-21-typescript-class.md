@@ -15,7 +15,8 @@ tags:
 
 # 소개
 
-먼저 간단한 Class 예제를 살펴보겠습니다.
+우선 간단한 Class 예제를 살펴보겠습니다.
+
 ```ts
 class Greeter {
     greeting: string;
@@ -29,6 +30,7 @@ class Greeter {
 
 let greeter = new Greeter("world");
 ```
+
 여기서 알수 있는 사실은 다음과 같습니다.
 * **접근제어자(Access Modifier)를 적지 않으면 기본적으로 `public` 이다.**
 * **생성자는 `constructor` 메소드로 작성한다.**
@@ -111,12 +113,12 @@ Tommy the Palomino moved 34m.
 */
 ```
 이 코드로 다음과 같은 사항을 알 수 있습니다.
-* `extends` 키워드를 통해 상속이 가능하다.
+* `extends` 키워드로 상속이 가능하다.
 * 동일 메소드명을 사용하여 override가 가능하다.
-    * override된 메소드의 인수의 타입과 return 타입등을 override한 메소드를 기준삼아 체크한다.
+    * **override된 메소드의 인수의 타입과 return 타입등을 override한 메소드를 기준삼아 체크한다.**
 * `super` 키워드를 사용한다.
-    * `constructor` 생성자 함수에서 `super()` 생성자 함수를 호출해야 한다.
-    * `super` 키워드를 통해 상위 클래스의 (`public`, `protected`) instance 속성을 사용가능하다.
+    * `constructor` 생성자 함수에서 `super()` **생성자 함수를 호출해야 한다.**
+    * `super` 키워드를 통해 상위 클래스의 (`public`, `protected`) **instance 속성을 사용가능** 하다.
 
 # 접근제어자(Access Modifier)
 TypeScript의 접근제어자는 `public`, `private`, `protected` 가 있다. 그 외 `readonly`와 같이 사용이 가능하다.
@@ -148,7 +150,7 @@ class Octopus {
 ```
 
 ## protected constructor
-생성자를 protected로 설정할경우, 그 클래스에 대한 객체를 만들수는 없지만, 확장은 가능한 클래스가 만들어집니다.
+**생성자를 protected로 설정** 할경우, 그 클래스에 대한 객체를 만들수는 없지만, 확장은 가능한 클래스가 만들어집니다.
 예시코드는 다음과 같습니다.
 ```ts
 class Person {
@@ -176,7 +178,7 @@ let john = new Person("John"); // Error: The 'Person' constructor is protected
 
 ## readonly와 함께 사용
 * `readonly`, `public readonly`, `private readonly`, `protected readonly`
-* 생성자함수 안이나 선언시에만 (set)초기화 가능
+* **생성자함수 안이나 선언시에만 (set)초기화 가능**
 ```ts
 class Octopus {
     readonly name: string;
@@ -191,7 +193,8 @@ dad.numberOfLegs = 10; // error! numberOfLegs is readonly.
 ```
 
 # Accessors
-TypeScript는 getters / setters를 지원합니다. 예시 코드는 다음과 같습니다.
+TypeScript는 **getters / setters를 지원** 합니다. 예시 코드는 다음과 같습니다.
+
 ```ts
 class Person {
   private _fullName: string;
@@ -213,8 +216,8 @@ person.lastName = 'ji'
 console.log(person.fullName); //pji
 person.fullName = 'pyk'; // error! fullName is readonly.
 ```
-getter만 설정할경우 그 속성은 `readonly`가 됩니다.  
-즉 코드상에서 `fullName` 속성은 `readonly`가 되어 마지막부분에서 에러가 발생합니다.
+
+코드상에서 `fullName` 맴버를 보면 알 수 있듯이 **getter만 설정할경우 그 속성은 `readonly`가 됩니다.**  
 
 # static
 static을 설정하는 방법과 사용하는 방법은 아래와 같습니다.

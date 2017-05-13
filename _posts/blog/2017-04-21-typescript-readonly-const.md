@@ -1,7 +1,7 @@
 ---
 layout: post
 title: typescript readonly vs const
-subtitle: 
+subtitle:
 slug: typescript-readonly-vs-const
 date: '2017-04-21 02:27:00 +0900'
 categories: blog
@@ -16,7 +16,7 @@ tags:
   - readonly
 ---
 
-readonly는 객체 속성을 상수화 시킬 수 있으며 const는 변수를 상수화 시킬 수 있습니다. 다음은 const가 속성을 상수화 시킬 수 없다는 것을 보여주는 에시입니다.  
+**readonly는 객체 속성을 상수화** 시킬 수 있으며 **const는 변수를 상수화** 시킬 수 있습니다. 다음은 const가 속성을 상수화 시킬 수 없다는 것을 보여주는 에시입니다.  
 const는 지정된 변수 만을 상수화 시킵니다. 속성이 어떻게 되던가 관심밖이지요.  
 eadonly는 interface의 속성을 설정하는 것이므로 객체 속성의 상수화만 가능합니다.
 

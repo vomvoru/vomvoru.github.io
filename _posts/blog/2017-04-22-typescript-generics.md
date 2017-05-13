@@ -49,7 +49,7 @@ function loggingIdentity<T>(arg: Array<T>): Array<T> {
 }
 ```
 
-# Generics type
+# Generic & function
 Generics type을 가진 함수변수를 설정하는 방법은 다음과 같다.
 ```ts
 function identity<T>(arg: T): T {
@@ -68,6 +68,7 @@ function identity<T>(arg: T): T {
 let myIdentity: <U>(arg: U) => U = identity;
 ```
 
+# Generic & interface
 Generics type을 인터페이스와 함께 사용할수 있다.
 ```ts
 interface GenericIdentityFn {
@@ -91,8 +92,8 @@ let myIdentity: {<T>(arg: T): T} = identity;
 ```
 
 ## 미리 Genric을 지정하기
+interface를 genric과 함께 사용시 genric을 미리 지정해야 합니다. 이를 활용하면 function type의 Genric을 미리 지정할수 있습니다.
 
-미리 Genric을 지정하는 방법으로 인터페이스를 활용하면 Genric을 미리 지정할수 있습니다.
 ```ts
 interface GenericIdentityFn<T> {
     (arg: T): T;
@@ -112,7 +113,7 @@ numberIdentity('test'); // error! 'test' is not number.
 numberIdentity<string>('test'); // error! can not use genric -> '<string>'.
 ```
 
-다음과 같이 사용하고 싶을수 있지만 함수에 사용된 Genric은 호출과 함께 사용되어야 되기 때문에 오류가 걸립니다. (이후 Typescript가 이러한 방법도 지원되면 좋겠습니다.)
+위와 다르게 다음과 같이 사용하고 싶을수 있지만 함수에 사용된 Genric은 호출과 함께 사용되어야 되기 때문에 오류가 걸립니다.
 ```ts
 function identity<T>(arg: T): T {
     return arg;
@@ -123,10 +124,9 @@ identity<number>(123); // pass
 identity(123); // pass
 ```
 
-
-# Generic Classes
-
+# Generic & Class
 일반적인 사용법은 다음과 같습니다.
+
 ```ts
 class GenericOp<T> {
   constructor(public zeroValue: T){ }
@@ -192,8 +192,8 @@ GenericOp.staticValue = 0; // pass
 # Generic Constraints
 generic은 여러가지의 제약방식이 있습니다.
 
-## extends
-특정 인터페이스 혹은 타입을 제약조건으로 설정할수 있습니다.
+## extends T
+특정 인터페이스(T)의 구현을 제약조건으로 설정할수 있습니다.
 ```ts
 interface Lengthwise {
     length: number;
@@ -210,8 +210,23 @@ loggingIdentity('test'); // OK!
 loggingIdentity([0, 1, 3]); // OK!
 ```
 
-## extends keyof
-다른 매개변수의 key에 의해 제한되는 매개변수를 genric으로 설정할수 있습니다.
+## keyof T
+특정 인터페이스(T)의 맴버 명들을 union 타입으로 설정합니다.
+
+```ts
+interface Person {
+    name: string;
+    age: number;
+    location: string;
+}
+
+type K1 = keyof Person; // "name" | "age" | "location"
+type K2 = keyof Person[];  // "length" | "push" | "pop" | "concat" | ...
+type K3 = keyof { [x: string]: Person };  // string
+```
+
+## K extends keyof T
+keyof에 의해 생성된 T의 맴버명만을 허용하는 K를 설정할수 있습니다.
 ```ts
 function getProperty<T, K extends keyof T>(obj: T, key: K) {
     return obj[key];
@@ -221,6 +236,33 @@ let x = { a: 1, b: 2, c: 3, d: 4 };
 
 getProperty(x, "a"); // okay
 getProperty(x, "m"); // error: Argument of type 'm' isn't assignable to 'a' | 'b' | 'c' | 'd'.
+```
+
+## P in keyof T
+keyof에 의해 생성된 T의 모든 맴버명을 P로 설정할수 있습니다.
+
+```ts
+interface Person {
+    name: string;
+    age: number;
+    location: string;
+}
+
+type Partials<T> = {
+    [P in keyof T]?: T[P];
+};
+
+type PartialPerson = Partials<Person>;
+```
+
+위 코드의 `PartialPerson`은 아래 코드의 `PartialPerson`과 같습니다.
+
+```ts
+interface PartialPerson {
+    name?: string;
+    age?: number;
+    location?: string;
+}
 ```
 
 ## class 타입 체크

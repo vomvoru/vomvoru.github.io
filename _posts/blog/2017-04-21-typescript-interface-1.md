@@ -18,7 +18,7 @@ tags:
 Typescript 의 interface는 javasript Object의 '모양'이 맞는지 체크합니다.
 이를 'Duck Typing' 또는 'Structural subtyping'이라고 합니다.
 
-다음은 익명 인터페이스의 한 예입니다.
+다음은 인터페이스의 한 예입니다.
 
 ```ts
 interface LabelledValue {
@@ -46,9 +46,9 @@ let myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 ```
 
-# 선택적 속성
+# Optional 속성
 
-인터페이스의 속성명 끝에 ?를 붙이면 Optional 속성으로도 설정이 가능합니다.
+인터페이스의 **속성명 끝에 ?를 붙이면** Optional 속성으로도 설정이 가능합니다.
 
 ```ts
 interface SquareConfig {
@@ -94,20 +94,16 @@ function createSquare(config: SquareConfig): { color: string; area: number } {
 let mySquare = createSquare({color: "black"});
 ```
 
-# 읽기 전용 속성
+# readonly 속성
 
-읽기 전용 속성은 속성명 앞에 'readonly '를 적으면 됩니다.
+읽기 전용 속성은 속성명 앞에 `readonly`를 적으면 됩니다.
 
 ```ts
 interface Point {
     readonly x: number;
     readonly y: number;
 }
-```
 
-다음은 읽기 전용 속성인 x 값을 수정하려고 할시 TypeScript에서 Error로 알려주는 코드의 예시입니다. (위 코드와 이어집니다)
-
-```ts
 let p1: Point = { x: 10, y: 20 };
 p1.x = 5; // error!!
 ```
@@ -140,7 +136,7 @@ interface CustomReadonlyArray<T>{
 ```
 
 # Excess Property Checks (초과 속성 검사)
-인터페이스를 사용시 미리 정의된 속성만을 사용할수 있습니다.
+인터페이스를 사용시 **미리 정의된 속성만을 사용** 할 수 있습니다.
 
 ```ts
 interface SquareConfig {
@@ -167,7 +163,7 @@ interface SquareConfig {
 }
 ```
 
-다만, 위 방식은 지양하는것이 좋으며 되도록 코드의 질적 향상을 위해 다른 방법을 찾는것이 좋습니다.  
+다만, **위 방식(Excess Property Checks)은 지양하는것이 좋으며 되도록 코드의 질적 향상을 위해 다른 방법을 찾는것이 좋습니다.**  
 아래 방법은 type guard, Type Aliases, interface 를 이용한 다른 방법입니다.
 
 ```ts
@@ -208,7 +204,9 @@ createSquare({ color: "red", width: 100 });
 ```
 
 # 인터페이스 확장
-인터페이스는 여러 인터페이스를 확장할수 있습니다.
+
+인터페이스는 **`extends`키워드로 여러 인터페이스를 확장** 할 수 있습니다.
+
 ```ts
 interface Shape {
     color: string;
