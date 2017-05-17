@@ -19,7 +19,7 @@ Typescript는 지정된 타입이 없을때 자동으로 타입을 유추해주�
 let x = 3;
 ```
 
-위 코드에서 변수 x는 number로 타입이 유추되어 자동설정 됩니다. 이러한 추론은 변수나 속성을 초기화하고, 매개 변수 기본값을 설정하고, 함수 반환 유형을 결정할 때 (return) 발생합니다.
+위 코드에서 `x`는 `number`로 타입이 유추되어 `let x:number`로 자동설정 됩니다. 이러한 추론은 변수나 속성을 초기화하고, 매개 변수 기본값을 설정하고, 함수 반환 유형을 결정할 때 (return) 발생합니다.
 
 # Best common type
 배열과 같이 여러가지 값의 타입에서 타입유추는 값마다의 타입중 모든 값에 맞는 (super type)타입을 결정합니다. 아래 한 배열의 예시코드의 Best common type 을 찾도록 하겠습니다.
@@ -28,8 +28,10 @@ let x = 3;
 let x = [0, 1, null];
 ```
 
-1. 0: `number`, 1: `number`, null: `null`
-2. `number` 타입과 `null` 타입중 0, 1, null 모든 값에 맞는 타입은 `number`입니다.
+1. 맴버별 type 판단
+    * 0: `number`, 1: `number`, null: `null`
+2. 맴버별 type중 모든 값에 맞는 타입 판단
+    * `number` 타입과 `null` 타입중 0, 1, null 모든 값에 맞는 타입은 `number`입니다.
 3. 그러므로 Best common type 은 `number`
 
 다음은 Best common type 을 찾지 못하는 경우의 예시입니다.
@@ -77,7 +79,7 @@ let zoo = [new Rhino(), new Elephant(), new Snake()];
 let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
 ```
 
-Best common type을 찾지 못하면 타입은 ~~빈 객체 유형`{}`이 됩니다.~~ `union` 타입(`(Rhino | Elephant | Snake)[]`)으로 설정됩니다.  
+Best common type을 찾지 못하면 타입은 `union` 타입(`(Rhino | Elephant | Snake)[]`)으로 설정됩니다.  
 [change log(Best Common Type부분 참고)](https://github.com/Microsoft/TypeScript/issues/805)
 
 ```ts

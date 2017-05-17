@@ -28,14 +28,14 @@ p = new Person();
 ```
 위와 같은 코드에서는 `Person`클래스가 `Named`인터페이스 구현자라고 명시적으로 작성하지 않았으므로 nominal typing 기반인 C# 또는 Java에서 동일한 코드의 경우 에러가 발생합니다. 하지만, structural subtyping을 기반으로 하는 Typescript는 오류가 발생하지 않습니다.
 
-Typescript의 structural subtyping은 Javascript 코드가 작성된 방식에 따라 설계되었습니다.
+Javascript가 작성되는 유연한 방식에 따라 Typescript의 structural subtyping이 설계되었습니다.
 
 # A Note on Soundness
 
 TypeScript’s type system allows certain operations that can’t be known at compile-time to be safe. When a type system has this property, it is said to not be “sound”. The places where TypeScript allows unsound behavior were carefully considered, and throughout this document we’ll explain where these happen and the motivating scenarios behind them.
 
 # Starting out
-Typescript의 structural type system의 기본규칙은 `y`가 적어도 `x`와 동일한 멤버를 갖는 경우 `x`가 `y`와 호환된다는 것입니다.
+Typescript의 structural type system의 기본규칙은 `y`가 `x`의 맴버를 포함하고 있다면 `x`가 `y`와 호환된다는 것입니다.
 ```ts
 interface Named {
     name: string;
@@ -45,6 +45,7 @@ let x: Named;
 // y's inferred type is { name: string; location: string; }
 let y = { name: "Alice", location: "Seattle" };
 x = y;
+y = x; // error;
 ```
 `y`가 `x`에 할당될 수 있는지 확인하기 위해 컴파일러는 `x`의 각 속성에 호환되는 맴버가 `y`에 있는지 확입니다. 위의 경우 `y`는 `string`타입인 name 속성을 가져야 합니다. `y`는 `name: "Alice"`을 가지고 있으므로 할당이 허용됩니다.
 
@@ -60,7 +61,7 @@ greet(y); // OK
 
 # Comparing two functions
 
-함수 type에서 매개변수의 경우 매개변수의 타입만을 고려합니다.
+함수 type에서 매개변수의 경우 매개변수의 순서와 타입만을 고려합니다.
 
 ```ts
 let x = (a: number) => 0;
@@ -73,7 +74,7 @@ x = y; // Error
 위 예제에서 `y = x` 와 같이 'discarding' 매개변수를 허용하는 이유는 Javascript에서 매개변수를 무시하는것이 매우 일발적이기 때문입니다.
 예를 들어서 `Array.prototype.forEach`함수의 매개변수인 콜백함수는 배열요소, 인덱스, 배열 3가지의 매개변수를 제공합니다. 그럼에도 불구하고 첫 번째 매개변수만 사용하는 경우가 매우 일반적입니다.
 
-```ts
+```js
 let items = [1, 2, 3];
 
 // Don't force these extra parameters
@@ -87,7 +88,7 @@ items.forEach(item => console.log(item));
 
 ## Function Parameter Bivariance
 
-함수 매개변수의 타입을 비교할때, source 매개변수가 target 매개변수에 할당 가능하거나 그 반대인 경우 할당이 성공합니다. 이러한 규칙은 (unsound)견고하지 못하지만 실제로 이러한 종류의 오류는 거의 발생하지 않으며 이와 같은 규칙을 통해 많은 일반적인 Javascript 패턴을 사용할수 있습니다.
+매개변수의 함수 타입(`handler`)을 비교할때, source 매개변수가 target 매개변수에 할당 가능하거나 그 반대인 경우 할당이 성공합니다. 이러한 규칙은 (unsound)견고하지 못하지만 실제로 이러한 종류의 오류는 거의 발생하지 않으며 이와 같은 규칙을 통해 많은 일반적인 Javascript 패턴을 사용할수 있습니다.
 ```ts
 enum EventType { Mouse, Keyboard }
 
@@ -112,6 +113,7 @@ listenEvent(EventType.Mouse, (e: number) => console.log(e));
 
 > 위 규칙에 관련되어서는 글을 작성한 현재에도 많은 [논의][issue 1394]가 진행되고 있습니다.
 > 위 규칙으로 문제되는 코드를 [이슈][issue 1394]에서 가져와서 아래에 작성하였으므로 참고바랍니다.
+> 위 코드또한 `listenEvent`함수 내에서 `handler({timestamp:1234})` 가 실행된다면 컴파일 오류는 걸리지 않지만 런타임 오류에 걸립니다.
 
 
 ```ts
@@ -141,15 +143,12 @@ invokeLater([1, 2], (x?, y?) => console.log(x + ", " + y));
 ```
 
 위 `invokeLater`함수를 다음과 같이 변경하여도 에러가 발생하지 않습니다.
+
 ```ts
 function invokeLater(args: any[], callback: (a, b) => void) {
     /* ... Invoke callback with 'a', 'b' ... */
 }
 ```
-
-## Functions with overloads
-
-When a function has overloads, each overload in the source type must be matched by a compatible signature on the target type. This ensures that the target function can be called in all the same situations as the source function.
 
 # Enums
 
@@ -268,9 +267,9 @@ identity = reverse;  // Okay because (x: any)=>any matches (y: any)=>any
 ```
 
 # Subtype vs Assignment
-So far, we’ve used ‘compatible’, which is not a term defined in the language spec. In TypeScript, there are two kinds of compatibility: subtype and assignment. These differ only in that assignment extends subtype compatibility with rules to allow assignment to and from any and to and from enum with corresponding numeric values.
+So far, we’ve used ‘compatible’, which is not a term defined in the language spec. In TypeScript, there are two kinds of compatibility: subtype and assignment. These differ only in that assignment extends subtype compatibility with rules to allow assignment to and from `any` and to and from enum with corresponding numeric values.
 
-Different places in the language use one of the two compatibility mechanisms, depending on the situation. For practical purposes, type compatibility is dictated by assignment compatibility even in the cases of the implements and extends clauses. For more information, see the TypeScript spec.
+Different places in the language use one of the two compatibility mechanisms, depending on the situation. For practical purposes, type compatibility is dictated by assignment compatibility even in the cases of the `implements` and `extends` clauses. For more information, see the [TypeScript spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md).
 
 
 [issue 1394]: https://github.com/Microsoft/TypeScript/issues/1394

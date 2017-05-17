@@ -231,6 +231,8 @@ var __extends = (this && this.__extends) || (function () {
 * `_super.call(this, ...) // 부모생성자 호출!`
 
 ## 관계도
+UML이 아니라서 죄송합니다 ㅎ
+
 ![typescript-prototype-extend-relationship-diagram](/images/2017/04/IMG_0132.jpg)
 
 
