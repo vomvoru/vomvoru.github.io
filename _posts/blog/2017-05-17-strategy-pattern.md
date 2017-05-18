@@ -1,9 +1,9 @@
 ---
 layout: post
 title: strategy pattern
-subtitle: strategy-pattern
+subtitle: 상황에 따라 전략을 변경하는 전략 패턴
 slug: strategy-pattern
-date: '2017-05-12 17:27:00 +0900'
+date: '2017-05-17 17:27:00 +0900'
 categories: blog
 author: vomvoru
 comments: true
@@ -13,18 +13,152 @@ tags:
     - Strategy pattern
 ---
 
-# 적용 조건
-* 메소드의 행동이 (잘) 바뀌지 않는 것은 부모클래스에서 메소드를 상속한다.
-* 다음과 같은 메소드가 있다.
-    * 메소드의 행동이 잘 바뀐다.
-    * 메소드의 행동이 객체별로 다르면서도 똑같은 알고리즘도 있다.
-    * 메소드의 행동을 동적으로 변경할 필요가 있다.
-
 # 정의
-strategy pattern은 **알고리즘군** 을 정의하고 각각을 **캡슐화** 하여 **교환해서 사용** 할수 있도록 만든다. strategy pattern을 활용하면 클라이언트와는 **독립적으로 알고리즘을 변경** 할 수 있다.
+* **재사용** 이 되야하는 알고리즘의 **알고리즘군** 을 정의하고
+* 각 알고리즘을 **캡슐화** 하여 (interface로 묶는다)
+* 객체가 알고리즘군내에서 알고리즘을 **교환해서 사용** 할 수 있도록 만든다.
+
+# 효과
+* 메소드의 알고리즘의 재사용이 가능하다.
+* (그 알고리즘을 사용하는 메소드를 가진)클라이언트와는 **독립적으로 알고리즘을 변경** 할 수 있다.
+* 동적으로 알고리즘을 변경할 수 있다.
 
 # UML
-준비중
+
+```plantuml
+class Context{
+    - StrategyA strategyA
+}
+
+interface StrategyA{
+    + excute()
+}
+
+class ConcreteStrategyA1{
+    + excute()
+}
+
+class ConcreteStrategyA2{
+    + excute()
+}
+
+Context *-- StrategyA
+StrategyA <|.. ConcreteStrategyA1
+StrategyA <|.. ConcreteStrategyA2
+```
+
+위와 같은 구조로, `Context` 는 `strategy` 속성으로 `strategy.excute()` 메소드를 사용하여 `ConcreteStrategy1` 또는 `ConcreteStrategy2` 등의 여러 알고리즘(전략)을 선택하여 사용할수 잇다.
+
+```plantuml
+class Context{
+    - StrategyA strategyA
+    + setStrategyA()
+}
+
+interface StrategyA{
+    + excute()
+}
+
+class ConcreteStrategyA1{
+    + excute()
+}
+
+class ConcreteStrategyA2{
+    + excute()
+}
+
+Context *-- StrategyA
+StrategyA <|.. ConcreteStrategyA1
+StrategyA <|.. ConcreteStrategyA2
+```
+
+`setStrategy()` 메소드를 구현시 동적으로 `strategy`(알고리즘(전략))를 바꿀 수 있다.
+
+```plantuml
+class Context{
+    - StrategyA strategyA
+    - StrategyB strategyB
+}
+
+interface StrategyA{
+    + excute()
+}
+
+class ConcreteStrategyA1{
+    + excute()
+}
+
+class ConcreteStrategyA2{
+    + excute()
+}
+
+interface StrategyB{
+    + excute()
+}
+
+class ConcreteStrategyB1{
+    + excute()
+}
+
+class ConcreteStrategyB2{
+    + excute()
+}
+
+class ConcreteStrategyB3{
+    + excute()
+}
+
+Context *-- StrategyA
+StrategyA <|.. ConcreteStrategyA1
+StrategyA <|.. ConcreteStrategyA2
+
+Context *-- StrategyB
+StrategyB <|.. ConcreteStrategyB1
+StrategyB <|.. ConcreteStrategyB2
+StrategyB <|.. ConcreteStrategyB3
+```
+
+다음과 같이 2개 이상의 알고리즘군을 사용할수도 있으며
+
+```plantuml
+abstract class Parent{
+    method1()
+    {abstract} method2()
+    - StrategyA strategy
+}
+
+class ContextA{
+    method2()
+}
+
+class ContextB{
+    method2()
+}
+
+interface Strategy{
+    + excute()
+}
+
+class ConcreteStrategyA{
+    + excute()
+}
+
+class ConcreteStrategyB{
+    + excute()
+}
+
+Parent *-- Strategy
+Strategy <|.. ConcreteStrategyA
+Strategy <|.. ConcreteStrategyB
+
+Parent <|-- ContextA
+Parent <|-- ContextB
+
+ContextA *-- ConcreteStrategyA : strategy = new ConcreteStrategyA()
+ContextB *-- ConcreteStrategyB : strategy = new ConcreteStrategyB()
+```
+
+공통된 method(`method1`)는 상속으로 알고리즘(전략)이 다른 메소드(`method2`)는 `abstract method`로 지정하여 `ContextA.method2()` 에서는 `ConcreteStrategyA.excute()`의 알고리즘을 `ContextB.method2()` 에서는 `ConcreteStrategyB.excute()`의 알고리즘을 사용하도록 구현할수도 있다.
 
 # example
 ```ts
