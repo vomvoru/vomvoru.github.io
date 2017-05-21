@@ -19,8 +19,12 @@ tags:
 * 각 알고리즘을 **캡슐화** 하여 (interface로 묶는다)
 * 객체가 알고리즘군내에서 알고리즘을 **교환해서 사용** 할 수 있도록 만든다.
 
+# 도입 조건
+* 서브클래스의 메서드마다 **적용되어야 할 알고리즘이 다양** 하며 중복된 알고리즘도 있다.
+* 조건에 따라 **동적으로 알고리즘을 선택** 해야 한다.
+
 # 효과
-* 메소드의 알고리즘의 재사용이 가능하다.
+* 메소드내 알고리즘의 재사용이 가능하다.
 * (그 알고리즘을 사용하는 메소드를 가진)클라이언트와는 **독립적으로 알고리즘을 변경** 할 수 있다.
 * 동적으로 알고리즘을 변경할 수 있다.
 
@@ -159,7 +163,46 @@ ConcreateClientA -up-|> Client
 ConcreateClientB -up-|> Client
 ```
 
-공통된 method(`method1`)는 상속으로 알고리즘(전략)이 다른 메소드(`method2`)는 `abstract method`로 지정하여 `ClientA.method2()` 에서는 `ConcreteStrategyA.excute()`의 알고리즘을 `ClientB.method2()` 에서는 `ConcreteStrategyB.excute()`의 알고리즘을 사용하도록 구현할수도 있다.
+공통된 method(`method1`)는 상속으로 알고리즘(전략)이 다른 메소드(`method2`)는 `abstract method`로 구현할수도 있다. 위 구현을 이용하여 아래와 같이 `ClientA.method2()` 에서는 `ConcreteStrategyA.excute()`의 알고리즘을 `ClientB.method2()` 에서는 `ConcreteStrategyB.excute()`의 알고리즘을 사용하도록 구현할수도 있다.
+
+```plantuml
+abstract class Client{
+    method1()
+    {abstract} method2()
+    -strategy: StrategyA
+}
+
+class ConcreateClientA{
+    method2()
+}
+
+class ConcreateClientB{
+    method2()
+}
+
+interface Strategy{
+    + excute()
+}
+
+class ConcreteStrategyA{
+    + excute()
+}
+
+class ConcreteStrategyB{
+    + excute()
+}
+
+Client -right-> Strategy: strategy
+
+ConcreteStrategyA .up.|> Strategy
+ConcreteStrategyB .up.|> Strategy
+
+ConcreateClientA -up-|> Client
+ConcreateClientB -up-|> Client
+
+ConcreateClientA -right-> ConcreteStrategyA: strategy
+ConcreateClientB -right-> ConcreteStrategyB: strategy
+```
 
 # example
 ```ts

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: observer pattern
-subtitle:
-slug: observer-pattern
+title: decorator pattern
+subtitle: wrapper
+slug: decorator-pattern
 date: '2017-05-18 18:22:00 +0900'
 categories: blog
 author: vomvoru
@@ -11,115 +11,115 @@ share: true
 tags:
     - Typescript
     - Design pattern
-    - Observer pattern
+    - Decorator pattern
 ---
 
 # 정의
-* 감지할 상태를 가진 객체(`Subject`)를 정의한다.
-* 상태에 따라 실행할 메서드를 가진 객체들(`Obsrver`)을 정의한다.
-* `Obsrver`는 감지할 상태를 가진 객체(`Subject`)에 등록(`regist`)한다.
-* `Subject`는 자신의 상태를 등록된 (`Obsrver`)객체들을 가지고 있는다.
-* `Subject`가 자신의 상태가 변경될시 등록된 `Obsrver` 객체들에게 알려준다(`Subject.notifyObserve()` --> `Observer.update()`)
+* 한 객체(Subject)의 상태가 바뀌면
+* 그 객체에 의존하는 다른 객체들(Obsrver)에게 연락이 가고
+* 자동으로 지정 메서드가 실행, 갱신되는 방식으로
+* **일대다(one-to-many) 의존성을 정의** 합니다.
 
 # 도입 조건
-* 특정 객체의 상태변화를 감지 할 필요가 있다.
+* 다양한 상태(필드 값)에 의존해서 메서드가 다른 행동을 해야 한다.
+* '단일 책임 원칙'을 준수하지 못한다. 클래스가 다수의 책임을 갖는다.
 
 # 효과
-* 서로 상호작용(의존)하는 객체 사이가 약결합(Loose Coupling) 한다.
-* 특정 인터페이스만을 구현하므로 Subject와 Observer는 독립적으로 재사용이 가능하다.
-* Observer는 언제든지 새롭게 추가 할 수 있다.
-* **일대다(one-to-many) 관계** 가 된다.
+* 다양한 조합의 객체를 만들수 있다.
+* 서브클래싱 대신 쓸 수 있는 유연한 대안이 될 수 있다.
+* 여러 데코레이터로 감싸다 보면 코드가 복잡해질수 있다.
+    * creational pattern과의 조합으로 해결할수 있다.
 
 # UML
 
 ```plantuml
 interface Subject {
-    -observerCollection: Array<Observer>
-    +regisierObserver(observer: Observer)
-    +unregisterObserver(observer: Observer)
-    +notifiyObservers()
+    -decoratorCollection: Array<Decorator>
+    +regisierDecorator(decorator: Decorator)
+    +unregisterDecorator(decorator: Decorator)
+    +notifiyDecorators()
 }
 
 class ConcreateSubject{
-    -observerCollection: Array<Observer>
-    +regisierObserver(observer: Observer)
-    +unregisterObserver(observer: Observer)
-    +notifiyObservers()
+    -decoratorCollection: Array<Decorator>
+    +regisierDecorator(decorator: Decorator)
+    +unregisterDecorator(decorator: Decorator)
+    +notifiyDecorators()
     +getState()
 }
 
-interface Observer{
+interface Decorator{
     +update(subject: Subject)
 }
 
-class ConcreateObserverA{
+class ConcreateDecoratorA{
     +update(subject: Subject)
 }
 
-class ConcreateObserverB{
+class ConcreateDecoratorB{
     +update(subject: Subject)
 }
 
-class ConcreateObserverC{
+class ConcreateDecoratorC{
     +update(subject: Subject)
 }
 
 ConcreateSubject ..|> Subject
 
-ConcreateObserverA .up.|> Observer
-ConcreateObserverB .up.|> Observer
-ConcreateObserverC .up.|> Observer
+ConcreateDecoratorA .up.|> Decorator
+ConcreateDecoratorB .up.|> Decorator
+ConcreateDecoratorC .up.|> Decorator
 
-Subject o--> Observer : observerCollection
+Subject o--> Decorator : decoratorCollection
 ```
 
-`notifiyObservers()` 메소드가 실행시 `regisierObserver(observer: Observer)` 메소드에 의해 등록된 `observerCollection`변수안의 observer들의 `update(subject: Subject)` 메소드가 실행되며 각 observer에 `subject: Subject` 가 전달된다. 그리고 변경된 상태값을 `ConcreateSubject.getState()`등의 메소드를 통해 가져올수 있다.
+`notifiyDecorators()` 메소드가 실행시 `regisierDecorator(decorator: Decorator)` 메소드에 의해 등록된 `decoratorCollection`변수안의 decorator들의 `update(subject: Subject)` 메소드가 실행되며 각 decorator에 `subject: Subject` 가 전달된다. 그리고 변경된 상태값을 `ConcreateSubject.getState()`등의 메소드를 통해 가져올수 있다.
 
 위 방식은 pull 방식이며 push 방식은 다음과 같다.
 
 ```plantuml
 interface Subject {
-    -observerCollection: Array<Observer>
-    +regisierObserver(observer: Observer)
-    +unregisterObserver(observer: Observer)
-    +notifiyObservers()
+    -decoratorCollection: Array<Decorator>
+    +regisierDecorator(decorator: Decorator)
+    +unregisterDecorator(decorator: Decorator)
+    +notifiyDecorators()
 }
 
 class ConcreateSubject{
-    -observerCollection: Array<Observer>
-    +regisierObserver(observer: Observer)
-    +unregisterObserver(observer: Observer)
-    +notifiyObservers()
+    -decoratorCollection: Array<Decorator>
+    +regisierDecorator(decorator: Decorator)
+    +unregisterDecorator(decorator: Decorator)
+    +notifiyDecorators()
 }
 
-interface Observer{
+interface Decorator{
     +update(states)
 }
 
-class ConcreateObserverA{
+class ConcreateDecoratorA{
     +update(states)
 }
 
-class ConcreateObserverB{
+class ConcreateDecoratorB{
     +update(states)
 }
 
-class ConcreateObserverC{
+class ConcreateDecoratorC{
     +update(states)
 }
 
 ConcreateSubject ..|> Subject
 
-ConcreateObserverA .up.|> Observer
-ConcreateObserverB .up.|> Observer
-ConcreateObserverC .up.|> Observer
+ConcreateDecoratorA .up.|> Decorator
+ConcreateDecoratorB .up.|> Decorator
+ConcreateDecoratorC .up.|> Decorator
 
-Subject o--> Observer : observerCollection
+Subject o--> Decorator : decoratorCollection
 ```
 
 pull 방식과의 차이점은 `update()`메소드로 `Subject` 객체가 아닌 상태(state)값 자체가 전달되는것이다.
 
-일반적으로 pull 방식이 더 좋은 방식으로 평가됩니다. `states` 매개변수 부분이 변경되면 모든 Observer 객체를 변경해야 되기 때문입니다.
+일반적으로 pull 방식이 더 좋은 방식으로 평가됩니다. `states` 매개변수 부분이 변경되면 모든 Decorator 객체를 변경해야 되기 때문입니다.
 
 # example
 pull 방식과 push 방식을 typescript로 모두 작성해보았다.
@@ -130,12 +130,12 @@ pull 방식과 push 방식을 typescript로 모두 작성해보았다.
 import * as _ from 'lodash';
 
 interface Subject {
-  registerObserve(o: Observer): void;
-  removeObserve(o: Observer): void;
+  registerObserve(o: Decorator): void;
+  removeObserve(o: Decorator): void;
   notifyObserve(): void;
 }
 
-interface Observer {
+interface Decorator {
   update<T extends Subject>(subject: T): void;
 }
 
@@ -144,7 +144,7 @@ interface DisplayElement {
 }
 
 class WeatherData implements Subject {
-  private observers: Observer[] = [];
+  private decorators: Decorator[] = [];
   private _temperature: number;
   private _humidity: number;
   private _pressure: number;
@@ -161,20 +161,20 @@ class WeatherData implements Subject {
     return this._pressure;
   }
 
-  public registerObserve(o: Observer): void {
-    if (!_.includes<Observer>(this.observers, o)) {
-      this.observers.push(o)
+  public registerObserve(o: Decorator): void {
+    if (!_.includes<Decorator>(this.decorators, o)) {
+      this.decorators.push(o)
     }
   }
 
-  public removeObserve(o: Observer): void {
-    _.pull<Observer>(this.observers, o);
+  public removeObserve(o: Decorator): void {
+    _.pull<Decorator>(this.decorators, o);
   }
 
   public notifyObserve(): void {
     console.log('--notifyObserve--')
-    this.observers.forEach((observer) => {
-      observer.update(this)
+    this.decorators.forEach((decorator) => {
+      decorator.update(this)
     })
   }
 
@@ -202,7 +202,7 @@ class WeatherData implements Subject {
   }
 }
 
-class CurrentConditionsDisplay implements Observer, DisplayElement {
+class CurrentConditionsDisplay implements Decorator, DisplayElement {
   private temperature: number;
   private humidity: number;
 
@@ -221,7 +221,7 @@ class CurrentConditionsDisplay implements Observer, DisplayElement {
   }
 }
 
-class StatisticsDisplay implements Observer, DisplayElement {
+class StatisticsDisplay implements Decorator, DisplayElement {
   private maxTemp: number = 0.0;
   private minTemp: number = 200;
   private tempSum: number = 0.0;
@@ -251,7 +251,7 @@ class StatisticsDisplay implements Observer, DisplayElement {
   }
 }
 
-class ForecastDisplay implements Observer, DisplayElement {
+class ForecastDisplay implements Decorator, DisplayElement {
   private currentPressure: number = 29.92;
   private lastPressure: number;
 
@@ -280,7 +280,7 @@ class ForecastDisplay implements Observer, DisplayElement {
   }
 }
 
-class HeatIndexDisplay implements Observer, DisplayElement {
+class HeatIndexDisplay implements Decorator, DisplayElement {
   private heatIndex: number = 0.0;
 
   public constructor(private weatherData: Subject) {
@@ -326,12 +326,12 @@ export default function main() {
 import * as _ from 'lodash';
 
 interface Subject {
-  registerObserve(o: Observer): void;
-  removeObserve(o: Observer): void;
+  registerObserve(o: Decorator): void;
+  removeObserve(o: Decorator): void;
   notifyObserve(): void;
 }
 
-interface Observer {
+interface Decorator {
   update(temperature: number, humidity: number, pressure: number): void;
 }
 
@@ -340,25 +340,25 @@ interface DisplayElement {
 }
 
 class WeatherData implements Subject {
-  private observers: Array<Observer> = [];
+  private decorators: Array<Decorator> = [];
   private temperature: number;
   private humidity: number;
   private pressure: number;
 
-  public registerObserve(o: Observer): void {
-    if (!_.includes<Observer>(this.observers, o)) {
-      this.observers.push(o)
+  public registerObserve(o: Decorator): void {
+    if (!_.includes<Decorator>(this.decorators, o)) {
+      this.decorators.push(o)
     }
   }
 
-  public removeObserve(o: Observer): void {
-    _.pull<Observer>(this.observers, o);
+  public removeObserve(o: Decorator): void {
+    _.pull<Decorator>(this.decorators, o);
   }
 
   public notifyObserve(): void {
     console.log('--notifyObserve--')
-    this.observers.forEach((observer) => {
-      observer.update(
+    this.decorators.forEach((decorator) => {
+      decorator.update(
         this.temperature,
         this.humidity,
         this.pressure
@@ -390,7 +390,7 @@ class WeatherData implements Subject {
   }
 }
 
-class CurrentConditionsDisplay implements Observer, DisplayElement {
+class CurrentConditionsDisplay implements Decorator, DisplayElement {
   private temperature: number;
   private humidity: number;
 
@@ -409,7 +409,7 @@ class CurrentConditionsDisplay implements Observer, DisplayElement {
   }
 }
 
-class StatisticsDisplay implements Observer, DisplayElement {
+class StatisticsDisplay implements Decorator, DisplayElement {
   private maxTemp: number = 0.0;
   private minTemp: number = 200;
   private tempSum: number = 0.0;
@@ -439,7 +439,7 @@ class StatisticsDisplay implements Observer, DisplayElement {
   }
 }
 
-class ForecastDisplay implements Observer, DisplayElement {
+class ForecastDisplay implements Decorator, DisplayElement {
   private currentPressure: number = 29.92;
   private lastPressure: number;
 
@@ -468,7 +468,7 @@ class ForecastDisplay implements Observer, DisplayElement {
   }
 }
 
-class HeatIndexDisplay implements Observer, DisplayElement {
+class HeatIndexDisplay implements Decorator, DisplayElement {
   private heatIndex: number = 0.0;
 
   public constructor(private weatherData: Subject) {
