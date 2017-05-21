@@ -21,11 +21,11 @@ tags:
 * 특정 객체의 상태변화를 감지 할 필요가 있다.
 
 # 도입 방법
-* 감지할 상태를 가진 객체(`Subject`)를 정의한다.
-* 상태에 따라 실행할 메서드를 가진 객체들(`Obsrver`)을 정의한다.
-* `Obsrver`는 감지할 상태를 가진 객체(`Subject`)에 등록(`regist`)한다.
-* `Subject`는 자신의 상태를 등록된 (`Obsrver`)객체들을 가지고 있는다.
-* `Subject`가 자신의 상태가 변경될시 등록된 `Obsrver` 객체들에게 알려준다(`Subject.notifyObserve()` --> `Observer.update()`)
+1. 감지할 상태를 가진 객체(`Subject`)를 정의한다.
+1. 상태에 따라 실행할 메서드를 가진 객체들(`Obsrver`)을 정의한다.
+1. `Obsrver`는 감지할 상태를 가진 객체(`Subject`)에 등록(`regist`)한다.
+1. `Subject`는 자신의 상태를 등록된 (`Obsrver`)객체들을 가지고 있는다.
+1. `Subject`가 자신의 상태가 변경될시 등록된 `Obsrver` 객체들에게 알려준다(`Subject.notifyObserve()` --> `Observer.update()`)
 
 # 효과
 * 서로 상호작용(의존)하는 객체 사이가 약결합(Loose Coupling) 한다.
