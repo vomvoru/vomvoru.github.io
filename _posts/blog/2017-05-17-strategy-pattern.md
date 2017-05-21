@@ -27,112 +27,114 @@ tags:
 # UML
 
 ```plantuml
-class Context{
-    - StrategyA strategyA
+class Client{
+    -strategyA: StrategyA
 }
 
 interface StrategyA{
-    + excute()
+    +excute()
 }
 
 class ConcreteStrategyA1{
-    + excute()
+    +excute()
 }
 
 class ConcreteStrategyA2{
-    + excute()
+    +excute()
 }
 
-Context *-- StrategyA
-StrategyA <|.. ConcreteStrategyA1
-StrategyA <|.. ConcreteStrategyA2
+Client --> StrategyA
+
+ConcreteStrategyA1 .up.|> StrategyA
+ConcreteStrategyA2 .up.|> StrategyA
 ```
 
-위와 같은 구조로, `Context` 는 `strategy` 속성으로 `strategy.excute()` 메소드를 사용하여 `ConcreteStrategy1` 또는 `ConcreteStrategy2` 등의 여러 알고리즘(전략)을 선택하여 사용할수 잇다.
+위와 같은 구조로, `Client` 는 `strategy` 속성으로 `strategy.excute()` 메소드를 사용하여 `ConcreteStrategy1` 또는 `ConcreteStrategy2` 등의 여러 알고리즘(전략)을 선택하여 사용할수 잇다.
 
 ```plantuml
-class Context{
-    - StrategyA strategyA
-    + setStrategyA()
+class Client{
+    -strategyA: StrategyA
+    +setStrategyA()
 }
 
 interface StrategyA{
-    + excute()
+    +excute()
 }
 
 class ConcreteStrategyA1{
-    + excute()
+    +excute()
 }
 
 class ConcreteStrategyA2{
-    + excute()
+    +excute()
 }
 
-Context *-- StrategyA
-StrategyA <|.. ConcreteStrategyA1
-StrategyA <|.. ConcreteStrategyA2
+Client --> StrategyA
+
+ConcreteStrategyA1 .up.|> StrategyA
+ConcreteStrategyA2 .up.|> StrategyA
 ```
 
 `setStrategy()` 메소드를 구현시 동적으로 `strategy`(알고리즘(전략))를 바꿀 수 있다.
 
 ```plantuml
-class Context{
-    - StrategyA strategyA
-    - StrategyB strategyB
+class Client{
+    -strategyA: StrategyA
+    -strategyB: StrategyB
 }
 
 interface StrategyA{
-    + excute()
+    +excute()
 }
 
 class ConcreteStrategyA1{
-    + excute()
+    +excute()
 }
 
 class ConcreteStrategyA2{
-    + excute()
+    +excute()
 }
 
 interface StrategyB{
-    + excute()
+    +excute()
 }
 
 class ConcreteStrategyB1{
-    + excute()
+    +excute()
 }
 
 class ConcreteStrategyB2{
-    + excute()
+    +excute()
 }
 
 class ConcreteStrategyB3{
-    + excute()
+    +excute()
 }
 
-Context *-- StrategyA
-StrategyA <|.. ConcreteStrategyA1
-StrategyA <|.. ConcreteStrategyA2
+Client --> StrategyA
+ConcreteStrategyA1 .up.|> StrategyA
+ConcreteStrategyA2 .up.|> StrategyA
 
-Context *-- StrategyB
-StrategyB <|.. ConcreteStrategyB1
-StrategyB <|.. ConcreteStrategyB2
-StrategyB <|.. ConcreteStrategyB3
+Client --> StrategyB
+ConcreteStrategyB1 .up.|> StrategyB
+ConcreteStrategyB2 .up.|> StrategyB
+ConcreteStrategyB3 .up.|> StrategyB
 ```
 
 다음과 같이 2개 이상의 알고리즘군을 사용할수도 있으며
 
 ```plantuml
-abstract class Parent{
+abstract class Client{
     method1()
     {abstract} method2()
-    - StrategyA strategy
+    -strategy: StrategyA
 }
 
-class ContextA{
+class ConcreateClientA{
     method2()
 }
 
-class ContextB{
+class ConcreateClientB{
     method2()
 }
 
@@ -148,18 +150,16 @@ class ConcreteStrategyB{
     + excute()
 }
 
-Parent *-- Strategy
-Strategy <|.. ConcreteStrategyA
-Strategy <|.. ConcreteStrategyB
+Client -right-> Strategy: strategy
 
-Parent <|-- ContextA
-Parent <|-- ContextB
+ConcreteStrategyA .up.|> Strategy
+ConcreteStrategyB .up.|> Strategy
 
-ContextA *-- ConcreteStrategyA : strategy = new ConcreteStrategyA()
-ContextB *-- ConcreteStrategyB : strategy = new ConcreteStrategyB()
+ConcreateClientA -up-|> Client
+ConcreateClientB -up-|> Client
 ```
 
-공통된 method(`method1`)는 상속으로 알고리즘(전략)이 다른 메소드(`method2`)는 `abstract method`로 지정하여 `ContextA.method2()` 에서는 `ConcreteStrategyA.excute()`의 알고리즘을 `ContextB.method2()` 에서는 `ConcreteStrategyB.excute()`의 알고리즘을 사용하도록 구현할수도 있다.
+공통된 method(`method1`)는 상속으로 알고리즘(전략)이 다른 메소드(`method2`)는 `abstract method`로 지정하여 `ClientA.method2()` 에서는 `ConcreteStrategyA.excute()`의 알고리즘을 `ClientB.method2()` 에서는 `ConcreteStrategyB.excute()`의 알고리즘을 사용하도록 구현할수도 있다.
 
 # example
 ```ts

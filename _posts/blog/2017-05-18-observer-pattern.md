@@ -59,13 +59,44 @@ class ConcreateObserverC{
     +update(Subject subject)
 }
 
-ConcreateSubject <|-- Subject
+interface Subject {
+    -Array<Observer> observerCollection
+    +regisierObserver(Observer observer)
+    +unregisterObserver(Observer observer)
+    +notifiyObservers()
+}
 
-ConcreateObserverA <|-up- Observer
-ConcreateObserverB <|-up- Observer
-ConcreateObserverC <|-up- Observer
+class ConcreateSubject{
+    -Array<Observer> observerCollection
+    +regisierObserver(Observer observer)
+    +unregisterObserver(Observer observer)
+    +getState()
+    +notifiyObservers()
+}
 
-Subject -left-* Observer : observerCollection
+interface Observer{
+    +update(Subject subject)
+}
+
+class ConcreateObserverA{
+    +update(Subject subject)
+}
+
+class ConcreateObserverB{
+    +update(Subject subject)
+}
+
+class ConcreateObserverC{
+    +update(Subject subject)
+}
+
+ConcreateSubject ..|> Subject
+
+ConcreateObserverA .up.|> Observer
+ConcreateObserverB .up.|> Observer
+ConcreateObserverC .up.|> Observer
+
+Subject o--> Observer : observerCollection
 ```
 
 `notifiyObservers()` 메소드가 실행시 `regisierObserver(Observer observer)` 메소드에 의해 등록된 `observerCollection`변수안의 observer들의 `update(Subject subject)` 메소드가 실행되며 각 observer에 `Subject subject` 가 전달된다. 그리고 변경된 상태값을 `ConcreateSubject.getState()`등의 메소드를 통해 가져올수 있다.
@@ -103,13 +134,44 @@ class ConcreateObserverC{
     +update(states)
 }
 
-ConcreateSubject <|-- Subject
+interface Subject {
+    -Array<Observer> observerCollection
+    +regisierObserver(Observer observer)
+    +unregisterObserver(Observer observer)
+    +notifiyObservers()
+}
 
-ConcreateObserverA <|-up- Observer
-ConcreateObserverB <|-up- Observer
-ConcreateObserverC <|-up- Observer
+class ConcreateSubject{
+    -Array<Observer> observerCollection
+    +regisierObserver(Observer observer)
+    +unregisterObserver(Observer observer)
+    +getState()
+    +notifiyObservers()
+}
 
-Subject -left-* Observer : observerCollection
+interface Observer{
+    +update(Subject subject)
+}
+
+class ConcreateObserverA{
+    +update(Subject subject)
+}
+
+class ConcreateObserverB{
+    +update(Subject subject)
+}
+
+class ConcreateObserverC{
+    +update(Subject subject)
+}
+
+ConcreateSubject ..|> Subject
+
+ConcreateObserverA .up.|> Observer
+ConcreateObserverB .up.|> Observer
+ConcreateObserverC .up.|> Observer
+
+Subject o--> Observer : observerCollection
 ```
 
 pull 방식과의 차이점은 `update()`메소드로 `Subject` 객체가 아닌 상태(state)값 자체가 전달되는것이다.
