@@ -207,6 +207,8 @@ ConcreateClientA -right-> ConcreteStrategyA: strategy
 ConcreateClientB -right-> ConcreteStrategyB: strategy
 ```
 
+# 실제 사용형태
+
 # example
 ```ts
 interface FlyBehavior {

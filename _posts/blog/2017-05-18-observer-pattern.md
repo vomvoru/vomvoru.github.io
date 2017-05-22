@@ -124,6 +124,9 @@ pull 방식과의 차이점은 `update()`메소드로 `Subject` 객체가 아닌
 
 일반적으로 pull 방식이 더 좋은 방식으로 평가됩니다. `states` 매개변수 부분이 변경되면 모든 Observer 객체를 변경해야 되기 때문입니다.
 
+# 실제 사용형태
+
+
 # example
 pull 방식과 push 방식을 typescript로 모두 작성해보았다.
 
