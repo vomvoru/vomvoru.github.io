@@ -1,6 +1,6 @@
 
 
-// https://www.planttext.com/plantuml/svg/
+// https://www.plantuml.com/plantuml/svg/
 
 jQuery(($) => {
   function encode64(a){for(r="",i=0;i<a.length;i+=3)i+2==a.length?r+=append3bytes(a.charCodeAt(i),a.charCodeAt(i+1),0):i+1==a.length?r+=append3bytes(a.charCodeAt(i),0,0):r+=append3bytes(a.charCodeAt(i),a.charCodeAt(i+1),a.charCodeAt(i+2));return r}
@@ -18,7 +18,7 @@ jQuery(($) => {
   }
 
   function getUrl(umltext){
-    return 'https://www.planttext.com/plantuml/svg/' + compress(umltext);
+    return 'https://www.plantuml.com/plantuml/svg/' + compress(umltext);
   }
 
   function main(){
