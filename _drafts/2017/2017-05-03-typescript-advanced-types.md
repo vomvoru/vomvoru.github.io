@@ -256,7 +256,7 @@ function fixed(name: string | null): string {
 ```ts
 function fixed(name: string | null): string {
   function postfix(epithet: string) {
-    return name.charAt(0) + '.  the ' + epithet; // ok
+    return name!.charAt(0) + '.  the ' + epithet; // ok
   }
   name = name || "Bob";
   return postfix("great");
@@ -373,10 +373,6 @@ button.animate(0, 0, "ease-in");
 button.animate(0, 0, "uneasy"); // error: "uneasy" is not allowed here
 ```
 
-
-
-
-
 # Discriminated Unions
 
 Type guard를 적용 가능한 Discriminated Union은 다음과 같은 규칙으로 만들수 있습니다.
@@ -471,6 +467,7 @@ function area(s: Shape) {
 
 # Polymorphic this types
 
+this 유형은 class 혹은 interface에서 사용되는 바인딩된 this를 의미합니다.  
 A polymorphic `this` type represents a type that is the subtype of the containing class or interface. This is called F-bounded polymorphism. This makes hierarchical fluent interfaces much easier to express, for example. Take a simple calculator that returns `this` after each operation:
 
 ```ts
