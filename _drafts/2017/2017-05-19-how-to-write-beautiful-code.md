@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 아름다운 코드작성 방법
-subtitle: 예술 코딩
+title: 좋은 코드 작성하기
+subtitle:
 slug: how-to-write-beautiful-code
 date: '2017-05-22 12:53:00 +0900'
 categories: blog
@@ -16,10 +16,6 @@ tags:
     - ISO/IEC 25010
 ---
 
-변경된 ISO/IEC 25010:2011 를 참고해야한다.
-software quality로 나눠야된다
-
-
 # 개요
 이 글을 쓰는 목적은 다음과 같다.
 * 개발자로서 좋은 코드를 작성하겠다는 목적을 위함
@@ -32,137 +28,258 @@ software quality로 나눠야된다
 **좋은 코드** 와 **좋은 설계** 의 목적은 소프트웨어 품질을 높이기 위함이다. 그러므로 소프트웨어 품질 기준에 대한 이야기를 시작으로 좋은 코드와 설계의 기준 및 방법(규칙)에 대해 정리해 보도록 하자.
 
 # 소프트웨어 품질
-개발자가 좋은 코드와 설계를 추구하는 근본적인 이유는 소프트웨어 품질을 높이기 위함이다. 소프트웨어 품질은 여려 요소들로 평가될수 있지만, 소프트웨어 품질 국제 표준인 ISO/IEC 9126, ISO/IEC 25010 과 wikipedia 그리고 관련 문서 2개를 참고하여 정리하면 다음과 같다.
+개발자가 좋은 코드와 설계를 추구하는 근본적인 이유는 소프트웨어 품질을 높이기 위함이다. 소프트웨어 품질은 여려 요소들로 평가될수 있지만,  소프트웨어 품질 국제 표준인 ISO/IEC 25010 일부를 참고하여 정리하면 다음과 같다.
 
+```plantuml
+@startuml
+
+class "내부/외부 품질\nInternal and External Quality"
+
+"내부/외부 품질\nInternal and External Quality" --> "기능적합성\nFunctional Suitability"
+"내부/외부 품질\nInternal and External Quality" --> "한글설명\nReliability"
+"내부/외부 품질\nInternal and External Quality" --> "한글설명\nUsability"
+"내부/외부 품질\nInternal and External Quality" --> "수행 효율성\nPerformance\nEfficiency"
+"내부/외부 품질\nInternal and External Quality" --> "한글설명\nMaintainability"
+"내부/외부 품질\nInternal and External Quality" --> "한글설명\nPortability"
+"내부/외부 품질\nInternal and External Quality" --> "한글설명\nCompatibility"
+"내부/외부 품질\nInternal and External Quality" --> "한글설명\nSecurity"
+
+hide empty fields
+hide empty methods
+hide circle
+@enduml
+```
+
+이러한 요소들중 개발자가 특히 관심가져야 할 요소들을 정리하였다.
+
+```plantuml
+@startuml
+
+Title "내부/외부 품질\nInternal and External Quality"
+
+package "신뢰도\nReliability" {
+    class "maturity"{
+        성숙도
+        --
+        시스템이 표준 작동하에서 신뢰도에
+        대한 요구를 충족시키는 정도
+    }
+    class "fault\ntolerance"{
+        결점 완화
+        --
+        하드웨어 혹은 소프트웨어의 결점이 존재하도
+        의도한대로 작동하는가
+        ..예시..
+        네트워크가 불완전할때의 처리
+        구 브라우저를 사용할때의 처리
+    }
+    class "recoverability"{
+        복구 가능성
+        --
+        중단 및 실패가 발생시 시스템이 원하는 상태로
+        재설정된 데이터를 복구할 수 있는 정도
+    }
+    class "availability"{
+        가용성
+        --
+        서버와 네트워크, 프로그램등이 정상적으로 사용가능한 정도
+        기동률과 비슷한 의미로 수식으로 설명할경우
+        사용시간을 전체 사용시간으로 나눈 값을 말한다
+    }
+}
+hide empty fields
+hide empty methods
+hide circle
+@enduml
+```
+```plantuml
+@startuml
+package "수행 효율성\nPerformance\nEfficiency" {
+    class "time\nbehaviour"{
+        시간 반응성
+        --
+        응답 및 처리시간과 처리율
+        (시간 복잡도와 관련이 깊다)
+    }
+    class "resource\nutilization"{
+        자원 활용
+        --
+        자원(메모리 등)의 사용율
+        (공간 복잡도와 관련이 깊다)
+    }
+    class "capacity"{
+        기억 용량
+        --
+        사용자수, 통신 대역폭, 데이터베이스가
+        저장할수있는 아이템의 양에 대한 최대한계율
+    }
+}
+hide empty fields
+hide empty methods
+hide circle
+@enduml
+```
+```plantuml
+@startuml
+package "유지보수성\nMaintainability" {
+    class "analysability"{
+        분석성
+        --
+        소프트웨어의 결함이나 고장의 원인 혹은
+        변경될 부분들에 대한 진단을 가능하게 하는 능력
+        ..예시..
+        테스트코드를 작성해두고 그 테스트결과를
+        continuous integration 서비스로
+        주기적인 점검을 하는 방법이 있다.
+    }
+    class "modifiability"{
+        수정가능성
+        --
+        시스템이 장애의 발생 없이 혹은 기존 품질을
+        떨어뜨리지 않고 효율적으로 수정될 수 있는 정도
+    }
+    class "reusability"{
+        재사용성
+        ..예시..
+        module, function, component
+        등의 재사용 방법이 있다.
+    }
+    class "testability"{
+        테스트가능성
+        ..예시..
+        테스트코드의 유무와 관련이 있다
+    }
+    class "modularity"{
+        모듈성
+    }
+}
+hide empty fields
+hide empty methods
+hide circle
+@enduml
+```
+```plantuml
+@startuml
+package "보안\nSecurity" {
+    class "confidentiality"{
+        기밀성
+        --
+        시스템이 조건(사용자등)에 따라 접근이 허용된
+        데이터에만 접근이 가능하도록 하는것
+    }
+    class "integrity"{
+        무결성
+        --
+        원래의 정보 또는 신호가 전송/저장/변환 이후에도
+        동일함을 유지하는것
+        --
+        https의 적용 및 Checksum, CRC등의 기법
+        MD5, 해쉬함수등의 적용등을 할수 있고
+        데이터베이스의 무결성 유지도 비슷한 의미이다.
+    }
+    class "non-repudiation"{
+        부인방지
+        --
+        송수신 거래사실을 이후에 증명 가능하게 함으로서
+        거래 사실을 부인 못하게 하는 공증과 같은 보안기능
+    }
+    class "accountability"{
+        책임추적성
+        --
+        사용자 식별 및 활동 감사 추적
+    }
+    class "authenticity"{
+        인증성
+        --
+        사용자의 진위 확인
+    }
+}
+
+hide empty fields
+hide empty methods
+hide circle
+@enduml
+```
+
+당연하겠지만 ISO/IEC 25010 의 일부 내용에서 볼 수 있듯이 소프트웨어 품질은 여러 요소들을 고려해야 한다.
+특히 우리 개발자가 집중해야되는 사항은 신뢰도, 성능(수행효율성), 유지보수성, 보안등이 있다.
+
+
+# 좋은 코드의 판단 기준
+
+## 응집도
+
+http://raisonde.tistory.com/375
+http://lazineer.tistory.com/93
+https://zetawiki.com/wiki/%EC%9D%91%EC%A7%91%EB%8F%84,_%EA%B2%B0%ED%95%A9%EB%8F%84,_%EB%86%92%EC%9D%80_%EC%9D%91%EC%A7%91%EB%8F%84%2B%EB%82%AE%EC%9D%80_%EA%B2%B0%ED%95%A9%EB%8F%84
 http://egloos.zum.com/gigaboy/v/10822457
-https://en.wikipedia.org/wiki/Computer_programming
-http://www.sqa.net/iso9126.html
-https://en.wikipedia.org/wiki/ISO/IEC_9126
+
+## 결합도(의존도)
+
+## 캡슐화
+
+## 모듈화
+
+## 추상성
+
+## 다형성
+
+## 가독성
+
+##
+
+# 코드 냄새(Code smell)
+
+# 디자인 냄새(Design smell)
+
+# 안티패턴(Anti-pattern)
 
 
+# 좋은 코드를 위한 원칙
 
-
-
-## Functionality(기능성)
-
-* Suitability(적합성)
-
-* Accuracy(정확성)
-
-* Interoperability(상호운영성)
-
-* Security(보안성)
-
-* Compliance(규정 준수성)
-
-
-## Reliability(신뢰성)
-프로그램이 올바른 결과를 도출해 내는 정도치
-
-* Maturity
-프로그램의 실패 빈도
-
-* Fault tolerance
-
-* Recoverability
-
-프로그램의 결과가 얼마나 자주 올바른지. 이것은 알고리즘의 개념적 정확성과 리소스 관리 (예 : 버퍼 오버플로 및 경쟁 조건 ) 및 논리 오류 (0 또는 하나씩 오류 로 나누기)와 같은 프로그래밍 실수의 최소화에 달려 있다.
-
-## Robustness(견고성)
-프로그램이 예기치 않는 상황에 대해 대처하는 정도치
-
-*
-### 예기치 않는 상황
-버그는 여기에 포함되지 않는다.
-* 정확하지 않는 데이터가 입력되는 경우
-* 부적절한 데이터 네트워크 연결오류
-* 에기치 않는 정전등으로 인한 필요한 리소스를 사용할수 없는 경우
-
-프로그램이 오류 (버그가 아닌)로 인한 문제를 얼마나 잘 예측 하는지. 여기에는 정확하지 않은 데이터, 부적절하거나 부적절한 데이터, 메모리, 운영 체제 서비스 및 네트워크 연결, 사용자 오류 및 예기치 않은 정전과 같은 필요한 리소스를 사용할 수없는 상황이 포함됩니다.
-
-## Usability(유용성)
-프로그램이 의도한 (혹은 의도치 않는) 목적을 달성하기 위해 유용한 정도치
-
-프로그램 의 인간 공학 (Ergonomics of a Program) : 사람이 의도 된 목적을 위해 또는 예기치 않은 목적을 위해 프로그램을 사용할 수있는 용이성. 이러한 문제는 다른 문제와 상관없이 성공을 거둘 수 있습니다. 여기에는 프로그램의 사용자 인터페이스의 선명도, 직관력, 일관성 및 완성도를 향상시키는 다양한 텍스트, 그래픽 및 하드웨어 요소가 포함됩니다.
-
-## Portability(이식성)
-프로그램이 사용 가능한 환경 범위의 정도치
-
-프로그램의 소스 코드를 컴파일 / 해석 하고 실행할 수있는 컴퓨터 하드웨어 및 운영 체제 플랫폼 의 범위 . 이는 하드웨어 및 운영 체제 리소스, 하드웨어 및 운영 체제의 예상 동작 및 소스 코드 언어에 대한 플랫폼 별 컴파일러 (및 때로는 라이브러리)의 가용성을 비롯한 다양한 플랫폼에서 제공되는 프로그래밍 기능의 차이에 따라 달라집니다.
-
-## Maintainability(유지보수성)
-프로그램이 추후 수정이 필요할때 얼마나 적은 비용으로 진행할수 있는가에 대한 정도치
-
-개선 또는 사용자 정의, 버그 및 보안 허점 수정 또는 새로운 환경에 적응 하기 위해 현재 또는 미래의 개발자가 프로그램을 수정할 수있는 용이성. 초기 개발 과정에서 우수 사례 ( Good Practice) [10] 가이 점에있어서 차이를 만듭니다. 이 품질은 최종 사용자에게는 직접적으로 드러나지 않을 수 있지만 장기적으로 프로그램의 운명에 큰 영향을 미칠 수 있습니다.
-
-## Efficiency/performance(효율성/성능)
-프로그램이 소비하는 시스템 리소스 및 속도에 대한 정도치
-
-프로그램이 소비하는 시스템 리소스 (프로세서 시간, 메모리 공간, 디스크와 같은 느린 장치, 네트워크 대역폭 및 사용자 상호 작용조차도)의 척도. 또한 임시 파일 정리 및 메모리 누수 제거 와 같이 리소스 를주의 깊게 관리해야 합니다 .
-
-
-
-## 소프트웨어 품질을 높이기 위한 개발자의 역할
-
-### 좋은 코드작성
-
-
-#### 좋은 코드의 판단 기준
-
-
-#### 좋은 코드를 위한 규칙
-
-### 좋은 설계법
-
-#### 좋은 설계의 판단 기준
-
-#### 좋은 설계를 위한 규칙
-
-## 소프트웨어 품질을 높이기 위한 디자이너의 역할
-
-## 소프트웨어 품질을 높이기 위한
-
-## 소프트웨어 품질을 높이기 위한 클라이언트의 역할
-
-# 좋은 코드와 좋은 설계
-
-
-
-
-# SOLID
+## SOLID
 
 http://www.nextree.co.kr/p6960/
 https://zetawiki.com/wiki/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5_%EA%B0%9C%EB%B0%9C_5%EB%8C%80_%EC%9B%90%EB%A6%AC_SOLID
 https://ko.wikipedia.org/wiki/SOLID
 
-## SRP
+### SRP
 
-## OCP
+### OCP
 
-## LSP
+### LSP
 
-## ISP
+### ISP
 
-## DIP
+### DIP
 
+## 알고리즘
 
+## 디자인 패턴
 
-# 응집도, 결합도(의존도)
-http://raisonde.tistory.com/375
-http://lazineer.tistory.com/93
-https://zetawiki.com/wiki/%EC%9D%91%EC%A7%91%EB%8F%84,_%EA%B2%B0%ED%95%A9%EB%8F%84,_%EB%86%92%EC%9D%80_%EC%9D%91%EC%A7%91%EB%8F%84%2B%EB%82%AE%EC%9D%80_%EA%B2%B0%ED%95%A9%EB%8F%84
+https://en.wikipedia.org/wiki/GRASP_(object-oriented_design)
 
-# Code reuse
+## Package principles
 
-# Package principles
+### 응집도
 
-# DRY
+#### 재사용 동등 원리 (REP)
 
-# 가독성
+#### 공통 재사용 원칙 (CRP)
 
-# GRASP (General responsibility assignment software patterns)
+#### 공통 폐쇄 원칙 (CCP)
 
-# 코드 퀄리티와 설계 원칙을 구분해야 될듯 하다.
+### 결합도
 
+#### 비주기 의존성 원칙 (ADP)
+
+#### 안정 의존성 원칙 (SDP)
+
+#### 안정적인 추상 원칙 (SAP)
+
+SAP는 안정적인 패키지가 추상
+
+# 코드 분석 도구
+https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis
 
 위 내용을 다 정리하고 디자인 패턴책을 한권 정리, clean code책 정리 등 번갈아가며 수행
