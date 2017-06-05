@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript Advanced Types
-subtitle:
+excerpt:
 slug: typescript-advanced-types
 date: '2017-05-03 16:02:00 +0900'
 categories: blog

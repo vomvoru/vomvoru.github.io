@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript class
-subtitle:
+excerpt:
 slug: typescript-class
 date: '2017-04-21 16:33:00 +0900'
 categories: blog

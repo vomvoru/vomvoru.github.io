@@ -1,7 +1,7 @@
 ---
 layout: post
 title: typescript readonly vs const
-subtitle:
+excerpt:
 slug: typescript-readonly-vs-const
 date: '2017-04-21 02:27:00 +0900'
 categories: blog

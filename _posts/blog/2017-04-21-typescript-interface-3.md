@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript interface 3
-subtitle: interface & prototype
+excerpt: interface & prototype
 slug: typescript-interface-3
 date: '2017-04-21 02:27:00 +0900'
 categories: blog

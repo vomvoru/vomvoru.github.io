@@ -1,7 +1,7 @@
 ---
 layout: post
 title: webpack 강의 1편
-subtitle: install webpack
+excerpt: install webpack
 slug: webpack-guide-1-Hello-wepback
 date: 2017-04-02 10:05:01 +0900
 categories: blog

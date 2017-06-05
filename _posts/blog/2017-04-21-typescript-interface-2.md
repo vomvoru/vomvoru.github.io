@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript interface 2
-subtitle: interface & class
+excerpt: interface & class
 slug: typescript-interface-2
 date: '2017-04-21 02:27:00 +0900'
 categories: blog

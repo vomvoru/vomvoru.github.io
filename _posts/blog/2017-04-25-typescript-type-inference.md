@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript의 타입추론
-subtitle:
+excerpt:
 slug: typescript-type-inference
 date: '2017-04-25 13:29:00 +0900'
 categories: blog

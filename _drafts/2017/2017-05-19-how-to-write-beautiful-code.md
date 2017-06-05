@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 좋은 코드 작성하기 1
-subtitle: 소프트웨어 품질
+excerpt: 소프트웨어 품질
 slug: how-to-write-beautiful-code-1
 date: '2017-05-22 12:53:00 +0900'
 categories: blog

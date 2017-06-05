@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 코드 스타일링
-subtitle: 형식 맞추기
+excerpt: 형식 맞추기
 slug: code-styling
 date: '2017-04-20 13:51:00 +0900'
 categories: blog

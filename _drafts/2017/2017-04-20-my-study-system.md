@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 나의 공부방식
-subtitle:
+excerpt:
 slug: my-study-system
 date: '2017-04-20 13:51:00 +0900'
 categories: blog

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 좋은 코드를 작성해야되는 이유
-subtitle: 프로그래머의 마음가짐과 전문가적 태도
+excerpt: 프로그래머의 마음가짐과 전문가적 태도
 slug: why-write-good-code
 date: 2017-04-12 17:37:01 +0900
 categories: blog

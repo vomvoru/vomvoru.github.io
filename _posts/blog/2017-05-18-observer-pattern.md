@@ -1,7 +1,7 @@
 ---
 layout: post
 title: observer pattern
-subtitle:
+excerpt:
 slug: observer-pattern
 date: '2017-05-18 18:22:00 +0900'
 categories: blog
