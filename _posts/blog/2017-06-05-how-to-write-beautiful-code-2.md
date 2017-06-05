@@ -34,6 +34,7 @@ tags:
 
 다음은 결합도를 낮은 순으로, 응집도를 높은 순으로 설명한 것이다.
 
+# 결합도 정리
 ```plantuml
 class "내용 결합도" {
   Content coupling
@@ -199,6 +200,7 @@ hide empty methods
 hide circle
 ```
 
+# 응집도 정리
 ```plantuml
 class "기능적 응집도" {
   Functional Cohesion
