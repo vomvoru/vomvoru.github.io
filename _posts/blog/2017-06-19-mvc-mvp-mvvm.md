@@ -1,7 +1,7 @@
 ---
 layout: post
 title: mvc mvp mvvm
-excerpt: 
+excerpt: mv...
 slug: mvc-mvp-mvvm
 date: '2017-06-22 15:29:00 +0900'
 categories: blog
@@ -20,7 +20,7 @@ tags:
 각 구조별 구현 차이는 의존도 및 복잡도 차이  
   
 아래에서 데이터 컨트롤은 데이터의 추가/수정/삭제/변화 감지를 할수있는 인터페이스 사용을 의미한다  
-  
+
 ---
 
 ## MVC
