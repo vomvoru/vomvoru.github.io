@@ -19,6 +19,8 @@ tags:
 기본적으로 단일책임 원칙하에 기능을 분리하면서 생긴 개념  
 각 구조별 구현 차이는 의존도 및 복잡도 차이
 
+> 아래에서 데이터 컨트롤은 데이터의 추가/수정/삭제/변화 감지를 할수있는 인터페이스 사용을 의미한다
+
 ---
 
 ## MVC
@@ -35,12 +37,12 @@ class View {
 }
 
 class Controller{
-    이벤트 등록
-    이벤트 행동 설정
-    Model에서 데이터 추가/수정/삭제/변화감지
+    View 이벤트 등록
+    View 이벤트 행동 설정
+    Model에서 데이터 컨트롤
 }
 
-Controller *-left-> Model : 데이터 추가/수정/삭제/변화감지
+Controller *-left-> Model : 데이터 컨트롤
 Controller *-right-> View : 이벤트 등록, 행동 설정
 
 hide empty fields
@@ -75,17 +77,17 @@ class View {
 }
 
 Interface ViewInterface {
-    이벤트 등록
+    View 이벤트 등록
 }
 
 class Presenter{
-    이벤트 행동 설정
-    Model에서 데이터 추가/수정/삭제/변화감지
+    ViewInterface 이벤트 행동 설정
+    Model에서 데이터 컨트롤
 }
 
 View .left.|> ViewInterface
-Presenter *-left-> Model : 데이터 추가/수정/삭제/변화감지
-Presenter *-right-> ViewInterface : 행동 설정
+Presenter *-left-> Model : 데이터 컨트롤
+Presenter *-right-> ViewInterface : 이벤트 행동 설정
 
 hide empty fields
 hide empty methods
@@ -105,12 +107,12 @@ class View {
 }
 
 class Presenter{
-    이벤트 행동 설정
-    Model에서 데이터 추가/수정/삭제/변화감지
+    View 이벤트 행동 설정
+    Model에서 데이터 컨트롤
 }
 
-Presenter *-left-> Model : 데이터
-Presenter *-right-> View : 행동 설정
+Presenter *-left-> Model : 데이터 컨트롤
+Presenter *-right-> View : 이벤트 행동 설정
 
 hide empty fields
 hide empty methods
@@ -141,21 +143,21 @@ class Model {
 
 class View {
     보이는 부분 담당
-    ModelView 변화 감지 및 템플릿 적용
+    ModelViewInterface로 템플릿 적용
+    이벤트 등록 및 이벤트 행동에 ModelViewInterface 사용
 }
 
 Interface ModelViewInterface {
-    이벤트 행동
-    View에서 사용할 데이터 제공
+    데이터 인터페이스 제공
 }
 
 class ModelView{
-    Model에서 데이터 추가/수정/삭제/변화감지
+    Model에서 데이터 컨트롤
 }
 
 ModelView .right.|> ModelViewInterface
-ModelView *-left-> Model : 데이터 추가/수정/삭제/변화감지
-View *-left-> ModelViewInterface : 데이터 추가/수정/삭제/변화감지
+ModelView *-left-> Model : 데이터 컨트롤
+View *-left-> ModelViewInterface : 데이터 컨트롤
 
 hide empty fields
 hide empty methods
@@ -171,17 +173,17 @@ class Model {
 
 class View {
     보이는 부분 담당
-    ModelView 변화 감지 및 템플릿 적용
+    ModelViewInterface로 템플릿 적용
+    이벤트 등록 및 이벤트 행동에 ModelViewInterface 사용
 }
 
 class ModelView{
-    Model에서 데이터 추가/수정/삭제/변화감지
-    이벤트 행동
-    View에서 사용할 데이터 제공
+    Model에서 데이터 컨트롤
+    데이터 인터페이스 제공
 }
 
-ModelView *-left-> Model : 데이터
-View *-left-> ModelView : view 데이터
+ModelView *-left-> Model : 데이터 컨트롤
+View *-left-> ModelView : 데이터 컨트롤
 
 hide empty fields
 hide empty methods
