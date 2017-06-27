@@ -244,7 +244,43 @@ type Droid implements Character {
 ## Meta fields
 GraphQL은 query에서 사용이 가능한 다양한 Meta Field를 제공합니다.
 
-위와같은 방법을 이용하여 데이터를 받으면 받은 데이터가 `Character interface`인 것은 알수 있지만 `Human` 타입인지 `Droid`타입인지 구별을 할 수 있는 방법이 필요합니다. query의 모든 지점에서 meta field인 `__typename`을 활용하면 해당 지점에서 객체 타입의 이름을 가져올 수 있습니다.  
+Request GraphQL
+```graphql
+{
+  search(text: "an") {
+    ... on Human {
+      name
+    }
+    ... on Droid {
+      name
+    }
+    ... on Starship {
+      name
+    }
+  }
+}
+```
+
+Response JSON
+```json
+{
+  "data": {
+    "search": [
+      {
+        "name": "Han Solo"
+      },
+      {
+        "name": "Leia Organa"
+      },
+      {
+        "name": "TIE Advanced x1"
+      }
+    ]
+  }
+}
+```
+
+위의 예시와 같이 데이터를 받으면 받은 데이터가 `Character interface`인 것은 알수 있지만 `Human` 타입인지 `Droid`타입인지 구별을 할 수 있는 방법이 없습니다. 이때 query의 모든 지점에서 meta field인 `__typename`을 활용하면 해당 지점에서 객체 타입의 이름을 가져올 수 있습니다.  
 
 Request GraphQL
 ```graphql
@@ -286,7 +322,7 @@ Response JSON
 }
 ```
 
-GraphQL은 그외 다양한 Meta Field를 제공하며 [여기 Spec](http://facebook.github.io/graphql/#sec-Schema-Introspection)에서 확인할수 있습니다. 제공되는 Meta Field를 나열하면 다음과 같이 Schema에 대한 정보를 제공해 주는 Meta field가 대부분 입니다. `__Schema`, `__Type`, `__TypeKind`, `__Field`, `__InputValue`, `__EnumValue`, `__Directive `
+GraphQL은 그외 다양한 Meta Field를 제공하며 [여기 Spec](http://facebook.github.io/graphql/#sec-Schema-Introspection)에서 확인할수 있습니다. 제공되는 Meta Field를 단순히 나열하면 다음과 같은데 Schema에 대한 정보를 제공해 주는 Meta field가 대부분 입니다. `__Schema`, `__Type`, `__TypeKind`, `__Field`, `__InputValue`, `__EnumValue`, `__Directive `
 
 
 
