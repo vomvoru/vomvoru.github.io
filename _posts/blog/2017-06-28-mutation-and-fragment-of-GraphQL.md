@@ -12,21 +12,24 @@ tags:
     - GraphQL
 ---
 
-본 내용은 [GraphQL 공식 홈페이지](http://graphql.org/)의 내용을 수정한 것이다.  
-Relay에 대한 설명은 이곳(준비중)에 있다.  
-본 글은 시리즈이다. [이곳](../about-graphql)을 참고하자.
+본 내용은 [GraphQL 공식 홈페이지](http://graphql.org/)의 내용을 수정한 것입니다. 
+본 글은 시리즈입니다. [이곳](../about-graphql)을 참고하세요.
 
 # 개요
 
-GraphQL에서 Mutation은 데이터 수정작업을 하는 GraphQL문을 의미한다.
+GraphQL에서 Mutation은 데이터 수정작업을 하는 GraphQL문을 의미합니다.
 
-Fragment는 재사용이 뛰어난 Query문의 파편(?)이라고 생각하면 됩니다. 또한 query type이 union 혹은 interface와 같이 여러 type이 있을수 있을때 Fragment의 타입 질의기능을 활용하여 특정 타입에만 적용되는 Query문을 작성할수 있습니다.
+Fragment는 재사용이 뛰어난 Query문의 파편이라고 생각하시면 됩니다. 
 
-우선 구현방법(Schema)는 제쳐두고 사용방법(Query & Mutation)에 대해 살펴보자. 다만, 아래 예시에 사용된 schema가 궁금하다면 grpahql-js로 구현된 [여기](https://github.com/graphql/graphql.github.io/blob/e7b61aa37cbdf5972f895113a88c1459cf43aca4/site/_core/swapiSchema.js)를 참고하면 된다.(비교해 가면서 보면 더 빠른 이해가 가능하다.)
+또한 query type이 union 혹은 interface와 같이 여러 type이 있을수 있을때 Fragment의 타입 질의기능을 활용하여 특정 타입에만 적용되는 Query문을 작성할수 있습니다.
+
+우선 구현방법(Schema)는 제쳐두고 사용방법(Query & Mutation)에 대해 살펴봅시다. 다만, 아래 예시에 사용된 schema가 궁금하다면 grpahql-js로 구현된 [여기](https://github.com/graphql/graphql.github.io/blob/e7b61aa37cbdf5972f895113a88c1459cf43aca4/site/_core/swapiSchema.js)를 참고하면 됩니다.(비교해 가면서 보면 더 빠른 이해가 가능합니다.)
 
 ## Mutations
 
-Mutation은 서버또는 데이터베이스의 데이터를 변화시키는 행위에 대한 구문을 의미한다. REST에서 모든 요청이 서버의 데이터를 변화시킬수 있지만 관습에 따라 데이터 변화에 GET 요청을 사용하지 않는 것이 좋습니다. GraphQL도 마찬가지로 `schema` 구현에 따라 어떤 Query문이든 서버 데이터를 변화시킬수 있지만 그러한 작업은 Mutation으로 정의하는것이 좋습니다.
+Mutation은 서버또는 데이터베이스의 데이터를 변화시키는 행위에 대한 구문을 의미합니다.  
+
+REST에서 모든 요청이 서버의 데이터를 변화시킬수 있지만 관습에 따라 데이터 변화에 GET 요청을 사용하지 않는 것이 좋습니다. GraphQL도 마찬가지로 `schema` 구현에 따라 어떤 Query문이든 서버 데이터를 변화시킬수 있지만 그러한 작업은 Mutation으로 정의하는것이 좋습니다.
 
 query와 마찬가지로 Mutation이 객체 유형을 반환하면 중첩필드를 요청할수 있습니다. 이는 Mutation이후에 새로운 상태를 가져올때 유용할수 있습니다. 아래에 간단한 예시가 있습니다.
 
@@ -163,6 +166,8 @@ Response JSON
 이러면 Fragment의 장점인 재사용성이 없어지는데, 이렇게 사용하는 경우는 `on Character` 부분 즉 Fragment의 타입 질의기능을 사용할때 이렇게 사용하기도 합니다.
 
 ## Fragment의 타입 질의기능
+Fragment의 타입 질의기능을 사용하여 interface와 union type의 query를 타입별로 처리할수 있습니다.
+
 많은 type system과 마찬가지로 GraphQL의 schema에는 interface와 union type이 있습니다. 여기서는 interface만을 예시로 들겠습니다. 만약 interface를 반환하는 field를 query하는 경우 Fragment의 타입 질의기능을 사용하여 interface를 구현한 각각의 `concrete type`을 구별하여 처리해야 합니다. 다음 예시를 참고하세요.
 
 Request GraphQL
@@ -231,6 +236,7 @@ type Droid implements Character {
 ```
 
 ## Meta fields
+GraphQL은 query에서 사용이 가능한 다양한 Meta Field를 제공합니다.
 
 위와같은 방법을 이용하여 데이터를 받으면 받은 데이터가 `Character interface`인 것은 알수 있지만 `Human` 타입인지 `Droid`타입인지 구별을 할 수 있는 방법이 필요합니다. query의 모든 지점에서 meta field인 `__typename`을 활용하면 해당 지점에서 객체 타입의 이름을 가져올 수 있습니다.  
 
@@ -275,3 +281,8 @@ Response JSON
 ```
 
 GraphQL은 그외 다양한 Meta Field를 제공하며 [여기 Spec](http://facebook.github.io/graphql/#sec-Schema-Introspection)에서 확인할수 있습니다. 제공되는 Meta Field를 나열하면 다음과 같이 Schema에 대한 정보를 제공해 주는 Meta field가 대부분 입니다. `__Schema`, `__Type`, `__TypeKind`, `__Field`, `__InputValue`, `__EnumValue`, `__Directive `
+
+
+
+
+본 글은 시리즈입니다. [이곳](../about-graphql)을 참고하세요.
