@@ -31,7 +31,9 @@ Mutation은 서버또는 데이터베이스의 데이터를 변화시키는 행�
 
 REST에서 모든 요청이 서버의 데이터를 변화시킬수 있지만 관습에 따라 데이터 변화에 GET 요청을 사용하지 않는 것이 좋습니다. GraphQL도 마찬가지로 `schema` 구현에 따라 어떤 Query문이든 서버 데이터를 변화시킬수 있지만 그러한 작업은 Mutation으로 정의하는것이 좋습니다.
 
-query와 마찬가지로 Mutation이 객체 유형을 반환하면 중첩필드를 요청할수 있습니다. 이는 Mutation이후에 새로운 상태를 가져올때 유용할수 있습니다. 아래에 간단한 예시가 있습니다.
+query와 마찬가지로 Mutation이 객체 유형을 반환하면 중첩필드를 요청할수 있습니다. 이는 Mutation이후에 새로운 상태를 가져올때 유용 합니다. 
+
+아래에 별점과 내용이 있는 리뷰를 만드는(적는) Mutation문의 간단한 예시가 있습니다.
 
 
 Request GraphQL
@@ -66,6 +68,57 @@ Response JSON
   }
 }
 ```
+
+위의 schema는 아래와 같이 설정되어 있습니다.
+
+```graphql
+
+type Mutation {
+  createReview(episode: Episode, review: ReviewInput!): Review
+}
+
+input ReviewInput {
+  # 0-5 stars
+  stars: Int!
+  # Comment about the movie, optional
+  commentary: String
+}
+
+type Review {
+  # The number of stars this review gave, 1-5
+  stars: Int!
+  # Comment about the movie
+  commentary: String
+}
+
+enum Episode {
+  # Star Wars Episode IV: A New Hope, released in 1977.
+  NEWHOPE
+  # Star Wars Episode V: The Empire Strikes Back, released in 1980.
+  EMPIRE
+  # Star Wars Episode VI: Return of the Jedi, released in 1983.
+  JEDI
+}
+```
+
+또 이에 관련된 resolver는 다음과 같습니다. (graphql-js를 기준으로 한 코드입니다.)
+
+```js
+const resolvers = {
+  Query: {
+    // ...
+  },
+  Mutation: {
+    createReview: (root, { episode, review }) => {
+      // 여기에서 좀더 다양한 행위(DB에 기록하는 등)를 할수 있지만
+      // 여기서는 단순히 받은 review를 되돌려줍니다.
+      return review
+    },
+  }
+  //...
+}
+```
+
 
 ### Mutation vs Query
 Mutation는 수정 행위를 Query는 읽기 행위를 request하는 구문이라는 명시적인 차이점 이외에 동작적인 부분에서 확실한 차이점이 있습니다. 
