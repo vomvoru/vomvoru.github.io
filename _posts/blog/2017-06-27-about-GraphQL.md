@@ -57,6 +57,3 @@ GraphQL의 단점은 다음과 같습니다.
 0. about : 현재 글
 1. [query](../query-of-GraphQL)
 2. [mutation & fragment](../mutation-and-fragment-of-GraphQL)
-3. schema - Coming soon
-4. execution - Coming soon
-5. ...relay...??
