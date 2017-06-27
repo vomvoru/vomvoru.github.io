@@ -13,7 +13,7 @@ tags:
 ---
 
 본 내용은 [GraphQL 공식 홈페이지](http://graphql.org/)의 내용을 수정한 것입니다. 
-본 글은 시리즈입니다. [이곳](../about-graphql)을 참고하세요.
+본 글은 시리즈입니다. [이곳](../about-GraphQL)을 참고하세요.
 
 # 개요
 
@@ -131,8 +131,11 @@ interface Character {
 // ...
 
 ```
+`Query` 타입 필드의 hero를 보면 `Character` 인터페이스 형식이라는것을 알 수 있고 `Character` 인터페이스의 `friends`를 보시면 `[Character]` 즉, `scalar` 타입이 아닌 `Character`의 배열인 것을 알수 있습니다. 그리고 `Character` 인터페이스의 `name`은 `String`으로 `scalar` 타입인것을 알 수 있습니다.
 
-여기서 `scalar` 타입은 `GraphQLInt`, `GraphQLFloat`, `GraphQLString`, `GraphQLBoolean`, `GraphQLID` 이 있습니다. [여기](http://graphql.org/graphql-js/type/#scalars)에서 좀 더 자세히 알아볼수 있습니다.
+아래 내용도 위와 같이 [schema코드](https://github.com/graphql/graphql.github.io/blob/e7b61aa37cbdf5972f895113a88c1459cf43aca4/site/_core/swapiSchema.js)를 참고하여 보시면 됩니다.
+
+추가로 `scalar` 타입은 `GraphQLInt`, `GraphQLFloat`, `GraphQLString`, `GraphQLBoolean`, `GraphQLID` 이 있습니다. [여기](http://graphql.org/graphql-js/type/#scalars)에서 좀 더 자세히 알아볼수 있습니다.
 
 
 ## Arguments
@@ -423,4 +426,4 @@ Response JSON
 }
 ```
 
-본 글은 시리즈입니다. [이곳](../about-graphql)을 참고하세요.
+본 글은 시리즈입니다. [이곳](../about-GraphQL)을 참고하세요.

@@ -13,7 +13,7 @@ tags:
 ---
 
 본 내용은 [GraphQL 공식 홈페이지](http://graphql.org/)의 내용을 수정한 것입니다. 
-본 글은 시리즈입니다. [이곳](../about-graphql)을 참고하세요.
+본 글은 시리즈입니다. [이곳](../about-GraphQL)을 참고하세요.
 
 # 개요
 
@@ -285,4 +285,4 @@ GraphQL은 그외 다양한 Meta Field를 제공하며 [여기 Spec](http://face
 
 
 
-본 글은 시리즈입니다. [이곳](../about-graphql)을 참고하세요.
+본 글은 시리즈입니다. [이곳](../about-GraphQL)을 참고하세요.
