@@ -40,7 +40,7 @@ GraphQL의 단점은 다음과 같습니다.
 
 * **러닝커브** 가 조금 있다.
 * GraphQL의 type을 정의한 코드, mutation을 정의한 코드가 추가되면서 **단순한 App에서는 코드가 더 복잡해진다.**
-* 캐싱 기능의 구현이 힘들다(하지만 대부분의 라이브러리가 지원한다.)
+* 캐싱 기능의 구현이 복잡하다(하지만 대부분의 라이브러리가 지원한다.)
 * 출시한지 얼마 안되어 안정성 문제가 생실수 있다.(하지만 facebook과 github등에서 사용한다고 한다.)
 * JSON이 선호되며 JSON을 사용하지 않으면 불편할수 있다. [Spec](http://facebook.github.io/graphql/#sec-JSON-Serialization)
 
