@@ -16,7 +16,7 @@ tags:
 
 # 개요
 
-GraphQL은 facebook에서 만든 **A query language for your API** 로 공식 홈페이지에서 설명하고 있다. 
+GraphQL은 facebook에서 만든 **A query language for your API** 로 공식 홈페이지에서 설명하고 있습니다. 
 
 여기서 API란 서버상에서 제공하는 API를 의미하며 이는 **클라이언트와 서버의 통신언어** 로도 생각할수 있습니다.  
 또한 GraphQL은 하나의 통신 규약이라고 볼 수 있으며 이를 여러 언어에서 구현한 코드는 [여기](http://graphql.org/code/)에서 볼 수 있습니다.
