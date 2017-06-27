@@ -96,6 +96,42 @@ Request GraphQL
 }
 ```
 
+schema문에서 Query 타입과 Character 인터페이스를 보시면 더 잘 알수 있습니다. 아래는 schema문의 일부분을 가져온 것 입니다.
+
+
+```graphql
+
+//...
+
+type Query {
+  hero(episode: Episode): Character
+  reviews(episode: Episode!): [Review]
+  search(text: String): [SearchResult]
+  character(id: ID!): Character
+  droid(id: ID!): Droid
+  human(id: ID!): Human
+  starship(id: ID!): Starship
+}
+
+//...
+
+interface Character {
+  # The ID of the character
+  id: ID!
+  # The name of the character
+  name: String!
+  # The friends of the character, or an empty list if they have none
+  friends: [Character]
+  # The friends of the character exposed as a connection with edges
+  friendsConnection(first: Int, after: ID): FriendsConnection!
+  # The movies this character appears in
+  appearsIn: [Episode]!
+}
+
+// ...
+
+```
+
 여기서 `scalar` 타입은 `GraphQLInt`, `GraphQLFloat`, `GraphQLString`, `GraphQLBoolean`, `GraphQLID` 이 있습니다. [여기](http://graphql.org/graphql-js/type/#scalars)에서 좀 더 자세히 알아볼수 있습니다.
 
 
