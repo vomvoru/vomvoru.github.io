@@ -45,7 +45,8 @@ GraphQL의 단점은 다음과 같다.
 * Query : 읽기작업을 하는 GraphQL문을 의미한다.
 * Mutation : 데이터 수정작업을 하는 GraphQL문을 의미한다.
 * schema : Query와 Mutation의 retrun type과 arguments type 및 custom type, custom interface, enum type 등과 input value의 default값 등이 정의한 코드를 의미한다.
-* resolvers : schema에서 정의된 Query와 Mutation의 구조에 맞추어 retrun type과 arguments type에 맞추어 설정한 코드를 의미한다.
+* resolver : schema에서 정의된 Query와 Mutation의 구조에 맞추어 retrun type과 arguments type에 맞추어 설정한 코드를 의미한다.
+* field: query에 있는 값(속성)
 
 ## 목차
 
