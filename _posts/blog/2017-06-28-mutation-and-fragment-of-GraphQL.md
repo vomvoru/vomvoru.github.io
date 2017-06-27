@@ -168,7 +168,7 @@ Response JSON
 ## Fragment의 타입 질의기능
 Fragment의 타입 질의기능을 사용하여 interface와 union type의 query를 타입별로 처리할수 있습니다.
 
-많은 type system과 마찬가지로 GraphQL의 schema에는 interface와 union type이 있습니다. 여기서는 interface만을 예시로 들겠습니다. 만약 interface를 반환하는 field를 query하는 경우 Fragment의 타입 질의기능을 사용하여 interface를 구현한 각각의 `concrete type`을 구별하여 처리해야 합니다. 다음 예시를 참고하세요.
+많은 type system과 마찬가지로 GraphQL의 schema에는 interface와 union type이 있습니다. 여기서는 interface만을 예시로 들겠습니다. 만약 어떤 query가 interface를 반환하는 field가 있다면 Fragment의 타입 질의기능을 사용하여 interface를 구현한 각각의 `concrete type`을 구별하여 처리해야 할 수 있습니다. 다음 예시를 참고하세요.
 
 Request GraphQL
 ```graphql
