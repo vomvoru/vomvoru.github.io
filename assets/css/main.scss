@@ -56,5 +56,12 @@ sitemap: false
 
 
 .language-plantuml {
-  display: none;
+  //display: none;
+}
+
+.code-toggle-button {
+    text-align: center;
+    color: #3e67ff;
+    text-decoration: underline;
+    cursor: pointer;
 }

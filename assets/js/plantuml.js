@@ -22,15 +22,18 @@ jQuery(($) => {
   }
 
   function main(){
-    $('.language-plantuml').each(function(){
-      let $this = $(this);
+    $('pre>code.language-plantuml').each(function(){
+      let $this = $(this)
+      let $parent = $this.parent()
+      console.log($this.text())
       let url = getUrl($this.text())
-      let img = $('<img>').attr('src', url);
-      $this.after(img)
+      let $img = $('<img>').attr('src', url);
+      let $toggle = $('<div class="code-toggle-button">plantuml code</div>').on('click', () => $parent.toggle() )
+      $parent.before($img)
+      $parent.before($toggle)
+      $parent.css("display", 'none')
     })
   }
-
-
 
   var ctx ={};
 
