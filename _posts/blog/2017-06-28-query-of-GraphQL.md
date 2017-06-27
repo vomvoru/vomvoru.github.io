@@ -47,7 +47,7 @@ Response JSON
 }
 ```
 
-앞의 예에서 hero의 이름을 요청하였지만, friends 즉, object를 요청할수도 있습니다. 단, `object` 자체만을 요청할수는 없고(`object`로 요청문이 끝날수는 없다) `scalar` 혹은 `enum` 타입을 요청해야 합니다.
+앞의 예에서 hero의 이름을 요청하였지만, friends 즉, object를 요청할수도 있습니다. 단, `object` 자체만을 요청할수는 없고(`object`로 요청문이 끝날수는 없다) `scalar` 혹은 `enum` 타입으로 요청문이 끝나야 합니다. 
 
 Request GraphQL
 ```graphql
@@ -56,7 +56,7 @@ Request GraphQL
     name
     # GraphQL은 이렇게 주석을 추가할수 있습니다.
     friends {
-      name
+      name # 이 값은 scalar 타입이므로 가능하다.
     }
   }
 }
@@ -91,8 +91,7 @@ Request GraphQL
 {
   hero {
     name
-    # friends는 scalar 타입이 아닙니다.
-    friends
+    friends # friends는 scalar 타입이 아닙니다.
   }
 }
 ```
