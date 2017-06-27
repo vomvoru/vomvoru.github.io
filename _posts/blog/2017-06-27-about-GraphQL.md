@@ -56,6 +56,8 @@ GraphQL의 단점은 다음과 같습니다.
 
 즉, **Query, Mutation은 schema에서 구조가 정의되고. resolver에서 행동이 정의되며 schema에서 정의된 구조에 맞춰서, 클라이언트에서 Query, Mutation문으로 request하고 서버에서 JSON으로 response 합니다.**
 
+설명에 사용될 schema입니다. 위 내용을 숙지하고 그냥 읽어보세요. [schema(클릭)](https://github.com/graphql/graphql.github.io/blob/e7b61aa37cbdf5972f895113a88c1459cf43aca4/site/_core/swapiSchema.js)
+
 ## 목차
 
 0. about : 현재 글

@@ -15,6 +15,8 @@ tags:
 본 내용은 [GraphQL 공식 홈페이지](http://graphql.org/)의 내용을 수정한 것입니다. 
 본 글은 시리즈입니다. [이곳](../about-GraphQL)을 참고하세요.
 
+**grpahql-js로 구현된 [schema(클릭)](https://github.com/graphql/graphql.github.io/blob/e7b61aa37cbdf5972f895113a88c1459cf43aca4/site/_core/swapiSchema.js)를 참고하며 읽으시면 이해가 좀더 빨리됩니다.**
+
 # 개요
 
 GraphQL에서 Mutation은 데이터 수정작업을 하는 GraphQL문을 의미합니다.
@@ -22,8 +24,6 @@ GraphQL에서 Mutation은 데이터 수정작업을 하는 GraphQL문을 의미�
 Fragment는 재사용이 뛰어난 Query문의 파편이라고 생각하시면 됩니다. 
 
 또한 query type이 union 혹은 interface와 같이 여러 type이 있을수 있을때 Fragment의 타입 질의기능을 활용하여 특정 타입에만 적용되는 Query문을 작성할수 있습니다.
-
-우선 구현방법(Schema)는 제쳐두고 사용방법(Query & Mutation)에 대해 살펴봅시다. 다만, 아래 예시에 사용된 schema가 궁금하다면 grpahql-js로 구현된 [여기](https://github.com/graphql/graphql.github.io/blob/e7b61aa37cbdf5972f895113a88c1459cf43aca4/site/_core/swapiSchema.js)를 참고하면 됩니다.(비교해 가면서 보면 더 빠른 이해가 가능합니다.)
 
 ## Mutations
 
