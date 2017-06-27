@@ -135,7 +135,7 @@ interface Character {
 
 아래 내용도 위와 같이 [schema코드](https://github.com/graphql/graphql.github.io/blob/e7b61aa37cbdf5972f895113a88c1459cf43aca4/site/_core/swapiSchema.js)를 참고하여 보시면 됩니다.
 
-추가로 `scalar` 타입은 `GraphQLInt`, `GraphQLFloat`, `GraphQLString`, `GraphQLBoolean`, `GraphQLID` 이 있습니다. [여기](http://graphql.org/graphql-js/type/#scalars)에서 좀 더 자세히 알아볼수 있습니다.
+추가로 `scalar` 타입은 `int`, `float`, `String`, `Boolean`, `ID` 이 있습니다. [여기](http://facebook.github.io/graphql/#sec-Scalars)에서 좀 더 자세히 알아볼수 있습니다. 참고로 `ID` 타입은 Cache작업에 주로 이용됩니다.
 
 
 ## Arguments
