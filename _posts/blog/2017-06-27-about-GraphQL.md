@@ -47,10 +47,14 @@ GraphQL의 단점은 다음과 같습니다.
 ## 용어 정의
 
 * **Query** : 읽기작업을 하는 GraphQL문을 의미한다.
+    * **field** : query에 있는 값(속성)
 * **Mutation** : 데이터 수정작업을 하는 GraphQL문을 의미한다.
-* **schema** : Query와 Mutation의 retrun type과 arguments type 및 custom type, custom interface, enum type 등과 input value의 default값 등이 정의한 코드를 의미한다.
+* **schema** : Query와 Mutation의 retrun type과 arguments type 및 custom type, custom interface, enum type 등과 input value의 default값 등을 정의한 코드를 의미한다.
 * **resolver** : schema에서 정의된 Query와 Mutation의 구조에 맞추어 retrun type과 arguments type에 맞추어 설정한 코드를 의미한다.
-* **field** : query에 있는 값(속성)
+
+참고로 위 구성요소중 resolver만 GraphQL를 구현한 Server Library에 의존되고 나머지는 GraphQL에 의존됩니다.
+
+즉, **Query, Mutation은 schema에서 구조가 정의되고. resolver에서 행동이 정의되며 schema에서 정의된 구조에 맞춰서 Query, Mutation문으로 서버에 request하고 JSON으로 response 하게 됩니다.**
 
 ## 목차
 
