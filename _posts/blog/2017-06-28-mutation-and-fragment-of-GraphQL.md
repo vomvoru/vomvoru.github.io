@@ -266,6 +266,24 @@ Schema
 
 // ...
 
+type Query {
+  hero(episode: Episode): Character
+  //...
+}
+
+// ...
+
+enum Episode {
+  # Star Wars Episode IV: A New Hope, released in 1977.
+  NEWHOPE
+  # Star Wars Episode V: The Empire Strikes Back, released in 1980.
+  EMPIRE
+  # Star Wars Episode VI: Return of the Jedi, released in 1983.
+  JEDI
+}
+
+//...
+
 interface Character {
   id: ID!
   name: String!
@@ -292,6 +310,47 @@ type Droid implements Character {
 
 // ...
 
+```
+
+hero의 resolver는 다음과 같습니다. (GraphQL-js를 기준으로)
+
+```js
+const resolvers = {
+  Query: {
+    hero: (root, { episode }) => getHero(episode),
+    //...
+  },
+  Character: {
+    // GraphQL-js에서 interface의 resolver는 __resolveType으로 설정합니다.
+    __resolveType(data, context, info){ 
+      if(humanData[data.id]){
+        return info.schema.getType('Human');
+      }
+      if(droidData[data.id]){
+        return info.schema.getType('Droid');
+      }
+      return null;
+    },
+  },
+  Human: {
+    // Human 타입의 resolvers들
+  },
+  Droid: {
+    // Droid 타입의 resolvers들
+  },
+  //...
+}
+
+function getHero(episode) {
+  if (episode === 'EMPIRE') {
+    // Luke is the hero of Episode V.
+    return humanData['1000'];
+  }
+  // Artoo is the hero otherwise.
+  return droidData['2001'];
+}
+
+// ...
 ```
 
 ## Meta fields
