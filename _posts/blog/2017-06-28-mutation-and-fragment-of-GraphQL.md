@@ -210,6 +210,9 @@ Response JSON
 
 Schema
 ```graphql
+
+// ...
+
 interface Character {
   id: ID!
   name: String!
@@ -233,6 +236,9 @@ type Droid implements Character {
   appearsIn: [Episode]!
   primaryFunction: String
 }
+
+// ...
+
 ```
 
 ## Meta fields
