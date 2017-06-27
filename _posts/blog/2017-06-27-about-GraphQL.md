@@ -54,7 +54,7 @@ GraphQL의 단점은 다음과 같습니다.
 
 참고로 위 구성요소중 resolver만 GraphQL를 구현한 Server Library에 의존되고 나머지는 GraphQL에 의존됩니다.
 
-즉, **Query, Mutation은 schema에서 구조가 정의되고. resolver에서 행동이 정의되며 schema에서 정의된 구조에 맞춰서 Query, Mutation문으로 서버에 request하고 JSON으로 response 하게 됩니다.**
+즉, **Query, Mutation은 schema에서 구조가 정의되고. resolver에서 행동이 정의되며 schema에서 정의된 구조에 맞춰서, 클라이언트를 기준으로 Query, Mutation문으로 request하고 JSON으로 response 받게 됩니다.**
 
 ## 목차
 
