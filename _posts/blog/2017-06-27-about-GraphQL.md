@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GraphQL에 대해서
+title: GraphQL란?
 excerpt: A query language for your API
 slug: about-GraphQL
 date: '2017-06-27 23:57:00 +0900'
