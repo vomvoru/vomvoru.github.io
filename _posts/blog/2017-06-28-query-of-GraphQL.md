@@ -13,7 +13,12 @@ tags:
 ---
 
 본 내용은 [GraphQL 공식 홈페이지](http://graphql.org/)의 내용을 수정한 것입니다. 
-본 글은 시리즈입니다. [이곳](../about-GraphQL)을 참고하세요.
+
+# 관련글
+
+0. [about](../about-GraphQL)
+1. query : 현재 글
+2. [mutation & fragment](../mutation-and-fragment-of-GraphQL)
 
 **grpahql-js로 구현된 [schema(클릭)](https://github.com/graphql/graphql.github.io/blob/e7b61aa37cbdf5972f895113a88c1459cf43aca4/site/_core/swapiSchema.js)를 참고하며 읽으시면 이해가 좀더 빨리됩니다.**
 
@@ -105,12 +110,7 @@ schema문에서 Query 타입과 Character 인터페이스를 보시면 더 잘 �
 
 type Query {
   hero(episode: Episode): Character
-  reviews(episode: Episode!): [Review]
-  search(text: String): [SearchResult]
-  character(id: ID!): Character
-  droid(id: ID!): Droid
-  human(id: ID!): Human
-  starship(id: ID!): Starship
+  //...
 }
 
 //...
@@ -425,5 +425,3 @@ Response JSON
   }
 }
 ```
-
-본 글은 시리즈입니다. [이곳](../about-GraphQL)을 참고하세요.

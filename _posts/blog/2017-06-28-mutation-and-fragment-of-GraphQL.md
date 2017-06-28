@@ -13,7 +13,12 @@ tags:
 ---
 
 본 내용은 [GraphQL 공식 홈페이지](http://graphql.org/)의 내용을 수정한 것입니다. 
-본 글은 시리즈입니다. [이곳](../about-GraphQL)을 참고하세요.
+
+# 관련글
+
+0. [about](../about-GraphQL)
+1. [query](../query-of-GraphQL)
+2. mutation & fragment : 현재 글
 
 **grpahql-js로 구현된 [schema(클릭)](https://github.com/graphql/graphql.github.io/blob/e7b61aa37cbdf5972f895113a88c1459cf43aca4/site/_core/swapiSchema.js)를 참고하며 읽으시면 이해가 좀더 빨리됩니다.**
 
@@ -435,8 +440,3 @@ Response JSON
 ```
 
 GraphQL은 그외 다양한 Meta Field를 제공하며 [여기 Spec](http://facebook.github.io/graphql/#sec-Schema-Introspection)에서 확인할수 있습니다. 제공되는 Meta Field를 단순히 나열하면 다음과 같은데 Schema에 대한 정보를 제공해 주는 Meta field가 대부분 입니다. `__Schema`, `__Type`, `__TypeKind`, `__Field`, `__InputValue`, `__EnumValue`, `__Directive `
-
-
-
-
-본 글은 시리즈입니다. [이곳](../about-GraphQL)을 참고하세요.
