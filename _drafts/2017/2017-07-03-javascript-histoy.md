@@ -1,59 +1,53 @@
-글의 목적을 먼저 설명하고 이유등을 설명
+---
+layout: post
+title: javascript의 역사
+excerpt: 브라우저의 역사와 함께보는 javascript의 역사
+slug: javascript-histoy
+date: '2017-07-03 10:36:00 +0900'
+categories: blog
+author: vomvoru
+comments: true
+share: true
+tags:
+    - javascript
+---
 
-# Browser History
+Javascript는 웹브라우저에서 동적인 화면을 위해 만들어진 언어므로 브라우저의 역사를 기준으로 적겠습니다.
 
-## WorldWwidWeb (1991)
+우선 웹 브라우저의 역사를 살펴보면 세계최초의 웹 브라우저인 WorldWideWeb은 유럽 입자 물리 연구소 CERN(쎄른)에서 만들어졌습니다.
 
-## NCSA Mosaic (1993)
+CERN에서는 실험에서 얻은 데이터들이 매우 다양한 운영체제와 파일 형식으로 저장되어 있어서 특정한 정보를 찾는 것이 매우 어려웠습니다.
 
-## Netscape (1994)
+이 같은 이유로 '팀 버너스 리'는 현대 wiki시스템과 비슷한 역할을 하는 인콰이어(ENQUIRE)라는 소프트웨어를 만들었습니다. 
 
-## Opera (1995)
+> 팀 버너스 리(Tim Berners-Lee)는 수학에 대한 끊임없는 열정을 가지고 전자제품에 대한 관심도가 높았으며 대학에서 물리학을 전공하고 소프트웨어 고문기사 자격으로 CERN에 입사하였습니다
 
-## Internet Explorer (1995)
+> 인콰이어(ENQUIRE)는 특정 정보 단위와 다른 정보 단위와의 연관관계를 데이터베이스에 카드형식으로 저장하고, 링크를 통해 서로 다른 카드를 연결하여 다양한 관계를 설명하는데 도움을 주었습니다. [https://en.wikipedia.org/wiki/ENQUIRE](https://en.wikipedia.org/wiki/ENQUIRE)
 
-## Safari (2003)
+인콰이어(ENQUIRE) 소프트웨어를 개발하고 좀 더 많은 사용자들이 자유롭게 자료를 공유할수있는 소프트웨어를 생각하여 WorldWideWeb 이라는 최초의 웹 브라우저를 개발하였습니다.
 
-## Firefox (2004)
+그리고 이때 WorldWideWeb을 개발하면서 웹을 구성하는 세 가지 핵심요소인 HTML, URL, HTTP를 개발했습니다.
 
-## Chrome (2008)
+> WorldWideWeb을 개발한 초기에는 웹사이트가 130개정도에 불과했지만 프로젝트를 오픈소스화 하면서 전세계적으로 급격하게 증가했습니다.
 
-# Javascript History
+이후에 violaWWW, Erwise(이알와이즈) 등 수많은 초기 브라우저들이 등장했는데 그 중 Mosaic(모자이크) 웹 브라우저는 직관적인 인터페이스와 간단한 설치 등의 장점으로 초기 웹의 성장에 중요한 역할을 하였습니다.
 
-우선 웹 브라우저의 역사를 살펴보면 세계최초의 웹 브라우저인 WorldWwidWeb이 CERN에서 만들어졌습니다.
-WorldWwidWeb을 만든 팀 버너스 리(Tim Berners-Lee)는 소프트웨어 고문기사 자격으로 CERN에 입사하였습니다.
+그 후에 기존 Mosaic 웹 브라우저의 개발자들이 모여서 Mosaic Communication 이라는 회사를 설립하고 Netscape(넷스케이프)라는 웹 브라우저를 만들었습니다.
 
-'팀 버너스 리(Tim Berners-Lee)는 수학에 대한 끊임없는 열정을 가지고 전자제품에 대한 관심도가 높았으며 대학에서 물리학을 전공하였습니다'
+그 후 정적인 웹을 동적으로 만드는 JAVA애플릿이 등장하였습니다. 하지만 Netscape는 웹에 특화된 스크립트 언어이면서 기존 스크립트 언어인 Perl, Python, Scheme(스킴)등 과는 조금 다르면서도 쉽게 개발이 가능하고 JAVA애플릿을 보완하는 스크립트 언어의 필요성을 느껴서 Mocha라는 스크립트 언어를 10일만에 개발하였습니다.
 
-CERN에는 매우 다양한 컴퓨터 시스템이 존재하였고 서로 다른 프로그램과 운영체제를 실행하고 있었습니다. 실험에서 얻은 데이터와 근거 자료 및 문서들이 다양한 컴퓨터에 서로 다른 파일 형식으로 저장되어 있었고, 이로 인해 특정 연구분야와 관련된 정보를 찾는것이 매우 어려울때가 있었습니다.
+이후 LiveScript로 이름이 변경되었고 최종적으로 Netscape의 마케팅적 이유로 JAVA의 인기를 화용하기 위해 최종적으로 Javascript라는 이름으로 개발되었습니다.
 
-위와 같은 이유로 그는 웹사이트보다는 현대 wiki시스템과 비슷한 역할을 하는 인콰이어(ENQUIRE)라는 소프트웨어를 만들었습니다. 
+이후 IE등 다른 여러 브라우저에서 기준없이 Javascript에 대한 문법이 만들어져서 Netscape사는 표준화 기구인 ECMA International에 Javascript에 대한 표준화 작업을 요청 하였습니다.
 
-'인콰이어(ENQUIRE)는 특정 정보 단위와 다른 정보 단위와의 연관관계를 데이터베이스에 카드형식으로 저장하고, 링크를 통해 서로 다른 카드를 연결하여 다양한 관계를 설명하는데 도움을 주었습니다. https://en.wikipedia.org/wiki/ENQUIRE'
+그 결과로 Javascript의 표준 명세인 ECMAScript가 나올수 있었습니다.
 
-이후 그는 WorldWwidWeb의 핵심철학인 기존의 인콰이어(ENQUIRE) 소프트웨어보다 좀 더 넓은 범위의 사용자들이 많은 정보를 공유하는 소프트웨어를 생각하게 되었습니다.
+~~표준화가 적용되기까지 우리 개발자들은 생고생을(...)~~
 
-WorldWwidWeb을 개발하면서 그는 웹을 구성하는 세 가지 핵심요소 HTML, URL, HTTP를 더 개발해 냈습니다.
+현재는 V8엔진등과 같은 기술을 기반으로 서버(nodeJS, ...)와 클라이언트(electron, ...), 어플리케이션(React native, ...)등 여러 분야에서 사용되는 언어가 되었습니다.
 
-일반적으로 생각하는 바와 달리 WorldWwidWeb은 처음부터 유명하지 않았습니다. 그와 뜻을 같이하는 몇몇의 사람들이 CERN의 많은 직원과 인터넷 커뮤니티 회원에게 웹을 사용해 보도록 몇 개월이나 끈질기게 설득한 결과였습니다.
-
-1993년 6월만 당시만 해도 웹사이트는 전 세계를 통틀어 130개에 불과했지만, 그가 CERN을 설득하여 이 프로젝트의 소스코드를 오픈소로 제공하면서 그 수가 급격하게 증가했습니다. 
-
-이후 violaWWW, Erwise 등 수많은 초기 브라우저들이 등장했습니다.
-
-이후 직관적인 인터페이스, 간단한 설치 그리고 신뢰성을 가진 NCSA Mosaic이 개발되었고 이 웹 브라우저는 초기 웹의 성장을 확장하는데 중요한 역할을 하였습니다.
-
-이후 1994년에 Mosaic Communication 이라는 회사가 설립되어 기존 NCSA Mosaic의 많은 개발자들과 넷스케이프를 만들었습니다.
-
-이후 Netscape는 웹이 보다 역동적으로 될 필요성을 느꼈습니다. HTML에 이미지나 플러그인을 쉽게 적용 가능한 스크립트 언어의 필요성을 느꼈습니다. 우선 JAVA를 웹 브라우저에 도입하였고 이후 개발될 스크립트 언어는 JAVA를 보완하고, 여러 이유로 채택하지 않은 Perl, Python, Scheme(스킴)과는 조금 다른 문법을 가져야 했습니다.
-
-초기 Mocha라는 이름으로 10일만에 개발되었지만 이후 Netscape Navigator 2.0의 베타버전에 적용되었을때는 LiveScript로 이름이 변경되었고 이후 버전에서 Netscape의 마케팅적 전략으로 JAVA의 인기를 이용하기 위해 최종적으로 Javascript으로 결정되었습니다.
-
-이후 IE등 다른 여러 브라우저에서 Javascript에 대한 독자적인 문법을 만들어 내는 현상이 벌어지자 Netscape사는 Javascript를 표준화 하기 위해 표준화 기구인 ECMA International에 표준화 요청을 하였다.
-
-이후 Javascript의 표준 명세인 ECMAScript가 나올수 있었습니다.
-
-1996년에 IE에서 iFrame 태그가 나오고 
-1999년에 Ajax의 기반인 XMLHttpRequest 객체가 지원되고
-2001년에 SVG가 나오고
-2004년에 
+참고 자료: 
+* [ENQUIRE wikipedia](https://en.wikipedia.org/wiki/ENQUIRE)
+* [Javascript wikipedia](https://en.wikipedia.org/wiki/JavaScript)
+* [Tim_Berners-Lee wikipedia](https://en.wikipedia.org/wiki/Tim_Berners-Lee)
+* [LG CNS-IT Life](http://blog.lgcns.com/1165)
