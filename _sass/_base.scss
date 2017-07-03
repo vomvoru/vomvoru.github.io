@@ -197,13 +197,15 @@ table {
 // --------------------------------------------------
 
 blockquote p {
-  font-family: $alt-font;
-  // font-style: italic;
-  @include font-size(22, true, 30);
+  @include font-size(15, true, 30);
   padding-left: 10px;
-  border-left: 8px solid $black;
+  border-left: 8px solid #ffa7a7;
+  padding-right: 8px;
   padding-top: 12px;
   padding-bottom: 12px;
+  background: #ffe6e6;
+  color: #424242;
+  font-size: 16px;
 }
 
 
