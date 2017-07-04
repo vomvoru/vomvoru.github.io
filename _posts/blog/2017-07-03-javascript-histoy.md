@@ -16,8 +16,6 @@ Javascript는 웹 브라우저에서 동적인 화면을 위해 만들어진 언
 
 우선 웹 브라우저의 역사를 살펴보면 세계최초의 웹 브라우저인 WorldWideWeb은 유럽 입자 물리 연구소 CERN(쎄른)에서 만들어졌습니다.
 
-![WorldWideWeb](/images/2017/07/WorldWideWeb.png)
-
 CERN에서는 실험에서 얻은 데이터들이 매우 다양한 운영체제와 파일 형식으로 저장되어 있어서 특정한 정보를 찾는 것이 매우 어려웠습니다.
 
 이와 같은 이유로 'Tim Berners-Lee'는 다른 종류의 데이터들을 검색할수 있어서 현대 wiki시스템과 비슷한 역할을 하는 인콰이어(ENQUIRE)라는 소프트웨어를 만들었습니다. 
@@ -56,7 +54,7 @@ CERN에서는 실험에서 얻은 데이터들이 매우 다양한 운영체제�
 
 현재는 V8엔진등과 같은 기술을 기반으로 서버(nodeJS, ...)와 클라이언트(electron, ...), 어플리케이션(React native, ...)등 여러 분야에서 사용되는 언어가 되었습니다.
 
-![v8](/images/2017/07/v8.png)
+![v8](/images/2017/07/v8.png) { width: 50px; }
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/jYJjMRBtQBhl7L" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ssuserb4d89d/javascript-77469645" title="Javascript&#x27;s History" target="_blank">Javascript&#x27;s History</a> </strong> from <strong><a target="_blank" href="https://www.slideshare.net/ssuserb4d89d">철현 박</a></strong> </div>
 
