@@ -20,11 +20,11 @@ CERN에서는 실험에서 얻은 데이터들이 매우 다양한 운영체제�
 
 이와 같은 이유로 'Tim Berners-Lee'는 다른 종류의 데이터들을 검색할수 있어서 현대 wiki시스템과 비슷한 역할을 하는 인콰이어(ENQUIRE)라는 소프트웨어를 만들었습니다. 
 
-![Tbl](/images/2017/07/Tbl.jpg){:width="200px" margin="auto"}
+![Tbl](/images/2017/07/Tbl.jpg){:max-width="200px" margin="auto"}
 
 > 팀 버너스 리(Tim Berners-Lee)는 수학에 대한 끊임없는 열정을 가지고 전자제품에 대한 관심도가 높았으며 대학에서 물리학을 전공하고 소프트웨어 고문기사 자격으로 CERN에 입사하였습니다
 
-> 인콰이어(ENQUIRE)는 특정 정보 단위와 다른 정보 단위와의 연관관계를 데이터베이스에 카드형식으로 저장하고, 링크를 통해 서로 다른 카드를 연결하여 다양한 관계를 설명하는데 도움을 주었습니다. [https://en.wikipedia.org/wiki/ENQUIRE](https://en.wikipedia.org/wiki/ENQUIRE){:width="200px" margin="auto"}
+> 인콰이어(ENQUIRE)는 특정 정보 단위와 다른 정보 단위와의 연관관계를 데이터베이스에 카드형식으로 저장하고, 링크를 통해 서로 다른 카드를 연결하여 다양한 관계를 설명하는데 도움을 주었습니다. [https://en.wikipedia.org/wiki/ENQUIRE](https://en.wikipedia.org/wiki/ENQUIRE){:max-width="200px" margin="auto"}
 
 인콰이어(ENQUIRE) 소프트웨어에서 더 나아가 전세계 사람들이 자료를 자유롭게 공유할수있는 소프트웨어를 구상하였고 WorldWideWeb 이라는 최초의 웹 브라우저를 개발하였습니다.
 
@@ -36,7 +36,7 @@ CERN에서는 실험에서 얻은 데이터들이 매우 다양한 운영체제�
 
 그 후에 기존 Mosaic 웹 브라우저의 개발자들이 모여서 Mosaic Communication 이라는 회사를 설립하고 Netscape(넷스케이프)라는 웹 브라우저를 만들었습니다.
 
-![ns](/images/2017/07/ns.png){:width="200px" margin="auto"}
+![ns](/images/2017/07/ns.png){:max-width="200px" margin="auto"}
 
 그 후 정적인 웹이 아닌 동적인 웹을 위해 JAVA애플릿이 등장하였습니다. 여기서 Netscape는 더 나아가 JAVA애플릿을 대체하는 웹에 특화된 스크립트 언어를 생각했고, 기존 스크립트 언어인 Perl, Python, Scheme(스킴)등 과는 조금 다르면서 쉽게 개발이 가능한 Mocha라는 스크립트 언어를 10일만에 개발하였습니다.
 
@@ -48,13 +48,13 @@ CERN에서는 실험에서 얻은 데이터들이 매우 다양한 운영체제�
 
 그 결과로 Javascript의 표준 명세인 ECMAScript가 나올수 있었습니다.
 
-![es](/images/2017/07/es.jpg){:width="200px" margin="auto"}
+![es](/images/2017/07/es.jpg){:max-width="200px" margin="auto"}
 
 ~~표준화가 적용되기까지 우리 개발자들은 생고생을(...)~~
 
 현재는 V8엔진등과 같은 기술을 기반으로 서버(nodeJS, ...)와 클라이언트(electron, ...), 어플리케이션(React native, ...)등 여러 분야에서 사용되는 언어가 되었습니다.
 
-![v8](/images/2017/07/v8.png){:width="200px" margin="auto"}
+![v8](/images/2017/07/v8.png){:max-width="200px" margin="auto"}
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/jYJjMRBtQBhl7L" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ssuserb4d89d/javascript-77469645" title="Javascript&#x27;s History" target="_blank">Javascript&#x27;s History</a> </strong> from <strong><a target="_blank" href="https://www.slideshare.net/ssuserb4d89d">철현 박</a></strong> </div>
 
