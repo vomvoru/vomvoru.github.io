@@ -54,8 +54,6 @@ CERN에서는 실험에서 얻은 데이터들이 매우 다양한 운영체제�
 
 현재는 V8엔진등과 같은 기술을 기반으로 서버(nodeJS, ...)와 클라이언트(electron, ...), 어플리케이션(React native, ...)등 여러 분야에서 사용되는 언어가 되었습니다.
 
-![v8](/images/2017/07/v8.png)
-
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/jYJjMRBtQBhl7L" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ssuserb4d89d/javascript-77469645" title="Javascript&#x27;s History" target="_blank">Javascript&#x27;s History</a> </strong> from <strong><a target="_blank" href="https://www.slideshare.net/ssuserb4d89d">철현 박</a></strong> </div>
 
 참고 자료: 
