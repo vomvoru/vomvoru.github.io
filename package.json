@@ -11,7 +11,7 @@
     "dev": "jekyll build && jekyll serve --drafts",
     "build": "jekyll build",
     "install_jekyll": "gem install jekyll && gem install bundler && bundle install",
-    "update": "bundle update",
+    "update_jekyll": "bundle update",
     "upload": "git add -A && git commit -m \"update\" && git push origin"
   },
   "bugs": {
