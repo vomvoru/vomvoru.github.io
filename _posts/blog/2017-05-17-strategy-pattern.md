@@ -9,7 +9,7 @@ author: vomvoru
 comments: true
 share: true
 tags:
-    - Typescript
+    - TypeScript
     - Design pattern
     - Strategy pattern
 ---

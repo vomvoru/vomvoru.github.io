@@ -1,0 +1,40 @@
+{
+    // https://github.com/Microsoft/TypeScript/tree/master/tests/cases/compiler
+    // 공식문서 외에도 위 테스트 코드를 참고시 도움이 됩니다.
+    
+    "compilerOptions": {
+        "allowJs": false, // 자바스크립트 파일 컴파일 허용 여부. 
+        // import add from './add.js' 와 같이 js파일 import 허용
+
+        "allowSyntheticDefaultImports": false, // export default 를 export 한 값들을 가지는 객체로 설정
+        // export class Foo { member: string; } 을 할시 (b.ts)
+        // export default { Foo } 가 기본으로 설정된다.
+
+        "allowUnreachableCode": false, // 도달 불가능한 코드에 대한 허용 여부.
+        /* 
+        function foo() {
+            if (true) {
+                return 42;
+            }
+            else {
+                return "42"; // 도달 불가능
+            }
+        };
+        */
+
+        "allowUnusedLabels": false, // 사용하지 않는 라벨에 대한 허용 여부
+        /*
+        target1:
+        target2: // 사용하지 않는 라벨
+        while (true) {
+            break target1;
+        }
+        */
+
+        "alwaysStrict": false, // 항상 strict mode로 분석할지 여부
+        // 모든 코드를 strict mode로 분석함
+        // "use strict"; 를 컴파일된 js파일에 추가
+
+        "baseUrl": 
+    }
+}
