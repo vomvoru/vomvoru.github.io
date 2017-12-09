@@ -210,6 +210,11 @@ File 'node_modules/typescript/lib/typescript.d.ts' exist - use it as a module re
 ======== Module name 'typescript' was successfully resolved to 'node_modules/typescript/lib/typescript.d.ts'. ========
 ```
 
+
+> 아래 내용은 좀더 보완이 필요합니다.
+> 잘못된 내용이 있을 수 있습니다.
+
+
 ## noResolve
 
 `noResolve` 컴파일러 옵션은 컴파일러에 명령 줄에서 전달되지 않은 파일을 컴파일에 추가하지 않도록 지시합니다.
