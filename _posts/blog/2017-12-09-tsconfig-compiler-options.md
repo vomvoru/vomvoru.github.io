@@ -16,6 +16,7 @@ tags:
 ```json
 {
     // https://github.com/Microsoft/TypeScript/tree/master/tests/cases/compiler
+    // https://github.com/Microsoft/TypeScript/tree/master/tests/baselines/reference
     // 공식문서 외에도 위 테스트 코드를 참고시 도움이 됩니다.
     
     "compilerOptions": {
@@ -148,7 +149,7 @@ tags:
         // https://github.com/Microsoft/TypeScript/tree/master/tests/cases/projects/NodeModulesSearch/maxDepthIncreased
 
         "module": "es3", // 모듈 설정
-        // "AMD", "System" 일때만 outFile 옵션 설정 가능
+        // "AMD", "System" 사용시 outFile 옵션을 설정하면 여러개의 모듈이 포함된 단일파일로 출력
         // "ES6", "ES2015"는 target값이 "ES5" 이하일때 사용 가능
 
         "moduleResolution": "node", // 모듈 (검색)해석 방식 설정
@@ -196,58 +197,107 @@ tags:
 
         "noUnusedParameters": false,  // 사용안된 파라미터에 대한 오류 보고 여부
 
-        "outDir": "",
+        "outDir": "", // 출력할 디덱토리
+        // @TODO 테스트 필요
 
-        "outFile": "",
+        "outFile": "", // 단일파일로 출력시 파일명
+        // @TODO 테스트 필요
 
         "paths": { }, // baseUrl 옵션을 기준디렉토리로 불러올 모듈의 위치 설정이 가능
         // https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping
 
-        "plugins": [ ],
+        "plugins": [ ], // 편집환경을 더 좋게 변경하기 위한 플러그인 기능
+        // 새로운 구문이나 다른 형식 검사 동작등 새로운 언어 기능을 추가할수는 없음
+        // https://github.com/Microsoft/TypeScript/wiki/Writing-a-Language-Service-Plugin
 
-        "preserveConstEnums": false,
+        "preserveConstEnums": false, // const enum형 선언을 지우지 않을건지 여부
+        // 본래 컴파일 하는동안 완전히 제거되어 성능과 메모리상 이점을 얻기위해
+        // const enum형 선언은 지우고 코드상에 직접 맵핑되는데 이 옵션을 활성화시
+        // const enum형 선언을 지우지 않는다
+        /*
+        // js파일
+        const enum E {
+            Value = 1, Value2 = Value
+        }
+        console.log(E.value)
+        console.log(E.value2)
 
-        "preserveSymlinks": false,
+        // 비활성화시 결과파일
+        console.log(1 /* Value * /);
+        console.log(1 /* Value2 * /);
 
-        "pretty": false,
 
-        "reactNamespace": "",
+        // 활성화시 결과파일
+        var E;
+        (function (E) {
+            E[E["Value"] = 1] = "Value";
+            E[E["Value2"] = 1] = "Value2";
+        })(E || (E = {}));
 
-        "removeComments": false,
+        console.log(E.value)
+        console.log(E.value2)
+        */
 
-        "rootDir": "",
+        "preserveSymlinks": false, // Symlink파일에서 다른 모듈을 import시 기준경로를 Symlink 경로로 설정
+        // 기존에는 Symlink파일에서 다른 모듈을 import시
+        // Symlink파일의 실제 경로에서 모듈을 가져왔다.
+        // https://nodejs.org/api/cli.html#cli_preserve_symlinks
 
-        "rootDirs": [ ],
+        "pretty": false, // 에러 메시지를 예쁘게 설정
+        // @TODO 테스트 필요
 
-        "skipDefaultLibCheck": false,
+        "reactNamespace": "", // React 네임스페이스 설정. 권장되지 않는 옵션.
+        // jsxFactory 옵션을 사용하십시오
 
-        "skipLibCheck": false,
+        "removeComments": false, // 주석 삭제
+        // @TODO '/*!' 주석 테스트 필요
 
-        "sourceMap": false,
+        "rootDir": "", // 입력파일의 rootDir 설정
+        // outDir옵션을 사용할때만 사용
 
-        "sourceRoot": "",
+        "rootDirs": [ ], // 가상 디덱토리를 설정
+        // https://www.typescriptlang.org/docs/handbook/module-resolution.html#virtual-directories-with-rootdirs
 
-        "strict": false,
+        "skipDefaultLibCheck": false, // 사용을 권장하지 않음 skipLibCheck 옵션을 사용
 
-        "strictFunctionTypes": false,
+        "skipLibCheck": false, // 모든 선언파일(*.d.ts)의 유형검사를 건너뛸지 여부
 
-        "strictNullChecks": false,
+        "sourceMap": false, // 소스맵(*.map) 파일 생성 여부
 
-        "stripInternal": false,
+        "sourceRoot": "", // 디버거가 알아야될 .ts파일 root 위치. 소스맵(*.map)에 적용된다.
+        // @TODO 테스트 필요
 
-        "suppressExcessPropertyErrors": false,
+        "strict": false, // 모든 엄격한 타입 검사 옵션을 활성화
+        // noImplicitAny, noImplicitThis, alwaysStrict, strictNullChecks, strictFunctionTypes
 
-        "suppressImplicitAnyIndexErrors": false,
+        "strictFunctionTypes": false, //@TODO 테스트 필요
 
-        "target": "es3",
+        "strictNullChecks": false, // null과 undefined 타입 구분 여부
+        // https://basarat.gitbooks.io/typescript/docs/options/strictNullChecks.html
 
-        "traceResolution": false,
+        "stripInternal": false, // /** @ internal * /JSDoc annotation이 있는 코드에 대한 선언을 내 보내지 않을지 여부
+        // @TODO 부가설명 필요
 
-        "typeRoots": [ ],
+        "suppressExcessPropertyErrors": false, // 객체 리터럴에 대한 초과 속성 검사 억제 여부
+        // @TODO 부가설명 필요
 
-        "types": [ ],
+        "suppressImplicitAnyIndexErrors": false, // 인덱스 서명이없는 개체를 인덱싱하는 경우 --noImplicitAny 오류 억제여부
+        // 자세한 내용은 문제 #1232를 참조
+        // @TODO 부가설명 필요
 
-        "watch": false
+        "target": "es3", // 결과물 ECMAScript 버전 설정
+
+        "traceResolution": false, // 모듈 검색에 대한 로그메세지 출력 여부
+
+        "typeRoots": [ ], // 타입(*.d.ts)파일을 가져올 디렉토리 설정
+        // 설정 안할시 기본적으로 ./node_modules/@types
+
+        "types": [ ], // 타입을 가져올 패키지목록 (따른 패키지는 (*.d.ts)파일을 가져오지 않음)
+        // ["node", "lodash", "express"] 설정시
+        // ./node_modules/@types/node, ./node_modules/@types/lodash, ./node_modules/@types/express
+        // 위 3개를 가져오고 node_modules/@types/* 의 다른 패키지는 가져오지 않음
+
+        "watch": false // 파일 변경시 컴파일
     }
 }
 ```
