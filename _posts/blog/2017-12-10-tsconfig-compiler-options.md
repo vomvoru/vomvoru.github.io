@@ -12,7 +12,7 @@ tags:
   - TypeScript
 ---
 
-#tsconfig.json
+# tsconfig.json
 ```json
 {
     // https://github.com/Microsoft/TypeScript/tree/master/tests/cases/compiler
