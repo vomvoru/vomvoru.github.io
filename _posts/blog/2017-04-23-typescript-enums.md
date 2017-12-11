@@ -1,7 +1,6 @@
 ---
 layout: post
 title: TypeScript Enum
-excerpt:
 slug: typescript-Enum
 date: '2017-04-23 23:05:00 +0900'
 categories: blog

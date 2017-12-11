@@ -1,7 +1,6 @@
 ---
 layout: post
 title: TypeScript Basic Types
-excerpt:
 slug: typescript-basic-types
 date: '2017-04-19 20:50:00 +0900'
 categories: blog

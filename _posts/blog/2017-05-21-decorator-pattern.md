@@ -1,7 +1,7 @@
 ---
 layout: post
 title: decorator pattern
-excerpt: wrapper
+subtitle: wrapper
 slug: decorator-pattern
 date: '2017-05-18 18:22:00 +0900'
 categories: blog

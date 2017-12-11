@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GraphQL 이란?
-excerpt: A query language for your API
+subtitle: A query language for your API
 slug: about-GraphQL
 date: '2017-06-27 23:57:00 +0900'
 categories: blog

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Javascript의 원시 타입
-excerpt: typeof vs instanceof
+subtitle: typeof vs instanceof
 slug: javascript-primitive-type
 date: '2017-05-12 17:27:00 +0900'
 categories: blog

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 다형성
-excerpt: Polymorphic
+subtitle: Polymorphic
 slug: polymorphic
 date: 2017-05-18 13:08:00 +0900
 categories: blog

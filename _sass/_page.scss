@@ -84,7 +84,7 @@ span + .entry-title {
   margin-top: 0;
 }
 
-.entry-title, .entry-excerpt {
+.entry-title, .entry-subtitle {
   font-family: $title-font;
   @include font-size(36,yes,36);
   font-weight: 500;
@@ -106,7 +106,7 @@ span + .entry-title {
   }
 }
 
-.entry-excerpt {
+.entry-subtitle {
   @include font-size(20,yes,20);
   @include media($medium) {
     @include font-size(30,yes,32);

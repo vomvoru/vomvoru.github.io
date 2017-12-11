@@ -1,7 +1,7 @@
 ---
 layout: post
 title: mvc mvp mvvm
-excerpt: mv...
+subtitle: mv...
 slug: mvc-mvp-mvvm
 date: '2017-06-22 15:29:00 +0900'
 categories: blog

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript's Type Compatibility
-excerpt: structural subtyping
+subtitle: structural subtyping
 slug: typescript-type-compatibility
 date: '2017-04-30 22:10:00 +0900'
 categories: blog

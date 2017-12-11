@@ -1,7 +1,7 @@
 ---
 layout: post
 title: redux flow
-excerpt: redux의 흐름
+subtitle: redux의 흐름
 slug: redux-flow
 date: '2017-06-26 18:03:00 +0900'
 categories: blog

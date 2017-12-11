@@ -1,7 +1,6 @@
 ---
 layout: post
 title: TypeScript functions
-excerpt:
 slug: typescript-functions
 date: '2017-04-22 11:12:00 +0900'
 categories: blog

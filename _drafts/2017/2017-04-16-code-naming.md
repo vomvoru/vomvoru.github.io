@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 코드 네이밍
-excerpt: 의미있는 이름
+subtitle: 의미있는 이름
 slug: code-naming
 date: '2017-04-16 07:16:01 +0900'
 categories: blog

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GraphQL의 Mutation과 Fragment
-excerpt: 수정작업을 하는 GraphQL문 Mutation
+subtitle: 수정작업을 하는 GraphQL문 Mutation
 slug: mutation-and-fragment-of-GraphQL
 date: '2017-06-28 01:30:00 +0900'
 categories: blog

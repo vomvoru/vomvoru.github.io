@@ -1,7 +1,7 @@
 ---
 layout: post
 title: strategy pattern
-excerpt: 상황에 따라 전략을 변경하는 전략 패턴
+subtitle: 상황에 따라 전략을 변경하는 전략 패턴
 slug: strategy-pattern
 date: '2017-05-17 17:27:00 +0900'
 categories: blog

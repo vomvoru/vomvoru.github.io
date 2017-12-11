@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript의 prototype 상속
-excerpt: __extends 함수 분석
+subtitle: __extends 함수 분석
 slug: typescript-prototype-extend
 date: '2017-04-24 14:41:00 +0900'
 categories: blog

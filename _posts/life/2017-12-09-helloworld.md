@@ -1,7 +1,7 @@
 ---
 layout: post
 title: hello world
-excerpt: 임시글
+subtitle: 임시글
 slug: hello-world
 date: '2017-12-09 23:28:00 +0900'
 categories: life

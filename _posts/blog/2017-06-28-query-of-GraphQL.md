@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GraphQL의 query
-excerpt: 읽기작업을 하는 GraphQL문 query
+subtitle: 읽기작업을 하는 GraphQL문 query
 slug: query-of-GraphQL
 date: '2017-06-28 01:00:00 +0900'
 categories: blog

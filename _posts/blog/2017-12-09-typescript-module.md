@@ -1,7 +1,7 @@
 ---
 layout: post
 title: typescript의 모듈 해석 방식
-excerpt: typescript module resolution
+subtitle: typescript module resolution
 slug: typescript-module-resolution
 date: '2017-12-09 20:43:00 +0900'
 categories: blog

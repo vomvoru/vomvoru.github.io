@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 좋은 코딩 규칙 요약
-excerpt: 변화에 민감하지 않게 작성하기
+subtitle: 변화에 민감하지 않게 작성하기
 slug: good-coding-rules-summary
 date: '2017-06-10 13:31:00 +0900'
 categories: blog

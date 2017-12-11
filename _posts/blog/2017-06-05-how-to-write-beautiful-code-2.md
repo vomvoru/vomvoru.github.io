@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 좋은 코드 작성하기 2
-excerpt: 의존도와 결합도
+subtitle: 의존도와 결합도
 slug: how-to-write-beautiful-code-2
 date: '2017-06-05 12:53:00 +0900'
 categories: blog

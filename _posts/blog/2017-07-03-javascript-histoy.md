@@ -1,7 +1,7 @@
 ---
 layout: post
 title: javascript의 역사
-excerpt: 브라우저의 역사와 함께보는 javascript의 역사
+subtitle: 브라우저의 역사와 함께보는 javascript의 역사
 slug: javascript-histoy
 date: '2017-07-03 10:36:00 +0900'
 categories: blog

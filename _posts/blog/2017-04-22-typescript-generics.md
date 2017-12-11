@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript Generics
-excerpt: 다양한 유형을 지원하기
+subtitle: 다양한 유형을 지원하기
 slug: typescript-Generics
 date: '2017-04-22 17:11:00 +0900'
 categories: blog

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TypeScript interface 1
-excerpt: Duck Typing
+subtitle: Duck Typing
 slug: typescript-interface-1
 date: '2017-04-21 02:27:00 +0900'
 categories: blog

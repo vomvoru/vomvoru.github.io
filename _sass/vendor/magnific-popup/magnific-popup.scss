@@ -63,7 +63,7 @@ $mfp-include-mobile-layout-for-image: true !default; // Removes paddings from to
 
 // Image caption options
 $mfp-caption-title-color:             #F3F3F3 !default;
-$mfp-caption-excerpt-color:          #BDBDBD !default;
+$mfp-caption-subtitle-color:          #BDBDBD !default;
 
 // A11y
 $mfp-use-visuallyhidden:              false !default; // Hide content from browsers, but make it available for screen readers 
@@ -492,7 +492,7 @@ button {
       background: $mfp-image-background;
     }
     small {
-      color: $mfp-caption-excerpt-color;
+      color: $mfp-caption-subtitle-color;
       display: block;
       font-size: 12px;
       line-height: 14px;
