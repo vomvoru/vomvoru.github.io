@@ -116,6 +116,7 @@ span + .entry-title {
     @include font-size(39,yes,40);
   }
   color: mix(#ffffff, $text-color, 40%);
+  text-align: center;
 }
 
 /* page/post wrapper */
