@@ -13,10 +13,15 @@ tags:
 ---
 
 # Basic Types
+[더 자세한 글](https://vomvoru.github.io/blog/typescript-basic-types/)
+
 - `boolean`, `number`, `string`
+
 - `Array`, `Tuple`, `enum`
-- `never` : **도달할수 없는**
+
 - `symbol`
+
+- `never` : **도달할수 없는**
 
 함수내부에 문한루프 혹은 에러를 던질때 사용
 
@@ -32,6 +37,7 @@ function infiniteLoop(): never {
 ```
 
 - `Any`, `Void`
+
 - `null`, `Undefined`
 
 `null`, `Undefined`은 strictNullChecks플래그 비활성화시 never타입을 제외한 모든 타입에 설정 가능
@@ -48,52 +54,45 @@ num = undefined; // pass
 num = null; // pass
 ```
 
-> Type assertions 정리 필요
-
-
 # Interface
 
-## Optional
+## Optional 속성
 ```ts
-interface SquareConfig {
-    width: number;
+interface Shape {
     color?: string;
 }
 ```
 
-## readonly
+## readonly 속성
 ```ts
-interface Point {
-    readonly x: number;
-    readonly y: number;
+interface PenStroke {
+    readonly penWidth: number;
 }
 
 ```
 
-## extends
+## 인터페이스 확장
 ```ts
-interface Shape {
-    color: string;
-}
-
-interface PenStroke {
-    penWidth: number;
-}
-
 interface Square extends Shape, PenStroke {
     sideLength: number;
 }
 ```
 
 # Class
+## Class 기본
+접근제어자, 생성자, 메서드, getter, setter에 대해
 ```ts
 class User {
+    // static 속성
     static num: number;
 
-    nickname: string; //== public nickname:string;
+    // 접근제어자 생략시 public
+    // public, protected, private 지원
+    nickname: string;
     protected name: string;
     private password: string;
 
+    // 생성자
     constructor(name: string, nickname: string, password: string){
         num++;
         this.name = name
@@ -101,7 +100,8 @@ class User {
         this.serializedPassword = password
     }
 
-    print(tag: string){
+    // 메서드
+    public print(tag: string){
         console.log(tag, `i am ${this.nickname}.`)
     }
 
@@ -115,8 +115,13 @@ class User {
         return this.password
     }
 }
+```
 
-// 상속 (extends, super)
+## Class 상속
+- `extends`, `super`에 대해서 및 오버라이드
+- 생성자 파라미터로 속성 정의
+
+```ts
 class Admin extends User {
     constructor(
         public adminLevel:number, // Parameter properties
@@ -134,7 +139,7 @@ class Admin extends User {
 }
 ```
 
-## Access Modifier
+## 접근 제어자 비교
 
 O: 접근 가능, X: 접근 불가능
 
@@ -154,9 +159,15 @@ O: 가능, X: 불가능
 | 메소드 접근제어자 강제 | X         | O                      | X                     |
 | 내부 구현 코드 구현    | X         | O                      | 필수                  |
 
+
 # function
 
 ## 타입체크
+아래 3가지 조건 만족시 타입검사를 통과
+- 인수의 이름과 관계없이 순서별로 타입이 일치
+- 리턴 타입이 일치
+- 인수의 개수가 적거나 같음
+
 ```ts
 let myAdd: (x: number, y: number)=>number;
 
@@ -172,8 +183,9 @@ let myAdd = function(x: number): number { return x + x; };
 // 매개변수의 개수가 많으면 안됨
 let myAdd = function(x: number, y: number, z:number): number { return x + x; }; //error
 ```
-## 파라미터 종류
 
+## 파라미터 종류
+필수, 옵션, 기본값, rest에 대해서
 ```ts
 function createUser(
     id: string, // 필수
@@ -184,12 +196,12 @@ function createUser(
     console.log('createUser')
 }
 
-// undefined 활용
+// 옵션 및 기본값에 대해 undefined 활용
 createUser('pch', undefined, undefined, [1])
 ```
 
 ## function & interface
-interface는 객체 타입을 설정. 함수도 객체인 것을 생각하면 다음과 같은 코드도 된다.
+interface는 객체 타입을 설정하므로 함수도 객체인 것을 생각하면 다음과 같은 코드도 된다.
 ```ts
 interface Counter {
     (start: number): string;
@@ -267,6 +279,7 @@ function pickCard(x): any {
 
 # Enum
 
+## 기본
 ```ts
 enum Direction {
     Up,
@@ -276,7 +289,7 @@ enum Direction {
 }
 ```
 
-## reverse mapping
+## 역 맵핑
 ```ts
 enum Enum {
     A
