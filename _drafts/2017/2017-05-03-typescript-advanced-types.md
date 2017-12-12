@@ -464,10 +464,10 @@ function area(s: Shape) {
 }
 ```
 
-# Polymorphic this types
+# this 타입 및 메소드 체이닝
 
-this 유형은 class 혹은 interface에서 사용되는 바인딩된 this를 의미합니다.  
-A polymorphic `this` type represents a type that is the subtype of the containing class or interface. This is called F-bounded polymorphism. This makes hierarchical fluent interfaces much easier to express, for example. Take a simple calculator that returns `this` after each operation:
+`this`타입은 class 혹은 interface에서 사용되는 바인딩된 `this`를 의미합니다.
+이를 이용하여 메소드 체이닝을 구현할 수 있습니다.
 
 ```ts
 class BasicCalculator {
@@ -492,7 +492,7 @@ let v = new BasicCalculator(2)
             .currentValue();
 ```
 
-Since the class uses `this` types, you can extend it and the new class can use the old methods with no changes.
+새 클래스는 변경하지 않고 이전 메소드를 사용할 수 있습니다.
 
 ```ts
 class ScientificCalculator extends BasicCalculator {
