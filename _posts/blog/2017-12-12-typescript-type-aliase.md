@@ -1,6 +1,7 @@
 ---
 layout: post
 title: TypeScript Type Aliase
+subtitle: 그리고 index type들...
 slug: typescript-type-aliase
 date: '2017-12-12 21:21:00 +0900'
 categories: blog
