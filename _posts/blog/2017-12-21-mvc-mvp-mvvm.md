@@ -1,7 +1,8 @@
 ---
 layout: post
-title: MVC MVVM MVP
-slug: MVX
+title: MVC MVP MVVM
+subtitle: MVX
+slug: mvc-mvp-mvvm
 date: '2017-12-24 23:17:00 +0900'
 categories: blog
 author: vomvoru
