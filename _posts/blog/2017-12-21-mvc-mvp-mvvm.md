@@ -22,6 +22,7 @@ share: true
 
 ### 장점
 * Model과 View가 어디에도 종속적이지 않고 분리될 수 있다.
+
 ### 단점
 * Controller가 Model과 View에 단단히 의존되면서 Model과 View에 변화가 일어나면 Controller도 변경해야 한다
 * 시간이 지날수록 Controller에 더 많은 코드가 모이게 된다.
@@ -35,6 +36,7 @@ MVC + ViewInterface
 
 ### 장점
 * MVC보다 유지보수성이 좋고 View의 Interface에 의존하면서 Presenter가 View에 덜 의존적입니다.
+
 ### 단점
 * MVC보다 깔끔한 형태지만 단순한 프로그램에서는 MVC보다 더 복잡해질수 있습니다.
     * View의 Interface를 구현해야 되기 때문
@@ -49,8 +51,14 @@ MVC + ViewModelInterface + (view가 실행할 ViewModel의 메소드)hook
 
 ### 장점
 * 유지보수성이 좋다
+
 ### 단점
 * 구헌이 복잡하고 코드양이 많아질수 있다
 
 
-MVC에 비해 MVP와 MVVM은 앱을 보다 모듈화하고 구성 요소를 단일 용도로 분해한다는 점에서 발전된 모습이지만, 이 구조 때문에 앱이 더 복잡해질 수도 있습니다. 한 두 개의 화면으로만 구성된 간단한 앱이라면 MVC만으로도 충분합니다.
+# 결론
+- MVC는 MVP, MVVM보다 유지보수성은 적지만, 규모가 작은 앱에서는 좀 더 간결한 코드를 작성할수 있다 
+- MVP, MVVM은 유지보수성이 괜찬으나, 코드가 Presenter, View Model에 모이게 된다.
+- 코드가 모이게 되는 위 문제를 해결하기 위해 Action, Dispatcher로 분리한 flux패턴이 나오게 된다
+    - 좀더 단방향성을 높여서 데이터 흐름의 파악이 원할하게 함
+    - 코드의 양은 좀 더 늘어나게 된다
