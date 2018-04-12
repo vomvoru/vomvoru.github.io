@@ -4,7 +4,7 @@ title: 안좋은 React Code 작성 방법
 subtitle: How to write react bad code.
 slug: how-to-write-react-bad-code
 date: '2018-04-11 21:20:00 +0900'
-categories: draft
+categories: blog
 author: vomvoru
 comments: true
 share: true
