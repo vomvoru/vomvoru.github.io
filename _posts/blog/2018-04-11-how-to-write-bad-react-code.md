@@ -60,6 +60,8 @@ export default TestFail;
 - render 함수 내부에서 **항상 새로운 클래스가 생성**
 - 새로운 클래스는 새로운 타입의 컴포넌트이므로 React Diff Algorithm에 따라 다시 리랜더링됨.
 
+> 클래스 === 자바스크립트의 함수 === 컴포넌트 클래스
+
 
 ### 해결법
 - render의 return 에 모두 작성하기
@@ -68,7 +70,7 @@ export default TestFail;
 
 ### 예시 코드
 <iframe src="https://codesandbox.io/embed/p57m3kwl7" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
-1. 문제 컴포넌트
-2. 해결한 컴포넌트 1
-3. 해결한 컴포넌트 2
-4. 해결한 컴포넌트 3
+1. `Fail`: 문제있는 컴포넌트
+2. `Fix`: render의 return 에 모두 작성하기
+3. `Fix2`: Component Class 가 아니라 Component 자체를 담기
+4. `Fix3`: Component Class 를 외부 (class 바깥 or 새로운 파일)에 정의하기
