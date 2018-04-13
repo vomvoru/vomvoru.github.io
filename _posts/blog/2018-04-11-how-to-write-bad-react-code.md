@@ -17,6 +17,11 @@ tags:
 
 ## render 함수 내부에서 새로운 Component Class 만들기
 
+필요한 사전지식
+  - React Diff Alogrihtm 에 대한 이해
+    - http://meetup.toast.com/posts/110
+    - http://guswnsxodlf.github.io/react-diff-algorithm
+
 ```js
 class TestFail extends Component {
   state = {
