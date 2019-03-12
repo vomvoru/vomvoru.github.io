@@ -23,7 +23,7 @@ tags:
       "node_modules"
   ],
   "compilerOptions": {
-    "target": "ES2017", // 결과물 ECMAScript 버전 설정
+    "target": "ES2017", // 코드에서 사용할 ECMAScript 버전 설정
 
     /////////// module ///////////
     "module": "CommonJS", // 모듈 설정
@@ -420,7 +420,7 @@ tags:
         // 자세한 내용은 문제 #1232를 참조
         // @TODO 부가설명 필요
 
-        "target": "es3", // 결과물 ECMAScript 버전 설정
+        "target": "es3", // 코드에서 사용할 ECMAScript 버전 설정
 
         "traceResolution": false, // 모듈 검색에 대한 로그메세지 출력 여부
 
